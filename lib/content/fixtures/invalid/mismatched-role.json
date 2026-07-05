@@ -1,0 +1,26 @@
+{
+  "ad": {
+    "slug": "mismatched-role",
+    "title": "Mismatched Role",
+    "team": "Demo",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "A demo summary.",
+    "role": { "eyebrow": "Mismatched Role", "paragraphs": ["A demo paragraph."] },
+    "idealCandidate": ["Demo trait"],
+    "requirements": [{ "title": "Demo", "tagline": "Demo tagline.", "body": "Demo body." }],
+    "whatYoullDo": ["Demo duty"],
+    "shouldntApply": ["Demo filter"],
+    "seo": { "title": "Mismatched Role", "description": "Demo description." }
+  },
+  "form": {
+    "slug": "other-slug",
+    "role": "Mismatched Role",
+    "version": 1,
+    "pages": [
+      { "id": "intro", "kind": "intro", "title": "Mismatched Role" },
+      { "id": "end-ok", "kind": "ending", "title": "Thanks!", "endingTone": "standard" }
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "ad": {
+    "slug": "demo-role",
+    "title": "Demo Role",
+    "team": "Demo",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "A demo summary.",
+    "role": { "eyebrow": "Demo Role", "paragraphs": ["A demo paragraph."] },
+    "idealCandidate": ["Demo trait"],
+    "requirements": [{ "title": "Demo", "tagline": "Demo tagline.", "body": "Demo body." }],
+    "whatYoullDo": ["Demo duty"],
+    "shouldntApply": ["Demo filter"],
+    "seo": { "title": "Demo Role at Halevora", "description": "Demo description." }
+  },
+  "form": {
+    "slug": "demo-role",
+    "role": "Demo Role",
+    "version": 1,
+    "pages": [
+      { "id": "intro", "kind": "intro", "title": "Demo Role", "cta": "Apply Now" },
+      {
+        "id": "q-name",
+        "kind": "question",
+        "title": "What is your first name?",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true }
+        ]
+      },
+      { "id": "end-ok", "kind": "ending", "title": "Thank you, {first_name}!", "endingTone": "standard" }
+    ]
+  }
+}

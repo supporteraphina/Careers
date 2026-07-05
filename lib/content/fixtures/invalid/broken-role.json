@@ -1,0 +1,33 @@
+{
+  "ad": {
+    "slug": "broken-role",
+    "title": "Broken Role",
+    "team": "Demo",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "A demo summary.",
+    "role": { "eyebrow": "Broken Role", "paragraphs": ["A demo paragraph."] },
+    "idealCandidate": ["Demo trait"],
+    "requirements": [{ "title": "Demo", "tagline": "Demo tagline.", "body": "Demo body." }],
+    "whatYoullDo": ["Demo duty"],
+    "shouldntApply": ["Demo filter"],
+    "seo": { "title": "Broken Role", "description": "Demo description." }
+  },
+  "form": {
+    "slug": "broken-role",
+    "role": "Broken Role",
+    "version": 1,
+    "pages": [
+      { "id": "intro", "kind": "intro", "title": "Broken Role" },
+      {
+        "id": "q-name",
+        "kind": "question",
+        "title": "What is your first name?",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true }
+        ]
+      }
+    ]
+  }
+}
