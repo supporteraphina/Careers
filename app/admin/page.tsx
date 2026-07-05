@@ -110,7 +110,12 @@ export default async function AdminPage({ searchParams }: Props) {
                   <td>{app.createdAt.toISOString().slice(0, 16).replace('T', ' ')}</td>
                   <td>{app.role}</td>
                   <td>
-                    {[app.firstName, app.lastName].filter(Boolean).join(' ') || '—'}
+                    <Link
+                      href={`/admin/applications/${app.id}`}
+                      style={{ color: 'var(--accent)', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+                    >
+                      {[app.firstName, app.lastName].filter(Boolean).join(' ') || 'View'}
+                    </Link>
                   </td>
                   <td>{app.email ?? '—'}</td>
                   <td>{app.country ?? '—'}</td>
