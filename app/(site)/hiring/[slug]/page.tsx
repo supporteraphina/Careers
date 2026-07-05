@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import ApplyLink from '../../../../components/ApplyLink';
 import Reveal from '../../../../components/Reveal';
 import { getRolePack, getRolePacks } from '@/lib/content/roles';
 
@@ -136,9 +137,7 @@ export default async function JobAdPage({ params }: Props) {
               The application takes 10 to 20 focused minutes. Thorough answers
               move you forward.
             </p>
-            <Link href={`/apply/${ad.slug}`} className="btn">
-              Apply now
-            </Link>
+            <ApplyLink slug={ad.slug}>Apply now</ApplyLink>
           </div>
         </Reveal>
       </div>
