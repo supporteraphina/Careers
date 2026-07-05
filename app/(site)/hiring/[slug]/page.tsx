@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getRolePack, getRolePacks } from '../../../lib/content/roles.js';
+import { getRolePack, getRolePacks } from '@/lib/content/roles.js';
 
 interface Props {
   params: Promise<{ slug: string }>;
