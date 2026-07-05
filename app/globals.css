@@ -527,8 +527,20 @@ img {
 
 .roles-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(18px, 1.6vw, 28px);
+}
+
+@media (max-width: 1100px) {
+  .roles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .role-card {
