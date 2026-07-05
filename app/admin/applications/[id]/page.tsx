@@ -3,8 +3,10 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import NoteEditor from '@/components/admin/NoteEditor';
 import ReviewControl from '@/components/admin/ReviewControl';
+import ReviewKeys from '@/components/admin/ReviewKeys';
 import { prisma } from '@/lib/db';
 import type { Answers, FormDefinition } from '@/lib/engine/types';
+import { relativeTime } from '@/lib/server/format';
 
 export const metadata: Metadata = {
   title: 'Application | Halevora Admin',
@@ -22,114 +24,188 @@ export default async function ApplicationPage({ params }: Props) {
   const application = await prisma.application.findUnique({ where: { id } });
   if (!application) notFound();
 
-  const snapshot = await prisma.formSnapshot.findUnique({
-    where: {
-      slug_version: { slug: application.slug, version: application.formVersion },
-    },
-  });
+  const [snapshot, deliveries, prev, next, newerCount, total] = await Promise.all([
+    prisma.formSnapshot.findUnique({
+      where: {
+        slug_version: { slug: application.slug, version: application.formVersion },
+      },
+    }),
+    prisma.webhookDelivery.findMany({ where: { applicationId: id }, take: 5 }),
+    prisma.application.findFirst({
+      where: { createdAt: { gt: application.createdAt } },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true },
+    }),
+    prisma.application.findFirst({
+      where: { createdAt: { lt: application.createdAt } },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true },
+    }),
+    prisma.application.count({ where: { createdAt: { gt: application.createdAt } } }),
+    prisma.application.count(),
+  ]);
 
   const answers = JSON.parse(application.answers) as Answers;
   const path = JSON.parse(application.path) as string[];
   const form = snapshot ? (JSON.parse(snapshot.definition) as FormDefinition) : null;
   const visited = new Set(path);
 
-  // Question/answer pairs in form order, restricted to visited pages.
   const qa =
     form?.pages
       .filter((page) => visited.has(page.id))
       .flatMap((page) =>
         (page.fields ?? []).map((field) => ({
-          pageTitle: page.title,
           label: field.label,
           value: answers[field.id],
         })),
       )
       .filter((row) => row.value !== undefined && String(row.value).trim() !== '') ?? [];
 
-  return (
-    <main className="container" style={{ paddingTop: '48px', maxWidth: '900px' }}>
-      <Link href="/admin" className="eyebrow" style={{ display: 'inline-block', marginBottom: '22px' }}>
-        ← All applications
-      </Link>
-      <h1 style={{ fontSize: '2rem' }}>
-        {[application.firstName, application.lastName].filter(Boolean).join(' ') ||
-          'Unnamed applicant'}
-      </h1>
-      <p style={{ color: 'var(--text-dim)' }}>
-        {application.role} · {application.email ?? 'no email'}
-      </p>
+  // For DQ runs: the last question answered before the exit.
+  const dqTrigger =
+    application.outcome === 'dq' && form
+      ? [...path]
+          .reverse()
+          .map((pageId) => form.pages.find((p) => p.id === pageId))
+          .find((page) => (page?.fields ?? []).length > 0)
+      : null;
 
-      <div className="ad-meta">
-        <div>
-          <div className="ad-meta__label">Submitted</div>
-          <div>{application.createdAt.toISOString().slice(0, 16).replace('T', ' ')}</div>
+  const name =
+    [application.firstName, application.lastName].filter(Boolean).join(' ') ||
+    'Unnamed applicant';
+
+  return (
+    <main>
+      <ReviewKeys id={id} prevId={prev?.id ?? null} nextId={next?.id ?? null} />
+
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '14px',
+          flexWrap: 'wrap',
+          marginBottom: '18px',
+        }}
+      >
+        <Link href="/admin" className="adm-btn">
+          ← Queue
+        </Link>
+        <div style={{ flex: 1, minWidth: '200px' }}>
+          <h1 className="adm-title">{name}</h1>
+          <span className="adm-cell-sub">
+            {application.role} · applied {relativeTime(application.createdAt)}
+          </span>
         </div>
-        <div>
-          <div className="ad-meta__label">Outcome</div>
-          <div>{application.outcome === 'dq' ? 'DQ path' : 'Standard'}</div>
-        </div>
-        <div>
-          <div className="ad-meta__label">Country</div>
-          <div>{application.country ?? '—'}</div>
-        </div>
-        <div>
-          <div className="ad-meta__label">Income USD</div>
-          <div>{application.incomeUsd ?? '—'}</div>
-        </div>
-        <div>
-          <div className="ad-meta__label">Referral</div>
-          <div>{application.referral ? 'Yes' : 'No'}</div>
-        </div>
-        <div>
-          <div className="ad-meta__label">Source</div>
-          <div style={{ overflowWrap: 'anywhere' }}>
-            {application.utm ?? application.referrerUrl ?? 'Direct'}
-          </div>
-        </div>
-        <div>
-          <div className="ad-meta__label">Status</div>
-          <ReviewControl id={application.id} initialStatus={application.reviewStatus} />
-        </div>
+        <span style={{ color: 'var(--text-faint)', fontSize: '0.8rem' }}>
+          {newerCount + 1} of {total}
+        </span>
+        {prev && (
+          <Link href={`/admin/applications/${prev.id}`} className="adm-btn">
+            ← Prev
+          </Link>
+        )}
+        {next && (
+          <Link href={`/admin/applications/${next.id}`} className="adm-btn">
+            Next →
+          </Link>
+        )}
       </div>
 
-      {qa.length === 0 ? (
-        <p style={{ color: 'var(--text-faint)' }}>
-          No form snapshot found for this application; raw answers below.
-        </p>
-      ) : (
-        qa.map((row, i) => (
-          <section key={`${row.label}-${i}`} style={{ margin: '34px 0' }}>
-            <p className="eyebrow" style={{ marginBottom: '6px' }}>
-              {row.pageTitle.replace(/\{[a-z0-9_]+\}/gi, '').trim() || row.label}
-            </p>
-            <div style={{ color: 'var(--text-dim)', fontSize: '0.92rem', marginBottom: '8px' }}>
-              {row.label}
-            </div>
-            <p style={{ fontSize: '1.08rem', whiteSpace: 'pre-line' }}>
-              {Array.isArray(row.value) ? row.value.join(', ') : String(row.value)}
-            </p>
-            <hr className="hairline" style={{ marginTop: '26px' }} />
-          </section>
-        ))
-      )}
-
-      {qa.length === 0 && (
-        <pre
-          style={{
-            background: 'var(--bg-raised)',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--radius)',
-            padding: '20px',
-            overflowX: 'auto',
-            fontSize: '0.85rem',
-          }}
+      {dqTrigger && (
+        <div
+          className="adm-panel"
+          style={{ borderColor: 'var(--adm-status-shortlisted)', marginBottom: '18px' }}
         >
-          {JSON.stringify(answers, null, 2)}
-        </pre>
+          <p className="adm-section-title" style={{ color: 'var(--adm-status-shortlisted)' }}>
+            Auto-disqualified at this question
+          </p>
+          <p className="adm-qa__q">{dqTrigger.fields?.[0]?.label}</p>
+          <p className="adm-qa__a">
+            {String(answers[dqTrigger.fields?.[0]?.id ?? ''] ?? '—')}
+          </p>
+          <p className="adm-cell-sub" style={{ marginTop: '8px' }}>
+            The applicant saw a normal thank-you page. Override by setting a status on the
+            right; the flag stays for reporting.
+          </p>
+        </div>
       )}
 
-      <div style={{ margin: '40px 0 80px' }}>
-        <NoteEditor id={application.id} initialNote={application.reviewNote ?? ''} />
+      <div className="adm-review">
+        <div className="adm-panel">
+          {qa.length === 0 ? (
+            <>
+              <p className="adm-section-title">Raw answers</p>
+              <pre style={{ overflowX: 'auto', fontSize: '0.8rem', margin: 0 }}>
+                {JSON.stringify(answers, null, 2)}
+              </pre>
+            </>
+          ) : (
+            qa.map((row, i) => (
+              <div key={`${row.label}-${i}`} className="adm-qa">
+                <p className="adm-qa__q">{row.label}</p>
+                <p className="adm-qa__a">
+                  {Array.isArray(row.value) ? row.value.join(', ') : String(row.value)}
+                </p>
+              </div>
+            ))
+          )}
+        </div>
+
+        <aside className="adm-side">
+          <div className="adm-panel">
+            <p className="adm-section-title">Decision</p>
+            <ReviewControl id={application.id} initialStatus={application.reviewStatus} />
+            <p className="adm-cell-sub" style={{ marginTop: '10px' }}>
+              <span className="adm-kbd">S</span> shortlist · <span className="adm-kbd">X</span>{' '}
+              reject · <span className="adm-kbd">H</span> hire ·{' '}
+              <span className="adm-kbd">J</span>/<span className="adm-kbd">K</span> next/prev
+            </p>
+          </div>
+
+          <div className="adm-panel">
+            <p className="adm-section-title">Details</p>
+            <dl className="adm-meta-list">
+              <dt>Email</dt>
+              <dd>
+                {application.email ? (
+                  <a href={`mailto:${application.email}`} style={{ color: 'var(--accent)' }}>
+                    {application.email}
+                  </a>
+                ) : (
+                  '—'
+                )}
+              </dd>
+              <dt>Country</dt>
+              <dd>{application.country ?? '—'}</dd>
+              <dt>Income USD</dt>
+              <dd>{application.incomeUsd ?? '—'}</dd>
+              <dt>Referral</dt>
+              <dd>{application.referral ? 'Yes' : 'No'}</dd>
+              <dt>Outcome</dt>
+              <dd>{application.outcome === 'dq' ? 'DQ path' : 'Completed'}</dd>
+              <dt>Source</dt>
+              <dd>{application.utm ?? application.referrerUrl ?? 'Direct'}</dd>
+              <dt>Submitted</dt>
+              <dd>{application.createdAt.toISOString().slice(0, 16).replace('T', ' ')}</dd>
+              <dt>Pages seen</dt>
+              <dd>{path.length}</dd>
+              {deliveries.length > 0 && (
+                <>
+                  <dt>Webhook</dt>
+                  <dd>
+                    {deliveries[0].status} ({deliveries[0].attempts} attempt
+                    {deliveries[0].attempts === 1 ? '' : 's'})
+                  </dd>
+                </>
+              )}
+            </dl>
+          </div>
+
+          <div className="adm-panel">
+            <p className="adm-section-title">Notes</p>
+            <NoteEditor id={application.id} initialNote={application.reviewNote ?? ''} />
+          </div>
+        </aside>
       </div>
     </main>
   );

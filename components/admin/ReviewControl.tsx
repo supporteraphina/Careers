@@ -34,7 +34,7 @@ export default function ReviewControl({
 
   return (
     <select
-      className="admin-select"
+      className="adm-select"
       value={status}
       disabled={saving}
       onChange={(event) => update(event.target.value)}

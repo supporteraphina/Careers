@@ -28,24 +28,21 @@ export default function NoteEditor({
 
   return (
     <div>
-      <label className="funnel-label" htmlFor="review-note">
-        Review note
-      </label>
       <textarea
-        id="review-note"
-        className="funnel-textarea"
-        style={{ minHeight: '90px' }}
+        className="adm-textarea"
+        aria-label="Review note"
+        placeholder="Private note for future you…"
         value={note}
         onChange={(event) => {
           setNote(event.target.value);
           setState('idle');
         }}
       />
-      <div className="funnel-nav" style={{ marginTop: '12px' }}>
-        <button type="button" className="btn btn--ghost" onClick={save} disabled={state === 'saving'}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '8px' }}>
+        <button type="button" className="adm-btn" onClick={save} disabled={state === 'saving'}>
           {state === 'saving' ? 'Saving…' : 'Save note'}
         </button>
-        <span className="funnel-help">
+        <span className="adm-cell-sub">
           {state === 'saved' ? 'Saved.' : state === 'error' ? 'Save failed.' : ''}
         </span>
       </div>

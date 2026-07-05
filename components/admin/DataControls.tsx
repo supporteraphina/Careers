@@ -17,7 +17,9 @@ export default function DataControls() {
         body: JSON.stringify(body),
       });
       const data = (await res.json().catch(() => ({}))) as Record<string, unknown>;
-      setResult(res.ok ? `${label}: ${JSON.stringify(data)}` : `Failed: ${data.error ?? res.status}`);
+      setResult(
+        res.ok ? `${label}: ${JSON.stringify(data)}` : `Failed: ${data.error ?? res.status}`,
+      );
     } catch {
       setResult('Request failed.');
     } finally {
@@ -26,12 +28,10 @@ export default function DataControls() {
   };
 
   return (
-    <div className="admin-controls">
-      <h3>Data controls</h3>
-      <div className="admin-controls__row">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', alignItems: 'center' }}>
         <input
-          className="funnel-input"
-          style={{ maxWidth: '320px', fontSize: '0.95rem' }}
+          className="adm-input"
           type="email"
           placeholder="applicant@email.com"
           value={email}
@@ -40,17 +40,17 @@ export default function DataControls() {
         />
         <button
           type="button"
-          className="btn btn--ghost"
+          className="adm-btn"
           disabled={busy || !email.includes('@')}
           onClick={() => call('/api/admin/privacy', { email }, 'Deleted')}
         >
           Delete applicant data
         </button>
       </div>
-      <div className="admin-controls__row">
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         <button
           type="button"
-          className="btn btn--ghost"
+          className="adm-btn"
           disabled={busy}
           onClick={() => call('/api/admin/maintenance', { action: 'purge' }, 'Purged')}
         >
@@ -58,7 +58,7 @@ export default function DataControls() {
         </button>
         <button
           type="button"
-          className="btn btn--ghost"
+          className="adm-btn"
           disabled={busy}
           onClick={() =>
             call('/api/admin/maintenance', { action: 'retry-webhooks' }, 'Webhooks')
@@ -67,8 +67,9 @@ export default function DataControls() {
           Retry failed webhooks
         </button>
       </div>
-      <p className="funnel-help" style={{ minHeight: '1.4em' }}>
-        {result || 'Delete is permanent and covers applications, drafts, and events.'}
+      <p className="adm-cell-sub" style={{ minHeight: '1.4em' }}>
+        {result ||
+          'Delete is permanent and covers applications, drafts, and events (POPIA/GDPR).'}
       </p>
     </div>
   );
