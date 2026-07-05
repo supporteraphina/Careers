@@ -117,9 +117,14 @@ function walk(form: FormDefinition, persona: Persona) {
 
 describe.runIf(process.env.SEED === '1')('seed 15 applications', () => {
   const packs = loadRolePacks(path.join(__dirname, '..', 'content', 'roles'));
+  // SEED_PICK="0,6,10" submits only those persona indexes.
+  const picks = process.env.SEED_PICK?.split(',').map(Number);
+  const selected = picks
+    ? [...PERSONAS.entries()].filter(([i]) => picks.includes(i))
+    : [...PERSONAS.entries()];
 
   test('all personas submit successfully with expected outcomes', async () => {
-    for (const [i, persona] of PERSONAS.entries()) {
+    for (const [i, persona] of selected) {
       const pack = packs.find((p) => p.ad.slug === persona.slug);
       expect(pack, persona.slug).toBeDefined();
       const { answers, visited, endingId } = walk(pack!.form, persona);
