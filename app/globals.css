@@ -69,6 +69,21 @@ body {
   overflow-x: hidden;
 }
 
+/* Metallic black canvas: viewport-fixed so it never ends mid-page.
+   Silver sheen sweeps over a graphite-to-black diagonal. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(110% 70% at 85% -12%, rgba(235, 238, 245, 0.11), transparent 62%),
+    radial-gradient(80% 55% at -5% 38%, rgba(196, 202, 214, 0.05), transparent 60%),
+    radial-gradient(70% 50% at 100% 78%, rgba(220, 226, 238, 0.04), transparent 65%),
+    linear-gradient(168deg, #17181d 0%, #0b0b0f 38%, #060608 68%, #0e0f13 100%);
+}
+
 h1,
 h2,
 h3 {
@@ -137,8 +152,14 @@ img {
   padding: 0 clamp(16px, 1.8vw, 36px);
 }
 
-/* Cinematic blue grade: dark at the top, deep blue pooling at the bottom. */
-.cine {
+/* Cinematic blue grade, pinned to the viewport: the blue pools at the
+   bottom of the screen and follows the scroll, footer included. */
+.cine::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background:
     radial-gradient(58% 66% at 88% 102%, var(--blue-bright), transparent 70%),
     radial-gradient(50% 58% at 6% 98%, var(--blue-deep), transparent 72%),
@@ -382,7 +403,6 @@ img {
   padding: 64px 0 56px;
   color: var(--text-faint);
   font-size: 0.85rem;
-  background: var(--bg-deep);
 }
 
 .site-footer__mark {
