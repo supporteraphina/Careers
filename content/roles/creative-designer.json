@@ -67,7 +67,7 @@
   "form": {
     "slug": "creative-designer",
     "role": "Creative Designer",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -81,11 +81,37 @@
         "kind": "question",
         "title": "First, the basics.",
         "fields": [
-          { "id": "first_name", "type": "text", "label": "First name", "required": true },
-          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
-          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
-          { "id": "email", "type": "email", "label": "Email address", "required": true },
-          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "placeholder": "@yourhandle" }
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Phone number",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email address",
+            "required": true
+          },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "placeholder": "@yourhandle"
+          }
         ]
       },
       {
@@ -93,7 +119,12 @@
         "kind": "question",
         "title": "Good to meet you, {first_name}.",
         "fields": [
-          { "id": "country", "type": "text", "label": "What country are you based out of?", "required": true }
+          {
+            "id": "country",
+            "type": "text",
+            "label": "What country are you based out of?",
+            "required": true
+          }
         ]
       },
       {
@@ -101,10 +132,26 @@
         "kind": "question",
         "title": "Did someone at Halevora refer you?",
         "fields": [
-          { "id": "referred_by_team", "type": "single_choice", "label": "Referral", "required": true, "options": ["Yes", "No"] }
+          {
+            "id": "referred_by_team",
+            "type": "single_choice",
+            "label": "Referral",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "referred_by_team", "op": "eq", "value": "No" }, "goTo": "q-age" }
+          {
+            "if": {
+              "fieldId": "referred_by_team",
+              "op": "eq",
+              "value": "No"
+            },
+            "goTo": "q-age"
+          }
         ]
       },
       {
@@ -112,7 +159,13 @@
         "kind": "question",
         "title": "Who referred you?",
         "fields": [
-          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true, "help": "Full name or handle, so we can check with them." }
+          {
+            "id": "referrer_name",
+            "type": "text",
+            "label": "Their name",
+            "required": true,
+            "help": "Full name or handle, so we can check with them."
+          }
         ]
       },
       {
@@ -120,11 +173,31 @@
         "kind": "question",
         "title": "How old are you?",
         "fields": [
-          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0 }
+          {
+            "id": "age",
+            "type": "number",
+            "label": "Age",
+            "required": true,
+            "min": 0
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
-          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "lt",
+              "value": 16
+            },
+            "goTo": "end-dq"
+          },
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "gt",
+              "value": 25
+            },
+            "goTo": "phase-2"
+          }
         ]
       },
       {
@@ -132,10 +205,26 @@
         "kind": "question",
         "title": "Are you currently enrolled in school or university?",
         "fields": [
-          { "id": "enrolled_student", "type": "single_choice", "label": "Enrolled", "required": true, "options": ["Yes", "No"] }
+          {
+            "id": "enrolled_student",
+            "type": "single_choice",
+            "label": "Enrolled",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "enrolled_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+          {
+            "if": {
+              "fieldId": "enrolled_student",
+              "op": "eq",
+              "value": "Yes"
+            },
+            "goTo": "end-dq"
+          }
         ]
       },
       {
@@ -149,7 +238,12 @@
         "kind": "question",
         "title": "Where did you hear about this role?",
         "fields": [
-          { "id": "heard_about", "type": "text", "label": "Source", "required": true }
+          {
+            "id": "heard_about",
+            "type": "text",
+            "label": "Source",
+            "required": true
+          }
         ]
       },
       {
@@ -157,7 +251,12 @@
         "kind": "question",
         "title": "What do you currently do for work?",
         "fields": [
-          { "id": "current_occupation", "type": "text", "label": "Current occupation", "required": true }
+          {
+            "id": "current_occupation",
+            "type": "text",
+            "label": "Current occupation",
+            "required": true
+          }
         ]
       },
       {
@@ -183,7 +282,14 @@
           }
         ],
         "logic": [
-          { "if": { "fieldId": "design_specialties", "op": "not_includes", "value": "Social media assets" }, "goTo": "q-software" }
+          {
+            "if": {
+              "fieldId": "design_specialties",
+              "op": "not_includes",
+              "value": "Social media assets"
+            },
+            "goTo": "q-software"
+          }
         ]
       },
       {
@@ -192,7 +298,12 @@
         "title": "Describe your social media design experience.",
         "description": "Formats, volume, results. What did you make, how often did you ship it, and what did it do for the brand?",
         "fields": [
-          { "id": "social_design_experience", "type": "textarea", "label": "Your experience", "required": true }
+          {
+            "id": "social_design_experience",
+            "type": "textarea",
+            "label": "Your experience",
+            "required": true
+          }
         ]
       },
       {
@@ -247,11 +358,41 @@
         ]
       },
       {
+        "id": "q-traffic-source",
+        "kind": "question",
+        "title": "Where did you find this role?",
+        "fields": [
+          {
+            "id": "traffic_source",
+            "type": "single_choice",
+            "label": "Pick the closest match.",
+            "required": true,
+            "options": [
+              "Instagram",
+              "TikTok",
+              "YouTube",
+              "X / Twitter",
+              "LinkedIn",
+              "Job board",
+              "Friend or referral",
+              "Other"
+            ]
+          }
+        ]
+      },
+      {
         "id": "q-income",
         "kind": "question",
         "title": "Almost done, {first_name}. What is your current monthly gross income in USD?",
         "fields": [
-          { "id": "monthly_income_usd", "type": "number", "label": "Monthly gross income (USD)", "required": true, "min": 0, "help": "Your best estimate in US dollars is fine." }
+          {
+            "id": "monthly_income_usd",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": true,
+            "min": 0,
+            "help": "Your best estimate in US dollars is fine."
+          }
         ]
       },
       {

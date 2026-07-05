@@ -67,7 +67,7 @@
   "form": {
     "slug": "south-african-talent",
     "role": "South African Talent",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -81,11 +81,37 @@
         "kind": "question",
         "title": "First, the basics.",
         "fields": [
-          { "id": "first_name", "type": "text", "label": "First name", "required": true },
-          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
-          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
-          { "id": "email", "type": "email", "label": "Email address", "required": true },
-          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "placeholder": "@yourhandle" }
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Phone number",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email address",
+            "required": true
+          },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "placeholder": "@yourhandle"
+          }
         ]
       },
       {
@@ -93,7 +119,12 @@
         "kind": "question",
         "title": "Nice to meet you, {first_name}. What country are you based out of?",
         "fields": [
-          { "id": "country", "type": "text", "label": "Country", "required": true }
+          {
+            "id": "country",
+            "type": "text",
+            "label": "Country",
+            "required": true
+          }
         ]
       },
       {
@@ -101,10 +132,26 @@
         "kind": "question",
         "title": "Did someone at Halevora refer you?",
         "fields": [
-          { "id": "referred", "type": "single_choice", "label": "Referral", "required": true, "options": ["Yes", "No"] }
+          {
+            "id": "referred",
+            "type": "single_choice",
+            "label": "Referral",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "referred", "op": "eq", "value": "No" }, "goTo": "q-age" }
+          {
+            "if": {
+              "fieldId": "referred",
+              "op": "eq",
+              "value": "No"
+            },
+            "goTo": "q-age"
+          }
         ]
       },
       {
@@ -112,7 +159,12 @@
         "kind": "question",
         "title": "Who referred you?",
         "fields": [
-          { "id": "referrer_name", "type": "text", "label": "Name of the person who referred you", "required": true }
+          {
+            "id": "referrer_name",
+            "type": "text",
+            "label": "Name of the person who referred you",
+            "required": true
+          }
         ]
       },
       {
@@ -120,11 +172,32 @@
         "kind": "question",
         "title": "How old are you?",
         "fields": [
-          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0, "max": 120 }
+          {
+            "id": "age",
+            "type": "number",
+            "label": "Age",
+            "required": true,
+            "min": 0,
+            "max": 120
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
-          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "lt",
+              "value": 16
+            },
+            "goTo": "end-dq"
+          },
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "gt",
+              "value": 25
+            },
+            "goTo": "phase-2"
+          }
         ]
       },
       {
@@ -132,10 +205,26 @@
         "kind": "question",
         "title": "Are you currently enrolled in school or university?",
         "fields": [
-          { "id": "enrolled_student", "type": "single_choice", "label": "Enrolled", "required": true, "options": ["Yes", "No"] }
+          {
+            "id": "enrolled_student",
+            "type": "single_choice",
+            "label": "Enrolled",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "enrolled_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+          {
+            "if": {
+              "fieldId": "enrolled_student",
+              "op": "eq",
+              "value": "Yes"
+            },
+            "goTo": "end-dq"
+          }
         ]
       },
       {
@@ -172,7 +261,12 @@
         "title": "Inside that department, what specific role would you own?",
         "description": "Name the job title you would give yourself and describe the work it covers.",
         "fields": [
-          { "id": "desired_role", "type": "textarea", "label": "The role you would own", "required": true }
+          {
+            "id": "desired_role",
+            "type": "textarea",
+            "label": "The role you would own",
+            "required": true
+          }
         ]
       },
       {
@@ -181,7 +275,12 @@
         "title": "What makes you a standout hire, {first_name}?",
         "description": "Skip the adjectives. Give us results, numbers, and work you can point to.",
         "fields": [
-          { "id": "standout_case", "type": "textarea", "label": "Your case", "required": true }
+          {
+            "id": "standout_case",
+            "type": "textarea",
+            "label": "Your case",
+            "required": true
+          }
         ]
       },
       {
@@ -190,7 +289,12 @@
         "title": "What are you working on right now?",
         "description": "List your current job, clients, studies, or projects, and the hours each one takes per week.",
         "fields": [
-          { "id": "current_commitments", "type": "textarea", "label": "Current work and commitments", "required": true }
+          {
+            "id": "current_commitments",
+            "type": "textarea",
+            "label": "Current work and commitments",
+            "required": true
+          }
         ]
       },
       {
@@ -203,7 +307,13 @@
             "type": "single_choice",
             "label": "Years of experience",
             "required": true,
-            "options": ["Under 1", "1 to 2", "3 to 5", "6 to 10", "More than 10"]
+            "options": [
+              "Under 1",
+              "1 to 2",
+              "3 to 5",
+              "6 to 10",
+              "More than 10"
+            ]
           }
         ]
       },
@@ -213,7 +323,12 @@
         "title": "Which tools and software do you run daily?",
         "description": "Name the exact stack you work in every day, not tools you touched once.",
         "fields": [
-          { "id": "daily_tools", "type": "textarea", "label": "Daily tools and software", "required": true }
+          {
+            "id": "daily_tools",
+            "type": "textarea",
+            "label": "Daily tools and software",
+            "required": true
+          }
         ]
       },
       {
@@ -222,7 +337,12 @@
         "title": "How do you keep working through load shedding?",
         "description": "Outages are a fact of life; a stalled workday does not have to be. Describe your exact setup: inverter, UPS, generator, backup location, whatever keeps you online when the grid is not.",
         "fields": [
-          { "id": "load_shedding_setup", "type": "textarea", "label": "Your load shedding setup", "required": true }
+          {
+            "id": "load_shedding_setup",
+            "type": "textarea",
+            "label": "Your load shedding setup",
+            "required": true
+          }
         ]
       },
       {
@@ -231,7 +351,35 @@
         "title": "Tell us about your internet.",
         "description": "Fibre or LTE? Paste your latest speed test result and describe your backup option for when the primary line drops.",
         "fields": [
-          { "id": "internet_setup", "type": "textarea", "label": "Connection, speed test result, and backup", "required": true }
+          {
+            "id": "internet_setup",
+            "type": "textarea",
+            "label": "Connection, speed test result, and backup",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-traffic-source",
+        "kind": "question",
+        "title": "Where did you find this role?",
+        "fields": [
+          {
+            "id": "traffic_source",
+            "type": "single_choice",
+            "label": "Pick the closest match.",
+            "required": true,
+            "options": [
+              "Instagram",
+              "TikTok",
+              "YouTube",
+              "X / Twitter",
+              "LinkedIn",
+              "Job board",
+              "Friend or referral",
+              "Other"
+            ]
+          }
         ]
       },
       {
@@ -255,7 +403,12 @@
         "title": "What excites you about building with us?",
         "description": "Be specific. Tell us why Halevora, why now, and what you want to build here.",
         "fields": [
-          { "id": "motivation", "type": "textarea", "label": "Why Halevora", "required": true }
+          {
+            "id": "motivation",
+            "type": "textarea",
+            "label": "Why Halevora",
+            "required": true
+          }
         ]
       },
       {
@@ -263,7 +416,12 @@
         "kind": "question",
         "title": "Anything else we should know?",
         "fields": [
-          { "id": "anything_else", "type": "textarea", "label": "Anything else", "required": false }
+          {
+            "id": "anything_else",
+            "type": "textarea",
+            "label": "Anything else",
+            "required": false
+          }
         ],
         "next": "end-ok"
       },

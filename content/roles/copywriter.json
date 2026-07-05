@@ -67,7 +67,7 @@
   "form": {
     "slug": "copywriter",
     "role": "Direct-Response Copywriter",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -81,11 +81,37 @@
         "kind": "question",
         "title": "First, the basics.",
         "fields": [
-          { "id": "first_name", "type": "text", "label": "First name", "required": true },
-          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
-          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
-          { "id": "email", "type": "email", "label": "Email address", "required": true },
-          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "help": "Optional." }
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Phone number",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email address",
+            "required": true
+          },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "help": "Optional."
+          }
         ]
       },
       {
@@ -93,7 +119,12 @@
         "kind": "question",
         "title": "Good to meet you, {first_name}. What country are you based out of?",
         "fields": [
-          { "id": "country", "type": "text", "label": "Country", "required": true }
+          {
+            "id": "country",
+            "type": "text",
+            "label": "Country",
+            "required": true
+          }
         ]
       },
       {
@@ -106,11 +137,21 @@
             "type": "single_choice",
             "label": "Referred by a team member?",
             "required": true,
-            "options": ["Yes", "No"]
+            "options": [
+              "Yes",
+              "No"
+            ]
           }
         ],
         "logic": [
-          { "if": { "fieldId": "referred_by_team", "op": "eq", "value": "No" }, "goTo": "q-age" }
+          {
+            "if": {
+              "fieldId": "referred_by_team",
+              "op": "eq",
+              "value": "No"
+            },
+            "goTo": "q-age"
+          }
         ]
       },
       {
@@ -118,7 +159,12 @@
         "kind": "question",
         "title": "Who referred you?",
         "fields": [
-          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true }
+          {
+            "id": "referrer_name",
+            "type": "text",
+            "label": "Their name",
+            "required": true
+          }
         ]
       },
       {
@@ -126,11 +172,31 @@
         "kind": "question",
         "title": "How old are you?",
         "fields": [
-          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 1 }
+          {
+            "id": "age",
+            "type": "number",
+            "label": "Age",
+            "required": true,
+            "min": 1
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
-          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "lt",
+              "value": 16
+            },
+            "goTo": "end-dq"
+          },
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "gt",
+              "value": 25
+            },
+            "goTo": "phase-2"
+          }
         ]
       },
       {
@@ -143,11 +209,21 @@
             "type": "single_choice",
             "label": "Full-time student?",
             "required": true,
-            "options": ["Yes", "No"]
+            "options": [
+              "Yes",
+              "No"
+            ]
           }
         ],
         "logic": [
-          { "if": { "fieldId": "full_time_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+          {
+            "if": {
+              "fieldId": "full_time_student",
+              "op": "eq",
+              "value": "Yes"
+            },
+            "goTo": "end-dq"
+          }
         ]
       },
       {
@@ -175,7 +251,13 @@
         "kind": "question",
         "title": "How many years have you written copy professionally?",
         "fields": [
-          { "id": "years_writing_copy", "type": "number", "label": "Years of professional copywriting", "required": true, "min": 0 }
+          {
+            "id": "years_writing_copy",
+            "type": "number",
+            "label": "Years of professional copywriting",
+            "required": true,
+            "min": 0
+          }
         ]
       },
       {
@@ -230,7 +312,15 @@
         "kind": "question",
         "title": "On a scale of 1 to 10, how strong is your written English?",
         "fields": [
-          { "id": "rating_written_english", "type": "linear_scale", "label": "Written English", "required": true, "min": 1, "max": 10, "help": "Be honest. We check." }
+          {
+            "id": "rating_written_english",
+            "type": "linear_scale",
+            "label": "Written English",
+            "required": true,
+            "min": 1,
+            "max": 10,
+            "help": "Be honest. We check."
+          }
         ]
       },
       {
@@ -238,7 +328,14 @@
         "kind": "question",
         "title": "On a scale of 1 to 10, how strong is your paid ad copy?",
         "fields": [
-          { "id": "rating_paid_ad_copy", "type": "linear_scale", "label": "Paid ad copy", "required": true, "min": 1, "max": 10 }
+          {
+            "id": "rating_paid_ad_copy",
+            "type": "linear_scale",
+            "label": "Paid ad copy",
+            "required": true,
+            "min": 1,
+            "max": 10
+          }
         ]
       },
       {
@@ -246,7 +343,14 @@
         "kind": "question",
         "title": "On a scale of 1 to 10, how strong are your landing pages?",
         "fields": [
-          { "id": "rating_landing_pages", "type": "linear_scale", "label": "Landing pages", "required": true, "min": 1, "max": 10 }
+          {
+            "id": "rating_landing_pages",
+            "type": "linear_scale",
+            "label": "Landing pages",
+            "required": true,
+            "min": 1,
+            "max": 10
+          }
         ]
       },
       {
@@ -254,7 +358,14 @@
         "kind": "question",
         "title": "On a scale of 1 to 10, how strong are your email sequences?",
         "fields": [
-          { "id": "rating_email_sequences", "type": "linear_scale", "label": "Email sequences", "required": true, "min": 1, "max": 10 }
+          {
+            "id": "rating_email_sequences",
+            "type": "linear_scale",
+            "label": "Email sequences",
+            "required": true,
+            "min": 1,
+            "max": 10
+          }
         ]
       },
       {
@@ -262,7 +373,14 @@
         "kind": "question",
         "title": "On a scale of 1 to 10, how strong are your video sales scripts?",
         "fields": [
-          { "id": "rating_video_sales_scripts", "type": "linear_scale", "label": "Video sales scripts", "required": true, "min": 1, "max": 10 }
+          {
+            "id": "rating_video_sales_scripts",
+            "type": "linear_scale",
+            "label": "Video sales scripts",
+            "required": true,
+            "min": 1,
+            "max": 10
+          }
         ]
       },
       {
@@ -270,7 +388,14 @@
         "kind": "question",
         "title": "In USD, roughly how much total revenue has your copy generated?",
         "fields": [
-          { "id": "total_copy_revenue", "type": "number", "label": "Total revenue from your copy (USD)", "required": true, "min": 0, "help": "A best estimate is fine. Count everything you can reasonably attribute to your words." }
+          {
+            "id": "total_copy_revenue",
+            "type": "number",
+            "label": "Total revenue from your copy (USD)",
+            "required": true,
+            "min": 0,
+            "help": "A best estimate is fine. Count everything you can reasonably attribute to your words."
+          }
         ]
       },
       {
@@ -292,7 +417,12 @@
         "kind": "question",
         "title": "What is the one thing that makes or breaks a piece of copy?",
         "fields": [
-          { "id": "make_or_break", "type": "textarea", "label": "Your answer", "required": true }
+          {
+            "id": "make_or_break",
+            "type": "textarea",
+            "label": "Your answer",
+            "required": true
+          }
         ]
       },
       {
@@ -338,11 +468,40 @@
         ]
       },
       {
+        "id": "q-traffic-source",
+        "kind": "question",
+        "title": "Where did you find this role?",
+        "fields": [
+          {
+            "id": "traffic_source",
+            "type": "single_choice",
+            "label": "Pick the closest match.",
+            "required": true,
+            "options": [
+              "Instagram",
+              "TikTok",
+              "YouTube",
+              "X / Twitter",
+              "LinkedIn",
+              "Job board",
+              "Friend or referral",
+              "Other"
+            ]
+          }
+        ]
+      },
+      {
         "id": "q-copy-income",
         "kind": "question",
         "title": "What is your current monthly income from copywriting, in USD?",
         "fields": [
-          { "id": "copy_monthly_income", "type": "number", "label": "Monthly copywriting income (USD)", "required": true, "min": 0 }
+          {
+            "id": "copy_monthly_income",
+            "type": "number",
+            "label": "Monthly copywriting income (USD)",
+            "required": true,
+            "min": 0
+          }
         ]
       },
       {
@@ -350,7 +509,13 @@
         "kind": "question",
         "title": "Almost done, {first_name}. What is your current monthly gross income in USD, across everything?",
         "fields": [
-          { "id": "monthly_gross_income", "type": "number", "label": "Monthly gross income (USD)", "required": true, "min": 0 }
+          {
+            "id": "monthly_gross_income",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": true,
+            "min": 0
+          }
         ]
       },
       {

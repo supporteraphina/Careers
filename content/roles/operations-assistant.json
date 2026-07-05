@@ -66,7 +66,7 @@
   "form": {
     "slug": "operations-assistant",
     "role": "Operations Assistant",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -80,10 +80,30 @@
         "kind": "question",
         "title": "First, the basics.",
         "fields": [
-          { "id": "first_name", "type": "text", "label": "First name", "required": true },
-          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
-          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
-          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Phone number",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email address",
+            "required": true
+          },
           {
             "id": "instagram_handle",
             "type": "text",
@@ -116,11 +136,21 @@
             "type": "single_choice",
             "label": "Referral",
             "required": true,
-            "options": ["Yes", "No"]
+            "options": [
+              "Yes",
+              "No"
+            ]
           }
         ],
         "logic": [
-          { "if": { "fieldId": "referred_by_team", "op": "eq", "value": "No" }, "goTo": "q-age" }
+          {
+            "if": {
+              "fieldId": "referred_by_team",
+              "op": "eq",
+              "value": "No"
+            },
+            "goTo": "q-age"
+          }
         ]
       },
       {
@@ -128,7 +158,12 @@
         "kind": "question",
         "title": "Who referred you?",
         "fields": [
-          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true }
+          {
+            "id": "referrer_name",
+            "type": "text",
+            "label": "Their name",
+            "required": true
+          }
         ]
       },
       {
@@ -136,11 +171,31 @@
         "kind": "question",
         "title": "How old are you?",
         "fields": [
-          { "id": "age", "type": "number", "label": "Your age", "required": true, "min": 0 }
+          {
+            "id": "age",
+            "type": "number",
+            "label": "Your age",
+            "required": true,
+            "min": 0
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
-          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "lt",
+              "value": 16
+            },
+            "goTo": "end-dq"
+          },
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "gt",
+              "value": 25
+            },
+            "goTo": "phase-2"
+          }
         ]
       },
       {
@@ -153,11 +208,21 @@
             "type": "single_choice",
             "label": "Enrollment",
             "required": true,
-            "options": ["Yes", "No"]
+            "options": [
+              "Yes",
+              "No"
+            ]
           }
         ],
         "logic": [
-          { "if": { "fieldId": "enrolled_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+          {
+            "if": {
+              "fieldId": "enrolled_student",
+              "op": "eq",
+              "value": "Yes"
+            },
+            "goTo": "end-dq"
+          }
         ]
       },
       {
@@ -261,6 +326,29 @@
             "type": "textarea",
             "label": "Why this role",
             "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-traffic-source",
+        "kind": "question",
+        "title": "Where did you find this role?",
+        "fields": [
+          {
+            "id": "traffic_source",
+            "type": "single_choice",
+            "label": "Pick the closest match.",
+            "required": true,
+            "options": [
+              "Instagram",
+              "TikTok",
+              "YouTube",
+              "X / Twitter",
+              "LinkedIn",
+              "Job board",
+              "Friend or referral",
+              "Other"
+            ]
           }
         ]
       },

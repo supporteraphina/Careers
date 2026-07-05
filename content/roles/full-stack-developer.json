@@ -68,7 +68,7 @@
   "form": {
     "slug": "full-stack-developer",
     "role": "Full-Stack Developer",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -82,11 +82,37 @@
         "kind": "question",
         "title": "First, the basics.",
         "fields": [
-          { "id": "first_name", "type": "text", "label": "First name", "required": true },
-          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
-          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
-          { "id": "email", "type": "email", "label": "Email address", "required": true },
-          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "help": "Optional." }
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Phone number",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email address",
+            "required": true
+          },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "help": "Optional."
+          }
         ]
       },
       {
@@ -94,7 +120,12 @@
         "kind": "question",
         "title": "Good to meet you, {first_name}. What country are you based out of?",
         "fields": [
-          { "id": "country", "type": "text", "label": "Country", "required": true }
+          {
+            "id": "country",
+            "type": "text",
+            "label": "Country",
+            "required": true
+          }
         ]
       },
       {
@@ -103,7 +134,13 @@
         "title": "Drop your GitHub or GitLab profile.",
         "description": "We read code before we read CVs. Pinned public repos help your case.",
         "fields": [
-          { "id": "github_url", "type": "url", "label": "GitHub or GitLab profile URL", "required": true, "placeholder": "https://github.com/you" }
+          {
+            "id": "github_url",
+            "type": "url",
+            "label": "GitHub or GitLab profile URL",
+            "required": true,
+            "placeholder": "https://github.com/you"
+          }
         ]
       },
       {
@@ -111,10 +148,26 @@
         "kind": "question",
         "title": "Did someone at Halevora refer you?",
         "fields": [
-          { "id": "referred", "type": "single_choice", "label": "Referred by a team member?", "required": true, "options": ["Yes", "No"] }
+          {
+            "id": "referred",
+            "type": "single_choice",
+            "label": "Referred by a team member?",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "referred", "op": "eq", "value": "No" }, "goTo": "q-age" }
+          {
+            "if": {
+              "fieldId": "referred",
+              "op": "eq",
+              "value": "No"
+            },
+            "goTo": "q-age"
+          }
         ]
       },
       {
@@ -122,7 +175,12 @@
         "kind": "question",
         "title": "Who referred you?",
         "fields": [
-          { "id": "referrer_name", "type": "text", "label": "Name of the person who referred you", "required": true }
+          {
+            "id": "referrer_name",
+            "type": "text",
+            "label": "Name of the person who referred you",
+            "required": true
+          }
         ]
       },
       {
@@ -130,11 +188,32 @@
         "kind": "question",
         "title": "How old are you?",
         "fields": [
-          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0, "max": 120 }
+          {
+            "id": "age",
+            "type": "number",
+            "label": "Age",
+            "required": true,
+            "min": 0,
+            "max": 120
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
-          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "lt",
+              "value": 16
+            },
+            "goTo": "end-dq"
+          },
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "gt",
+              "value": 25
+            },
+            "goTo": "phase-2"
+          }
         ]
       },
       {
@@ -142,10 +221,26 @@
         "kind": "question",
         "title": "Are you currently enrolled in school or university?",
         "fields": [
-          { "id": "is_student", "type": "single_choice", "label": "Enrolled in school or university?", "required": true, "options": ["Yes", "No"] }
+          {
+            "id": "is_student",
+            "type": "single_choice",
+            "label": "Enrolled in school or university?",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
         ],
         "logic": [
-          { "if": { "fieldId": "is_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+          {
+            "if": {
+              "fieldId": "is_student",
+              "op": "eq",
+              "value": "Yes"
+            },
+            "goTo": "end-dq"
+          }
         ]
       },
       {
@@ -161,7 +256,12 @@
         "title": "What do you do today, and who do you build for?",
         "description": "Your current occupation, the kind of company or clients, and who actually uses what you write.",
         "fields": [
-          { "id": "occupation", "type": "textarea", "label": "Current occupation and who you build for", "required": true }
+          {
+            "id": "occupation",
+            "type": "textarea",
+            "label": "Current occupation and who you build for",
+            "required": true
+          }
         ]
       },
       {
@@ -170,7 +270,18 @@
         "title": "How many years of professional development experience do you have?",
         "description": "Paid, production work. Side projects and coursework do not count here.",
         "fields": [
-          { "id": "experience_years", "type": "single_choice", "label": "Years of professional experience", "required": true, "options": ["Under 2", "2 to 4", "5 to 8", "More than 8"] }
+          {
+            "id": "experience_years",
+            "type": "single_choice",
+            "label": "Years of professional experience",
+            "required": true,
+            "options": [
+              "Under 2",
+              "2 to 4",
+              "5 to 8",
+              "More than 8"
+            ]
+          }
         ]
       },
       {
@@ -179,7 +290,12 @@
         "title": "What front-end stack do you work in daily?",
         "description": "Frameworks, state management, styling, testing. List what you use every day, not everything you have ever touched.",
         "fields": [
-          { "id": "frontend_stack", "type": "textarea", "label": "Daily front-end stack", "required": true }
+          {
+            "id": "frontend_stack",
+            "type": "textarea",
+            "label": "Daily front-end stack",
+            "required": true
+          }
         ]
       },
       {
@@ -188,7 +304,12 @@
         "title": "What is your back-end stack, and which databases do you run?",
         "description": "Runtimes, frameworks, databases, and how your work gets deployed.",
         "fields": [
-          { "id": "backend_stack", "type": "textarea", "label": "Back-end stack and databases", "required": true }
+          {
+            "id": "backend_stack",
+            "type": "textarea",
+            "label": "Back-end stack and databases",
+            "required": true
+          }
         ]
       },
       {
@@ -197,7 +318,12 @@
         "title": "{first_name}, describe the system you are proudest of building end to end.",
         "description": "What it does, who uses it, and your exact part. Name the pieces you personally designed and wrote.",
         "fields": [
-          { "id": "proudest_system", "type": "textarea", "label": "Proudest end-to-end system and your exact part", "required": true }
+          {
+            "id": "proudest_system",
+            "type": "textarea",
+            "label": "Proudest end-to-end system and your exact part",
+            "required": true
+          }
         ]
       },
       {
@@ -206,7 +332,12 @@
         "title": "How do you use AI coding tools today?",
         "description": "Which tools, where they sit in your workflow, and where you refuse to trust them.",
         "fields": [
-          { "id": "ai_tools_usage", "type": "textarea", "label": "How you use AI coding tools", "required": true }
+          {
+            "id": "ai_tools_usage",
+            "type": "textarea",
+            "label": "How you use AI coding tools",
+            "required": true
+          }
         ]
       },
       {
@@ -215,7 +346,36 @@
         "title": "Link something in production you built or heavily shaped.",
         "description": "A live product, tool, or service. Optional, but the strongest applications include one.",
         "fields": [
-          { "id": "production_link", "type": "url", "label": "Link to production work", "required": false, "placeholder": "https://" }
+          {
+            "id": "production_link",
+            "type": "url",
+            "label": "Link to production work",
+            "required": false,
+            "placeholder": "https://"
+          }
+        ]
+      },
+      {
+        "id": "q-traffic-source",
+        "kind": "question",
+        "title": "Where did you find this role?",
+        "fields": [
+          {
+            "id": "traffic_source",
+            "type": "single_choice",
+            "label": "Pick the closest match.",
+            "required": true,
+            "options": [
+              "Instagram",
+              "TikTok",
+              "YouTube",
+              "X / Twitter",
+              "LinkedIn",
+              "Job board",
+              "Friend or referral",
+              "Other"
+            ]
+          }
         ]
       },
       {
@@ -223,7 +383,13 @@
         "kind": "question",
         "title": "Last one, {first_name}. What is your current monthly gross income in USD?",
         "fields": [
-          { "id": "income_usd", "type": "number", "label": "Current monthly gross income (USD)", "required": true, "min": 0 }
+          {
+            "id": "income_usd",
+            "type": "number",
+            "label": "Current monthly gross income (USD)",
+            "required": true,
+            "min": 0
+          }
         ]
       },
       {
