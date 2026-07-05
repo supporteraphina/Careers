@@ -54,7 +54,7 @@ export default function HomePage() {
       </section>
 
       <section className="section--tight">
-        <div className="container">
+        <div className="container container--wide">
           <Reveal>
             <div className="photo" style={{ aspectRatio: '21 / 9' }}>
               <Image
@@ -102,7 +102,7 @@ export default function HomePage() {
       </section>
 
       <section className="section">
-        <div className="container">
+        <div className="container container--wide">
           <Reveal>
             <div className="sa-band">
               <div className="sa-band__bg">

@@ -56,7 +56,7 @@ export default function HiringPage() {
       <section className="roles-hero mesh">
         <div className="container hero-choreo">
           <p className="eyebrow">Open Roles</p>
-          <h1 style={{ maxWidth: '12em' }}>Do the best work of your life.</h1>
+          <h1>Do the best work of your life.</h1>
           <p className="hero__sub">
             Every role is remote and full time. Every application gets read by
             a human. Pick your lane and show us what you can do.
@@ -65,7 +65,7 @@ export default function HiringPage() {
       </section>
 
       <section className="section--tight">
-        <div className="container">
+        <div className="container container--wide">
           {ordered.length === 0 ? (
             <p style={{ color: 'var(--text-faint)' }}>
               No roles are open right now. Check back soon.
