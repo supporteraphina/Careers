@@ -52,20 +52,15 @@ export default function HiringPage() {
   const ordered = [...standard, ...featured];
 
   return (
-    <main>
-      <section className="roles-hero mesh">
+    <main className="cine">
+      <section className="roles-hero">
         <div className="container hero-choreo">
-          <p className="eyebrow">Open Roles</p>
-          <h1>Do the best work of your life.</h1>
-          <p className="hero__sub">
-            Every role is remote and full time. Every application gets read by
-            a human. Pick your lane and show us what you can do.
-          </p>
+          <h1>Open Roles</h1>
         </div>
       </section>
 
-      <section className="section--tight">
-        <div className="container container--wide">
+      <section style={{ paddingBottom: 'clamp(48px, 5vw, 90px)' }}>
+        <div className="bleed">
           {ordered.length === 0 ? (
             <p style={{ color: 'var(--text-faint)' }}>
               No roles are open right now. Check back soon.

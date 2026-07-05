@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fragment_Mono, Hanken_Grotesk } from 'next/font/google';
+import { Barlow_Condensed, Fragment_Mono, Hanken_Grotesk } from 'next/font/google';
 import './globals.css';
 
 const sans = Hanken_Grotesk({
@@ -10,6 +10,12 @@ const sans = Hanken_Grotesk({
 const mono = Fragment_Mono({
   variable: '--font-mono',
   weight: '400',
+  subsets: ['latin'],
+});
+
+const display = Barlow_Condensed({
+  variable: '--font-display',
+  weight: ['500', '600'],
   subsets: ['latin'],
 });
 
@@ -25,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable}`}>
       <body>{children}</body>
     </html>
   );
