@@ -23,9 +23,9 @@ qualification tool; a flat page kills the funnel before question one.
 Cinematic dark, quiet confidence, expensive minimalism. Three words: monumental,
 disciplined, magnetic. Named reference lane: educate.io / Iman Gadzhi ecosystem (huge
 Hanken Grotesk display type, Fragment Mono labels as a deliberate brand system, layered
-near-black purple depth, white pill CTAs in mono caps, photography under dark scrims,
-smooth reveal motion). Amber `--accent` is Halevora's own signature against that lane's
-blue.
+metallic graphite depth with a cinematic blue grade, white pill CTAs in mono caps,
+photography under blue-washed scrims, smooth reveal motion). Electric blue `--accent`
+(#7d9bff) is Halevora's signature, tying labels and interactive states into the grade.
 
 ## Anti-references
 

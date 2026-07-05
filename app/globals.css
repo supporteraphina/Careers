@@ -1,7 +1,7 @@
 /* Halevora Hiring design system.
    Lane: educate.io cinematic dark. Layered near-black purple, huge Hanken
    Grotesk display, Fragment Mono labels (deliberate brand system, see
-   PRODUCT.md), white pill CTAs, amber signature accent, photography under
+   PRODUCT.md), white pill CTAs, electric-blue signature accent, photography under
    dark scrims. All colors live here as tokens. */
 
 :root {
@@ -23,10 +23,10 @@
   --text-faint: #726e78;
 
   /* Signature */
-  --accent: #f2a33c;
-  --accent-bright: #ffc061;
-  --accent-soft: rgba(242, 163, 60, 0.14);
-  --glow-amber: rgba(242, 163, 60, 0.16);
+  --accent: #7d9bff;
+  --accent-bright: #a9bdff;
+  --accent-soft: rgba(125, 155, 255, 0.14);
+  --glow-accent: rgba(96, 130, 255, 0.22);
   --glow-violet: rgba(124, 77, 255, 0.14);
   --blue-deep: rgba(18, 38, 130, 0.35);
   --blue-bright: rgba(38, 74, 228, 0.42);
@@ -213,12 +213,12 @@ img {
   text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out);
-  box-shadow: 0 0 0 0 var(--glow-amber);
+  box-shadow: 0 0 0 0 var(--glow-accent);
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px -8px var(--glow-amber), 0 0 0 1px var(--border-strong);
+  box-shadow: 0 12px 40px -8px var(--glow-accent), 0 0 0 1px var(--border-strong);
 }
 
 .btn:disabled {
@@ -765,7 +765,7 @@ img {
   content: '';
   position: absolute;
   inset: -40%;
-  background: radial-gradient(40% 50% at 50% 0%, var(--glow-amber), transparent 70%);
+  background: radial-gradient(40% 50% at 50% 0%, var(--glow-accent), transparent 70%);
   pointer-events: none;
 }
 
@@ -797,7 +797,7 @@ img {
   background: var(--accent);
   transform-origin: 0 50%;
   transition: transform 0.45s var(--ease-out);
-  box-shadow: 0 0 14px var(--glow-amber);
+  box-shadow: 0 0 14px var(--glow-accent);
 }
 
 .funnel-main {
