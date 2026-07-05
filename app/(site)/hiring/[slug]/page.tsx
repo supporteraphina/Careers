@@ -26,7 +26,7 @@ export default async function JobAdPage({ params }: Props) {
   const { ad } = pack;
 
   return (
-    <main>
+    <main className="cine">
       <section className="ad-hero mesh">
         <div className="container hero-choreo" style={{ maxWidth: '900px' }}>
           <Link

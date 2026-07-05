@@ -30,7 +30,7 @@ export default function HomePage() {
   const openRoles = getRolePacks().length;
 
   return (
-    <main>
+    <main className="cine">
       <section className="hero mesh">
         <div className="container hero-choreo">
           <p className="eyebrow">Halevora — Careers</p>

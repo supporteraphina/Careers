@@ -286,7 +286,7 @@ export default function Funnel({ form }: FunnelProps) {
   const showResume = draftToken && !isEnding && page.kind === 'question';
 
   return (
-    <div className="funnel-shell">
+    <div className="funnel-shell cine">
       <div className="funnel-progress" aria-hidden="true">
         <div
           className="funnel-progress__bar"
