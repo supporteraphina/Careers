@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '../../../lib/db.js';
-import { getRolePack } from '../../../lib/content/roles.js';
-import { evaluateSubmission } from '../../../lib/engine/submission.js';
-import type { Answers } from '../../../lib/engine/types.js';
+import { prisma } from '../../../lib/db';
+import { getRolePack } from '../../../lib/content/roles';
+import { evaluateSubmission } from '../../../lib/engine/submission';
+import type { Answers } from '../../../lib/engine/types';
 
 // Naive per-IP rate limit; enough for a single-instance deployment.
 const WINDOW_MS = 60 * 60 * 1000;

@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import type { FormDefinition } from './types.js';
-import { evaluateSubmission } from './submission.js';
+import type { FormDefinition } from './types';
+import { evaluateSubmission } from './submission';
 
 function gateForm(): FormDefinition {
   return {

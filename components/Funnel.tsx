@@ -5,8 +5,8 @@
 // answers, and submits the finished run to /api/apply.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { nextPageId, pipe, progress, validateFieldValue } from '../lib/engine/runner.js';
-import type { Answers, AnswerValue, Field, FormDefinition } from '../lib/engine/types.js';
+import { nextPageId, pipe, progress, validateFieldValue } from '../lib/engine/runner';
+import type { Answers, AnswerValue, Field, FormDefinition } from '../lib/engine/types';
 
 interface FunnelProps {
   form: FormDefinition;

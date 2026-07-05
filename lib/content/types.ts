@@ -1,4 +1,4 @@
-import type { FormDefinition } from '../engine/types.js';
+import type { FormDefinition } from '../engine/types';
 
 /** One job advert, following the section order in docs/hiring-funnel-spec.md §1.1. */
 export interface JobAd {

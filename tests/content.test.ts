@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, test } from 'vitest';
-import { loadRolePack } from '../lib/content/load.js';
+import { loadRolePack } from '../lib/content/load';
 
 const ROLES_DIR = path.join(__dirname, '..', 'content', 'roles');
 

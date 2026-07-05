@@ -1,4 +1,4 @@
-import { prisma } from '@/lib/db.js';
+import { prisma } from '@/lib/db';
 
 function csvCell(value: unknown): string {
   const text = value === null || value === undefined ? '' : String(value);

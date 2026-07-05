@@ -9,7 +9,7 @@ import type {
   Field,
   FormDefinition,
   FormPage,
-} from './types.js';
+} from './types';
 
 function getPage(form: FormDefinition, pageId: string): FormPage {
   const found = form.pages.find((p) => p.id === pageId);

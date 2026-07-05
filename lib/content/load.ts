@@ -4,8 +4,8 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import { validateForm } from '../engine/runner.js';
-import type { RolePack } from './types.js';
+import { validateForm } from '../engine/runner';
+import type { RolePack } from './types';
 
 export function loadRolePack(filePath: string): RolePack {
   const raw = fs.readFileSync(filePath, 'utf8');

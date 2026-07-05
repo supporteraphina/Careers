@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Funnel from '../../../components/Funnel.js';
-import { getRolePack, getRolePacks } from '../../../lib/content/roles.js';
+import Funnel from '../../../components/Funnel';
+import { getRolePack, getRolePacks } from '../../../lib/content/roles';
 
 interface Props {
   params: Promise<{ slug: string }>;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getRolePacks } from '@/lib/content/roles.js';
+import { getRolePacks } from '@/lib/content/roles';
 
 export const metadata: Metadata = {
   title: 'Open Roles at Halevora',

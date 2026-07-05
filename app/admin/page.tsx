@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { getRolePacks } from '@/lib/content/roles.js';
-import { prisma } from '@/lib/db.js';
+import { getRolePacks } from '@/lib/content/roles';
+import { prisma } from '@/lib/db';
 
 export const metadata: Metadata = {
   title: 'Applications | Halevora Admin',

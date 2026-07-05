@@ -1,6 +1,6 @@
 import path from 'node:path';
 import { describe, expect, test } from 'vitest';
-import { loadRolePack, loadRolePacks } from './load.js';
+import { loadRolePack, loadRolePacks } from './load';
 
 const FIXTURES = path.join(__dirname, 'fixtures');
 

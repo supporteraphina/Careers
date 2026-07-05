@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'vitest';
-import type { Answers, FormDefinition, FormPage } from './types.js';
+import type { Answers, FormDefinition, FormPage } from './types';
 import {
   nextPageId,
   pipe,
   progress,
   validateFieldValue,
   validateForm,
-} from './runner.js';
+} from './runner';
 
 function page(overrides: Partial<FormPage> & { id: string }): FormPage {
   return { kind: 'question', title: overrides.id, ...overrides };

@@ -2,8 +2,8 @@
 // form interactively; this walks it again from scratch so a tampered payload
 // cannot skip validation or forge an outcome.
 
-import { nextPageId, validateFieldValue } from './runner.js';
-import type { Answers, FormDefinition } from './types.js';
+import { nextPageId, validateFieldValue } from './runner';
+import type { Answers, FormDefinition } from './types';
 
 export interface SubmissionResult {
   ok: boolean;

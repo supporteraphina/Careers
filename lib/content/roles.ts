@@ -4,8 +4,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { cache } from 'react';
-import { loadRolePacks } from './load.js';
-import type { RolePack } from './types.js';
+import { loadRolePacks } from './load';
+import type { RolePack } from './types';
 
 const ROLES_DIR = path.join(process.cwd(), 'content', 'roles');
 
