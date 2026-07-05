@@ -6,8 +6,8 @@ export interface RoleImage {
   alt: string;
 }
 
-function unsplash(id: string, width = 1200): string {
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=80`;
+function unsplash(id: string, width = 1800): string {
+  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=85`;
 }
 
 const IMAGES: Record<string, RoleImage> = {
@@ -36,7 +36,7 @@ const IMAGES: Record<string, RoleImage> = {
     alt: 'Laptops and handwritten plans on a working desk',
   },
   'south-african-talent': {
-    src: unsplash('photo-1580060839134-75a5edca2e99', 2000),
+    src: unsplash('photo-1580060839134-75a5edca2e99', 2800),
     alt: 'Aerial view of Cape Town beneath Table Mountain',
   },
 };

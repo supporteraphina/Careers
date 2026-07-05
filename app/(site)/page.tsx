@@ -58,10 +58,11 @@ export default function HomePage() {
           <Reveal>
             <div className="photo" style={{ aspectRatio: '21 / 9' }}>
               <Image
-                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=2000&q=80"
+                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=2400&q=85"
                 alt="A creator studio at night, consoles and instruments under violet light"
                 fill
-                sizes="(max-width: 1120px) 100vw, 1120px"
+                quality={85}
+                sizes="(max-width: 1760px) 100vw, 1760px"
               />
               <span className="photo__caption">Where the work happens</span>
             </div>
@@ -107,10 +108,11 @@ export default function HomePage() {
             <div className="sa-band">
               <div className="sa-band__bg">
                 <Image
-                  src="https://images.unsplash.com/photo-1576485375217-d6a95e34d043?auto=format&fit=crop&w=2000&q=80"
+                  src="https://images.unsplash.com/photo-1576485375217-d6a95e34d043?auto=format&fit=crop&w=2400&q=85"
                   alt="The Twelve Apostles above Camps Bay at golden hour, Cape Town"
                   fill
-                  sizes="(max-width: 1120px) 100vw, 1120px"
+                  quality={85}
+                  sizes="(max-width: 1760px) 100vw, 1760px"
                 />
               </div>
               <div className="sa-band__content">
@@ -140,10 +142,10 @@ export default function HomePage() {
             <Reveal>
               <div className="photo" style={{ aspectRatio: '4 / 3' }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1400&q=80"
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=85"
                   alt="The team heads-down around one table, laptops open"
                   fill
-                  sizes="(max-width: 720px) 100vw, 560px"
+                  sizes="(max-width: 720px) 100vw, 700px"
                 />
               </div>
             </Reveal>

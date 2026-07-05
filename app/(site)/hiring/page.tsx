@@ -83,10 +83,11 @@ export default function HiringPage() {
                           alt={image.alt}
                           fill
                           loading="eager"
+                          quality={isFeatured ? 85 : 75}
                           sizes={
                             isFeatured
-                              ? '(max-width: 1120px) 100vw, 1120px'
-                              : '(max-width: 720px) 100vw, 360px'
+                              ? '(max-width: 2200px) 97vw, 2140px'
+                              : '(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw'
                           }
                         />
                       )}
