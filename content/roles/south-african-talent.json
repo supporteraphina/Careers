@@ -1,0 +1,286 @@
+{
+  "ad": {
+    "slug": "south-african-talent",
+    "title": "South African Talent",
+    "team": "Halevora",
+    "location": "Remote (South Africa)",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Halevora builds, manages, and grows the brands of top online creators, and we are building our next team hub around South African talent. This is a deliberate expansion, not a recycled job ad. We have no office or history in South Africa yet, and that is the point: the people who join now build the hub. What we bring is a small senior team, European core hours, a performance culture, and six departments with room for people who want in early.",
+    "role": {
+      "eyebrow": "The Talent Pool",
+      "paragraphs": [
+        "This is a talent-pool application, not a single vacancy. You pick one of six departments, tell us the role you would own, and prove you can own it. When a seat opens in that department, this pool is where we hire from first.",
+        "We back the people who join. Every hire gets an equipment and backup-power stipend, a ZAR-stable monthly payout schedule you can plan a life around, and a growth path to lead roles as the hub grows. We promise what we can keep and nothing else."
+      ]
+    },
+    "idealCandidate": [
+      "You are based in South Africa and set up to work full time in a remote-first, English-first team.",
+      "Support: you answer fast, write clean English, and stay calm when the customer is not.",
+      "Content & Creative: you write, edit, or produce daily and hit deadlines without reminders.",
+      "Design: you carry a brand across every asset without losing its voice.",
+      "Marketing: you run campaigns by the numbers and cut what does not convert.",
+      "Development: you ship end to end and own the bugs you write.",
+      "Operations: you keep a remote team organized, on time, and unblocked.",
+      "Not on the list? If you bring real value, apply anyway and tell us where you fit."
+    ],
+    "requirements": [
+      {
+        "title": "Remote-ready setup",
+        "tagline": "Your desk is the office.",
+        "body": "A reliable machine, fibre or strong LTE, and a working plan for load shedding. We fund the stipend; you make sure the lights and the router stay on."
+      },
+      {
+        "title": "English-first communication",
+        "tagline": "Written words run this team.",
+        "body": "Most of our work happens in writing. You explain problems clearly, ask before you assume, and leave a trail your teammates can follow."
+      },
+      {
+        "title": "CET overlap",
+        "tagline": "One hour apart. Easy.",
+        "body": "Our core hours run on CET, and CET and SAST sit one hour apart. The overlap costs you nothing: you attend the daily call and stay reachable through core hours."
+      },
+      {
+        "title": "Full-time commitment",
+        "tagline": "This is your main thing.",
+        "body": "We hire people who go all in. If Halevora would be one of several things you do, this is not your application."
+      }
+    ],
+    "whatYoullDo": [
+      "Own a clear lane inside one of six departments and run it like it is yours.",
+      "Join the daily team call at 10:00 CET, every weekday, and give a straight status.",
+      "Ship work daily and measure what it changed.",
+      "Work European core hours from wherever in South Africa you do your best work.",
+      "Grow into a lead role as the South African hub grows around you."
+    ],
+    "shouldntApply": [
+      "You are looking for easy. This is an all-in job and we run it that way.",
+      "You want to keep this part-time or run it next to another job.",
+      "You take direct feedback personally. Criticism here is constant and aimed at the work.",
+      "You have no answer for power cuts. We fund the backup; you own the uptime."
+    ],
+    "seo": {
+      "title": "South African Talent | Halevora",
+      "description": "Halevora is building its next team hub around South African talent. Six departments, remote-first, English-first, one hour from CET. Apply once."
+    }
+  },
+  "form": {
+    "slug": "south-african-talent",
+    "role": "South African Talent",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "South African Talent",
+        "description": "This is the application for Halevora's South African talent pool. We receive far more applications than seats, and shallow answers end the process early, so take your time and answer every question properly. Under POPIA, we use your answers for recruitment only and delete them on request.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "placeholder": "@yourhandle" }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Nice to meet you, {first_name}. What country are you based out of?",
+        "fields": [
+          { "id": "country", "type": "text", "label": "Country", "required": true }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          { "id": "referred", "type": "single_choice", "label": "Referral", "required": true, "options": ["Yes", "No"] }
+        ],
+        "logic": [
+          { "if": { "fieldId": "referred", "op": "eq", "value": "No" }, "goTo": "q-age" }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer_name", "type": "text", "label": "Name of the person who referred you", "required": true }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0, "max": 120 }
+        ],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          { "id": "enrolled_student", "type": "single_choice", "label": "Enrolled", "required": true, "options": ["Yes", "No"] }
+        ],
+        "logic": [
+          { "if": { "fieldId": "enrolled_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "Phase one complete.",
+        "description": "This application runs in two phases. Personal information: done. Professional fitness: next. The remaining questions decide whether we call you, so answer like it matters."
+      },
+      {
+        "id": "q-department",
+        "kind": "question",
+        "title": "Which department are you applying to join?",
+        "fields": [
+          {
+            "id": "department",
+            "type": "single_choice",
+            "label": "Department",
+            "required": true,
+            "options": [
+              "Support",
+              "Content & Creative",
+              "Design",
+              "Marketing",
+              "Development",
+              "Operations",
+              "Not sure yet, but I bring value"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q-role-own",
+        "kind": "question",
+        "title": "Inside that department, what specific role would you own?",
+        "description": "Name the job title you would give yourself and describe the work it covers.",
+        "fields": [
+          { "id": "desired_role", "type": "textarea", "label": "The role you would own", "required": true }
+        ]
+      },
+      {
+        "id": "q-standout",
+        "kind": "question",
+        "title": "What makes you a standout hire, {first_name}?",
+        "description": "Skip the adjectives. Give us results, numbers, and work you can point to.",
+        "fields": [
+          { "id": "standout_case", "type": "textarea", "label": "Your case", "required": true }
+        ]
+      },
+      {
+        "id": "q-current-work",
+        "kind": "question",
+        "title": "What are you working on right now?",
+        "description": "List your current job, clients, studies, or projects, and the hours each one takes per week.",
+        "fields": [
+          { "id": "current_commitments", "type": "textarea", "label": "Current work and commitments", "required": true }
+        ]
+      },
+      {
+        "id": "q-experience",
+        "kind": "question",
+        "title": "How many years of professional experience do you have?",
+        "fields": [
+          {
+            "id": "years_experience",
+            "type": "single_choice",
+            "label": "Years of experience",
+            "required": true,
+            "options": ["Under 1", "1 to 2", "3 to 5", "6 to 10", "More than 10"]
+          }
+        ]
+      },
+      {
+        "id": "q-tools",
+        "kind": "question",
+        "title": "Which tools and software do you run daily?",
+        "description": "Name the exact stack you work in every day, not tools you touched once.",
+        "fields": [
+          { "id": "daily_tools", "type": "textarea", "label": "Daily tools and software", "required": true }
+        ]
+      },
+      {
+        "id": "q-load-shedding",
+        "kind": "question",
+        "title": "How do you keep working through load shedding?",
+        "description": "Outages are a fact of life; a stalled workday does not have to be. Describe your exact setup: inverter, UPS, generator, backup location, whatever keeps you online when the grid is not.",
+        "fields": [
+          { "id": "load_shedding_setup", "type": "textarea", "label": "Your load shedding setup", "required": true }
+        ]
+      },
+      {
+        "id": "q-internet",
+        "kind": "question",
+        "title": "Tell us about your internet.",
+        "description": "Fibre or LTE? Paste your latest speed test result and describe your backup option for when the primary line drops.",
+        "fields": [
+          { "id": "internet_setup", "type": "textarea", "label": "Connection, speed test result, and backup", "required": true }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "What do you currently earn in monthly gross income, in USD?",
+        "fields": [
+          {
+            "id": "monthly_income_usd",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": false,
+            "min": 0,
+            "help": "Optional. POPIA tells us to ask only for what we need, and we can shortlist you without this. Sharing it helps us place you at the right level faster."
+          }
+        ]
+      },
+      {
+        "id": "q-excites",
+        "kind": "question",
+        "title": "What excites you about building with us?",
+        "description": "Be specific. Tell us why Halevora, why now, and what you want to build here.",
+        "fields": [
+          { "id": "motivation", "type": "textarea", "label": "Why Halevora", "required": true }
+        ]
+      },
+      {
+        "id": "q-anything-else",
+        "kind": "question",
+        "title": "Anything else we should know?",
+        "fields": [
+          { "id": "anything_else", "type": "textarea", "label": "Anything else", "required": false }
+        ],
+        "next": "end-ok"
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in and a real person will read it. If your profile fits one of our departments, we will reach out to schedule a call. Keep an eye on your inbox over the next two weeks.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in and a real person will read it. If there is a fit on our side, we will reach out.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}

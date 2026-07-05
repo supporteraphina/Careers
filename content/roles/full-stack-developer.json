@@ -1,0 +1,245 @@
+{
+  "ad": {
+    "slug": "full-stack-developer",
+    "title": "Full-Stack Developer",
+    "team": "Development",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Halevora runs on software we write ourselves. The internal tools and public products that creator teams open every single day, from operations dashboards to revenue tooling, are designed, shipped, and maintained in-house. You will own that stack end to end: TypeScript everywhere, React and Next.js in front, Node and Postgres behind. You ship fast, you watch it run, and you answer for what breaks.",
+    "role": {
+      "eyebrow": "Own the stack",
+      "paragraphs": [
+        "You take features from idea to production without hand-offs. One day that means a Postgres schema and a Node API, the next a Next.js interface a creator team will hammer within the hour. There is no ticket relay and no committee between you and the user. You decide, you build, you deploy, you own the result.",
+        "We are a small senior team working European core hours. Feedback is direct, cycles are short, and shipped work is the only currency. If you have spent years wishing someone would just let you build, this is that job."
+      ]
+    },
+    "idealCandidate": [
+      "You have shipped production TypeScript for years, not tutorials.",
+      "React and Next.js are tools you know cold, not lines on a CV.",
+      "You can design a Postgres schema and defend every table in it.",
+      "You debug production incidents calmly and without a babysitter.",
+      "You use AI coding tools daily and know exactly where they lie to you.",
+      "You would rather ship a plain solution today than a clever one next month.",
+      "You take a hard code review without sulking and come back sharper.",
+      "You work European core hours and show up every day."
+    ],
+    "requirements": [
+      {
+        "title": "Full-Stack Depth",
+        "tagline": "One owner for the whole stack.",
+        "body": "You are fluent across TypeScript, React, Next.js, Node, and Postgres. You move from a migration to an API route to a client component in one sitting, and the seams do not show. Specialists who need a partner for the other half of the stack will struggle here."
+      },
+      {
+        "title": "Production Ownership",
+        "tagline": "You ship it, you run it.",
+        "body": "Deploying is the start of your job, not the end. You watch logs, read metrics, and treat a production bug as yours until the whole class of bug is dead. Nobody here files a ticket and walks away."
+      },
+      {
+        "title": "Speed With Judgment",
+        "tagline": "Fast, without wreckage.",
+        "body": "We ship daily. You know the difference between a shortcut that buys a week and one that costs a quarter, and you make that call under pressure without asking permission for every trade."
+      },
+      {
+        "title": "Remote Communication",
+        "tagline": "Plain words, written down.",
+        "body": "You write clearly, update before anyone has to ask, and keep decisions in writing where the team can find them. Remote-first only works when nobody has to chase you."
+      }
+    ],
+    "whatYoullDo": [
+      "Design and ship features across internal tools and public products that creator teams use every day.",
+      "Join the daily standup at 10:30 CET and state what shipped, what is next, and what is blocked.",
+      "Own services from schema to deploy: Postgres migrations, Node APIs, Next.js front ends.",
+      "Kill production bugs the day they surface, then ship the fix that retires the whole class.",
+      "Automate the manual work you find; every hour you hand back to the team counts on your scoreboard.",
+      "Give and take direct code review, and keep the codebase plain enough that any senior can move in it."
+    ],
+    "shouldntApply": [
+      "You want a comfortable 9-to-5. This role rewards obsession, not attendance.",
+      "You plan to code around other projects on the side. This is full-time and then some.",
+      "You take criticism of your code personally. We review hard and often.",
+      "You need a finished spec before you start. Here you get a problem and an outcome."
+    ],
+    "seo": {
+      "title": "Full-Stack Developer at Halevora",
+      "description": "Own internal tools and public products end to end. TypeScript, React, Next.js, Node, Postgres. Remote, full time, small senior team, daily shipping."
+    }
+  },
+  "form": {
+    "slug": "full-stack-developer",
+    "role": "Full-Stack Developer",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Full-Stack Developer",
+        "description": "Hundreds of developers apply for every engineering seat at Halevora. Short or lazy answers end the process; specific, honest ones start a conversation. Set aside ten focused minutes and answer like it matters.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "help": "Optional." }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to meet you, {first_name}. What country are you based out of?",
+        "fields": [
+          { "id": "country", "type": "text", "label": "Country", "required": true }
+        ]
+      },
+      {
+        "id": "q-github",
+        "kind": "question",
+        "title": "Drop your GitHub or GitLab profile.",
+        "description": "We read code before we read CVs. Pinned public repos help your case.",
+        "fields": [
+          { "id": "github_url", "type": "url", "label": "GitHub or GitLab profile URL", "required": true, "placeholder": "https://github.com/you" }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          { "id": "referred", "type": "single_choice", "label": "Referred by a team member?", "required": true, "options": ["Yes", "No"] }
+        ],
+        "logic": [
+          { "if": { "fieldId": "referred", "op": "eq", "value": "No" }, "goTo": "q-age" }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer_name", "type": "text", "label": "Name of the person who referred you", "required": true }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0, "max": 120 }
+        ],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          { "id": "is_student", "type": "single_choice", "label": "Enrolled in school or university?", "required": true, "options": ["Yes", "No"] }
+        ],
+        "logic": [
+          { "if": { "fieldId": "is_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "Phase one complete.",
+        "description": "This application has two phases. Personal Information is done. Professional Fitness is next. The remaining questions decide whether we talk, so give them your full attention.",
+        "cta": "Continue"
+      },
+      {
+        "id": "q-occupation",
+        "kind": "question",
+        "title": "What do you do today, and who do you build for?",
+        "description": "Your current occupation, the kind of company or clients, and who actually uses what you write.",
+        "fields": [
+          { "id": "occupation", "type": "textarea", "label": "Current occupation and who you build for", "required": true }
+        ]
+      },
+      {
+        "id": "q-experience",
+        "kind": "question",
+        "title": "How many years of professional development experience do you have?",
+        "description": "Paid, production work. Side projects and coursework do not count here.",
+        "fields": [
+          { "id": "experience_years", "type": "single_choice", "label": "Years of professional experience", "required": true, "options": ["Under 2", "2 to 4", "5 to 8", "More than 8"] }
+        ]
+      },
+      {
+        "id": "q-frontend",
+        "kind": "question",
+        "title": "What front-end stack do you work in daily?",
+        "description": "Frameworks, state management, styling, testing. List what you use every day, not everything you have ever touched.",
+        "fields": [
+          { "id": "frontend_stack", "type": "textarea", "label": "Daily front-end stack", "required": true }
+        ]
+      },
+      {
+        "id": "q-backend",
+        "kind": "question",
+        "title": "What is your back-end stack, and which databases do you run?",
+        "description": "Runtimes, frameworks, databases, and how your work gets deployed.",
+        "fields": [
+          { "id": "backend_stack", "type": "textarea", "label": "Back-end stack and databases", "required": true }
+        ]
+      },
+      {
+        "id": "q-proudest",
+        "kind": "question",
+        "title": "{first_name}, describe the system you are proudest of building end to end.",
+        "description": "What it does, who uses it, and your exact part. Name the pieces you personally designed and wrote.",
+        "fields": [
+          { "id": "proudest_system", "type": "textarea", "label": "Proudest end-to-end system and your exact part", "required": true }
+        ]
+      },
+      {
+        "id": "q-ai-tools",
+        "kind": "question",
+        "title": "How do you use AI coding tools today?",
+        "description": "Which tools, where they sit in your workflow, and where you refuse to trust them.",
+        "fields": [
+          { "id": "ai_tools_usage", "type": "textarea", "label": "How you use AI coding tools", "required": true }
+        ]
+      },
+      {
+        "id": "q-production",
+        "kind": "question",
+        "title": "Link something in production you built or heavily shaped.",
+        "description": "A live product, tool, or service. Optional, but the strongest applications include one.",
+        "fields": [
+          { "id": "production_link", "type": "url", "label": "Link to production work", "required": false, "placeholder": "https://" }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "Last one, {first_name}. What is your current monthly gross income in USD?",
+        "fields": [
+          { "id": "income_usd", "type": "number", "label": "Current monthly gross income (USD)", "required": true, "min": 0 }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We read every submission personally, and thorough answers get read first. If your profile matches what we need, you will hear from us within a few days with the next step.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We read every submission personally, and we will reach out if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}

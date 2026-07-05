@@ -1,0 +1,273 @@
+{
+  "ad": {
+    "slug": "creative-designer",
+    "title": "Creative Designer",
+    "team": "Design",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Halevora builds and grows the brands of top online creators, and design is the first thing anyone judges. Before a single word gets read, the visuals have already said premium or amateur. You will own that first impression: social assets, landing pages, and brand systems that make our creators look like the category leaders they are.",
+    "role": {
+      "eyebrow": "Creative Designer",
+      "paragraphs": [
+        "You will design across the full surface of a creator brand. One day that means a set of social assets that has to look sharp in seven formats. The next it means a landing page that has to convert cold traffic, or a brand system that keeps a whole team shipping consistent work.",
+        "You will work inside a small senior team on European core hours. Briefs come in fast, feedback comes in daily, and the bar does not move. We care about two things: does it look premium, and does it perform."
+      ]
+    },
+    "idealCandidate": [
+      "You have shipped design for real brands with real audiences, not just portfolio concepts.",
+      "You move fast and your quality does not drop when you do.",
+      "You can take a one-line brief and come back with strong directions, not a list of questions.",
+      "You separate your ego from your artboards. Feedback makes your work better and you know it.",
+      "You understand that design serves the brand and the numbers, not your personal style.",
+      "You keep source files clean and organized so anyone can pick up where you left off.",
+      "You show up every day without being chased."
+    ],
+    "requirements": [
+      {
+        "title": "A portfolio that proves it",
+        "tagline": "Finished work beats promises.",
+        "body": "We want to see shipped projects: social campaigns, landing pages, identity work. Be ready to explain what each piece had to achieve and whether it did. Three real projects beat thirty experiments."
+      },
+      {
+        "title": "Speed with standards",
+        "tagline": "Fast drafts, no sloppy finals.",
+        "body": "Creator brands move daily. You need to turn a brief into a credible first draft in hours and a polished final in days, without the polish slipping. If you need a week of runway before you can open a file, this will not work."
+      },
+      {
+        "title": "Systems thinking",
+        "tagline": "One brand, every surface.",
+        "body": "Anyone can make one good graphic. You will build and maintain systems: type scales, color rules, layout grids, and component libraries that keep a brand recognizable across every format and every teammate's output."
+      },
+      {
+        "title": "Remote discipline",
+        "tagline": "Full presence from wherever you are.",
+        "body": "We work remotely on European core hours with a daily design call. That takes stable internet, a reliable setup, and the self-management to deliver without anyone standing over you."
+      }
+    ],
+    "whatYoullDo": [
+      "Join the daily design call at 13:00 CET to review work, take briefs, and set the day's priorities.",
+      "Design social assets that keep our creator brands sharp in every format they publish.",
+      "Build landing pages where the design has one job: convert.",
+      "Create and maintain brand systems: logos, type, color, layout rules, component libraries.",
+      "Turn feedback around same day and ship revisions without drama.",
+      "Deliver final files packaged cleanly enough that anyone can use them without asking you a thing."
+    ],
+    "shouldntApply": [
+      "You want a comfortable 9 to 5. This role is not easy and demands an all-in mentality.",
+      "You are looking for a side project or part-time hours. This is a full-time commitment.",
+      "You take critique personally. Your work gets reviewed every day and revised often.",
+      "You need weeks of process before you can produce. We ship daily."
+    ],
+    "seo": {
+      "title": "Creative Designer at Halevora",
+      "description": "Own the visual language of premium creator brands: social assets, landing pages, and brand systems. Remote, full time, senior team, high bar."
+    }
+  },
+  "form": {
+    "slug": "creative-designer",
+    "role": "Creative Designer",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Creative Designer",
+        "description": "Every open role at Halevora pulls in a large stack of applications, and we read all of them. Thoughtful, specific answers get interviews. Rushed one-liners do not. Set aside ten focused minutes and give us your best.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "placeholder": "@yourhandle" }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to meet you, {first_name}.",
+        "fields": [
+          { "id": "country", "type": "text", "label": "What country are you based out of?", "required": true }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          { "id": "referred_by_team", "type": "single_choice", "label": "Referral", "required": true, "options": ["Yes", "No"] }
+        ],
+        "logic": [
+          { "if": { "fieldId": "referred_by_team", "op": "eq", "value": "No" }, "goTo": "q-age" }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true, "help": "Full name or handle, so we can check with them." }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0 }
+        ],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          { "id": "enrolled_student", "type": "single_choice", "label": "Enrolled", "required": true, "options": ["Yes", "No"] }
+        ],
+        "logic": [
+          { "if": { "fieldId": "enrolled_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "Phase one down, {first_name}.",
+        "description": "This application runs in two phases.\n\n✅ Personal Information\n☑️ Professional Fitness\n\nNow we get to the work. The next questions look at what you can actually do."
+      },
+      {
+        "id": "q-source",
+        "kind": "question",
+        "title": "Where did you hear about this role?",
+        "fields": [
+          { "id": "heard_about", "type": "text", "label": "Source", "required": true }
+        ]
+      },
+      {
+        "id": "q-occupation",
+        "kind": "question",
+        "title": "What do you currently do for work?",
+        "fields": [
+          { "id": "current_occupation", "type": "text", "label": "Current occupation", "required": true }
+        ]
+      },
+      {
+        "id": "q-specialties",
+        "kind": "question",
+        "title": "Which areas of design are you strongest in?",
+        "fields": [
+          {
+            "id": "design_specialties",
+            "type": "multi_choice",
+            "label": "Design specialties",
+            "required": true,
+            "help": "Select every area where you have shipped real work.",
+            "options": [
+              "Brand identity",
+              "Social media assets",
+              "UI/UX",
+              "Web design",
+              "Thumbnails",
+              "Presentations",
+              "Motion"
+            ]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "design_specialties", "op": "not_includes", "value": "Social media assets" }, "goTo": "q-software" }
+        ]
+      },
+      {
+        "id": "q-social-experience",
+        "kind": "question",
+        "title": "Describe your social media design experience.",
+        "description": "Formats, volume, results. What did you make, how often did you ship it, and what did it do for the brand?",
+        "fields": [
+          { "id": "social_design_experience", "type": "textarea", "label": "Your experience", "required": true }
+        ]
+      },
+      {
+        "id": "q-software",
+        "kind": "question",
+        "title": "Which design tools do you work in?",
+        "fields": [
+          {
+            "id": "design_software",
+            "type": "multi_choice",
+            "label": "Design software",
+            "required": true,
+            "options": [
+              "Figma",
+              "Photoshop",
+              "Illustrator",
+              "After Effects",
+              "Canva",
+              "Framer",
+              "Webflow",
+              "Other"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q-portfolio",
+        "kind": "question",
+        "title": "Share a link to your portfolio.",
+        "fields": [
+          {
+            "id": "portfolio_url",
+            "type": "url",
+            "label": "Portfolio link",
+            "required": true,
+            "help": "Check your sharing permissions before you submit. If we cannot open the link, your application ends here."
+          }
+        ]
+      },
+      {
+        "id": "q-speed",
+        "kind": "question",
+        "title": "How fast is your internet?",
+        "fields": [
+          {
+            "id": "internet_speed",
+            "type": "text",
+            "label": "Speed test result",
+            "required": true,
+            "help": "Run a speed test and paste the result: download, upload, and ping."
+          }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "Almost done, {first_name}. What is your current monthly gross income in USD?",
+        "fields": [
+          { "id": "monthly_income_usd", "type": "number", "label": "Monthly gross income (USD)", "required": true, "min": 0, "help": "Your best estimate in US dollars is fine." }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We review every submission personally, and if your profile matches what we need, we will reach out by email with next steps. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We will be in touch by email if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}

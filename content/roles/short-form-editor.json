@@ -1,0 +1,365 @@
+{
+  "ad": {
+    "slug": "short-form-editor",
+    "title": "Short-Form Editor",
+    "team": "Content",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Short-form video decides which creators grow and which ones stall. Halevora turns hours of raw long-form footage from top creators into daily vertical clips built to stop thumbs and hold attention. You sit at the center of that machine: cutting fast, cutting sharp, and shipping every working day. This is volume work at a craft standard most editors never reach.",
+    "role": {
+      "eyebrow": "Short-Form Editor",
+      "paragraphs": [
+        "You take hours of long-form creator footage and mine it for the thirty seconds that matter. Then you cut those seconds into vertical clips with pace, captions, sound design, and a hook that lands inside the first second. Four or more finished clips leave your desk every working day.",
+        "You work inside a small senior content team on European core hours. Your clips go live to audiences of millions within hours of export. There is no approval queue to hide behind; the retention numbers tell everyone exactly how good you are."
+      ]
+    },
+    "idealCandidate": [
+      "You have cut short-form clips daily for at least a year and can prove it with links.",
+      "You find the hook in an hour of raw footage without being told where to look.",
+      "You treat retention graphs as feedback, not as an insult.",
+      "You ship fast without shipping sloppy. Volume and craft, both, every day.",
+      "You know current short-form trends cold: pacing, caption styles, sound choices, formats.",
+      "You work European core hours (CET) without drama, wherever you live.",
+      "You want your output measured in views held, not hours logged."
+    ],
+    "requirements": [
+      {
+        "title": "Proven short-form record",
+        "tagline": "Your portfolio does the talking.",
+        "body": "You bring published vertical clips you cut yourself, ideally for creators or brands with real audiences. We judge the work, not the resume."
+      },
+      {
+        "title": "Speed with standards",
+        "tagline": "Four clips a day, none of them filler.",
+        "body": "Daily volume is non-negotiable and so is quality. You need a workflow, a template library, and instincts sharp enough to hit both without burning out."
+      },
+      {
+        "title": "Serious hardware and connection",
+        "tagline": "Your setup cannot be the bottleneck.",
+        "body": "You edit on a machine that renders without choking and an internet line that uploads large exports fast. We ask for your specs and a speed test in the application."
+      },
+      {
+        "title": "Self-managed and coachable",
+        "tagline": "Own your queue, take the notes.",
+        "body": "You run your own pipeline, hit deadlines without a producer chasing you, and fold feedback into the next cut instead of defending the last one."
+      }
+    ],
+    "whatYoullDo": [
+      "Join the daily edit call at 11:00 CET to review yesterday's numbers and lock today's clip list.",
+      "Cut and deliver at least 4 finished vertical clips per day from long-form creator footage.",
+      "Write hooks, captions, and on-screen text that hold viewers past the first three seconds.",
+      "Study retention data on your published clips and adjust your next cuts to what the numbers show.",
+      "Maintain a library of reusable templates, sounds, and caption styles that keeps daily output fast.",
+      "Flag the strongest raw moments to the content lead so nothing viral dies on a hard drive."
+    ],
+    "shouldntApply": [
+      "You want a comfortable 9-5. This role runs at full throttle and demands an all-in mentality.",
+      "You are looking for a side gig or part-time freelance work. This seat is full-time, every day.",
+      "You take feedback personally. Your cuts get measured, critiqued, and redone when the data says so.",
+      "You need a week per edit. Editors here ship daily."
+    ],
+    "seo": {
+      "title": "Short-Form Editor at Halevora",
+      "description": "Cut 4+ short-form clips a day from top creator footage. Full-time, remote, CET core hours. High volume, high craft. Join Halevora's content team."
+    }
+  },
+  "form": {
+    "slug": "short-form-editor",
+    "role": "Short-Form Editor",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Short-Form Editor",
+        "description": "Hundreds of editors apply for every seat on this team, and we read every answer. The applicants who advance answer fully and honestly. Give this the same care you would give a final cut.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "help": "Optional."
+          }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to have you here, {first_name}.",
+        "fields": [
+          {
+            "id": "country",
+            "type": "text",
+            "label": "What country are you based out of?",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          {
+            "id": "referred",
+            "type": "single_choice",
+            "label": "Referral",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [{ "if": { "fieldId": "referred", "op": "eq", "value": "No" }, "goTo": "q-age" }]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer", "type": "text", "label": "Their name", "required": true }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [{ "id": "age", "type": "number", "label": "Your age", "required": true }],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          {
+            "id": "student",
+            "type": "single_choice",
+            "label": "Enrollment status",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [{ "if": { "fieldId": "student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "Phase one complete.",
+        "description": "This application runs in two phases.\n\n✅ Personal Information\n⬜ Professional Fitness\n\nPhase two is where we separate editors from people who own editing software. Keep going.",
+        "cta": "Continue"
+      },
+      {
+        "id": "q-handles",
+        "kind": "question",
+        "title": "Where else can we find you online?",
+        "fields": [
+          {
+            "id": "other_handles",
+            "type": "text",
+            "label": "Your other social media handles",
+            "required": true,
+            "help": "Any accounts beyond the handle you already gave."
+          }
+        ]
+      },
+      {
+        "id": "q-occupation",
+        "kind": "question",
+        "title": "What do you currently do for work?",
+        "fields": [
+          {
+            "id": "occupation",
+            "type": "textarea",
+            "label": "Your current occupation",
+            "required": true,
+            "help": "Role, employer or clients, and how long you have been at it."
+          }
+        ]
+      },
+      {
+        "id": "q-timezone",
+        "kind": "question",
+        "title": "What timezone are you in?",
+        "fields": [
+          {
+            "id": "timezone",
+            "type": "text",
+            "label": "Timezone",
+            "required": true,
+            "placeholder": "e.g. GMT+2",
+            "help": "Write it as GMT plus or minus."
+          }
+        ]
+      },
+      {
+        "id": "q-creators",
+        "kind": "question",
+        "title": "Which creators or brands have you edited for?",
+        "fields": [
+          {
+            "id": "edited_for",
+            "type": "textarea",
+            "label": "Creators or brands you have edited for",
+            "required": true,
+            "help": "Names or links. If the work is under NDA, say so and describe the niche and audience size."
+          }
+        ]
+      },
+      {
+        "id": "q-own-account",
+        "kind": "question",
+        "title": "Do you run your own account?",
+        "fields": [
+          {
+            "id": "own_account",
+            "type": "text",
+            "label": "Link to your public account, if you run one",
+            "required": false,
+            "help": "Leave blank if you do not run one."
+          }
+        ]
+      },
+      {
+        "id": "q-device",
+        "kind": "question",
+        "title": "What do you mainly edit on?",
+        "fields": [
+          {
+            "id": "editing_device",
+            "type": "single_choice",
+            "label": "Main editing device",
+            "required": true,
+            "options": ["PC", "Mac", "iPad or tablet", "Phone"]
+          }
+        ]
+      },
+      {
+        "id": "q-software",
+        "kind": "question",
+        "title": "Which editing software do you use?",
+        "fields": [
+          {
+            "id": "editing_software",
+            "type": "multi_choice",
+            "label": "Editing software",
+            "required": true,
+            "options": [
+              "Premiere Pro",
+              "After Effects",
+              "Final Cut",
+              "CapCut",
+              "DaVinci Resolve",
+              "Other"
+            ],
+            "help": "Select everything you use regularly."
+          }
+        ]
+      },
+      {
+        "id": "q-specs",
+        "kind": "question",
+        "title": "What are your computer specs?",
+        "fields": [
+          {
+            "id": "computer_specs",
+            "type": "textarea",
+            "label": "CPU, GPU, RAM, and storage",
+            "required": true,
+            "help": "Copy them from your system settings if you are unsure."
+          }
+        ]
+      },
+      {
+        "id": "q-internet",
+        "kind": "question",
+        "title": "How fast is your internet?",
+        "fields": [
+          {
+            "id": "internet_speed",
+            "type": "text",
+            "label": "Internet speed with a speed-test result",
+            "required": true,
+            "help": "Run a speed test and paste your download and upload numbers."
+          }
+        ]
+      },
+      {
+        "id": "q-best-edit",
+        "kind": "question",
+        "title": "Show us your best work, {first_name}.",
+        "fields": [
+          {
+            "id": "best_edit",
+            "type": "url",
+            "label": "Link to your single best edit",
+            "required": true,
+            "help": "One link only. Pick the clip you would stake this application on, and make sure it opens without a permission request."
+          }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "What is your current monthly gross income in USD?",
+        "fields": [
+          {
+            "id": "monthly_income",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": true,
+            "help": "Your total before tax, in US dollars."
+          }
+        ]
+      },
+      {
+        "id": "q-commit",
+        "kind": "question",
+        "title": "This is a full-time role",
+        "description": "Daily calls, daily deliverables, European core hours. There is no part-time version of this seat.",
+        "fields": [
+          {
+            "id": "commitment",
+            "type": "legal_gate",
+            "label": "Your commitment",
+            "required": true,
+            "options": ["I understand and I am all in", "I cannot commit full-time"]
+          }
+        ],
+        "logic": [
+          {
+            "if": { "fieldId": "commitment", "op": "eq", "value": "I cannot commit full-time" },
+            "goTo": "end-dq"
+          }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. The content team reads every submission personally. If your work is what we are looking for, we will reach out with the next step shortly. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We review every submission and will be in touch if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}

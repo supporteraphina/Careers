@@ -1,0 +1,372 @@
+{
+  "ad": {
+    "slug": "copywriter",
+    "title": "Direct-Response Copywriter",
+    "team": "Marketing",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Halevora builds and grows the brands of top online creators, and words carry most of that weight. Every sales page, email sequence, and ad script we ship either makes money or gets rewritten until it does. We are hiring a direct-response copywriter who treats the conversion rate as the only review that matters. You will write for audiences most copywriters never get to test on, with fast feedback and real stakes.",
+    "role": {
+      "eyebrow": "Copy that converts",
+      "paragraphs": [
+        "You will own the copy behind our creators' offers: sales pages, launch emails, ad scripts, upsells, and the hooks that pull cold traffic into a funnel. Every project starts with a brief and ends with a number. You draft, we test, the data decides.",
+        "This is not brand-voice work with fuzzy goals. You write to sell. You will work directly with our marketing lead, watch your drafts go live within days, and read your results in revenue dashboards instead of style guides."
+      ]
+    },
+    "idealCandidate": [
+      "You have written copy that made real money and you can prove it with numbers.",
+      "You check the metrics before you check the compliments.",
+      "You study classic direct response and modern funnels with equal appetite.",
+      "You can write a long sales page and a fifteen-second hook in the same afternoon.",
+      "You research the offer, the audience, and the objections before you type a headline.",
+      "You take a brutal edit without sulking and ship the rewrite the same day.",
+      "You hit deadlines without being chased."
+    ],
+    "requirements": [
+      {
+        "title": "Proven conversion record",
+        "tagline": "Your portfolio shows receipts, not vibes.",
+        "body": "Bring samples with numbers attached: conversion rates, revenue, list growth. When a piece performed, you know why. When one flopped, you know that too, and you changed something because of it."
+      },
+      {
+        "title": "Full-stack copy range",
+        "tagline": "Pages, emails, ads, and offers.",
+        "body": "You move between sales pages, email sequences, ad scripts, and offer copy without dropping quality. Different formats, same job: turn a reader into a buyer."
+      },
+      {
+        "title": "Ruthless self-editing",
+        "tagline": "First drafts are raw material, not deliverables.",
+        "body": "You cut your own darlings before anyone asks. What you hand over is tight, specific, and built around one clear action for the reader to take."
+      },
+      {
+        "title": "Remote discipline",
+        "tagline": "European core hours, no supervision needed.",
+        "body": "You manage your own day, communicate in writing without being prompted, and show up prepared. Small senior team, zero room for passengers."
+      }
+    ],
+    "whatYoullDo": [
+      "Write and iterate sales pages, opt-in pages, and checkout copy for creator offers.",
+      "Build email sequences: welcome flows, launches, cart closes, and win-backs.",
+      "Script short-form ads and hooks for paid campaigns, then rework them against spend data.",
+      "Join the daily marketing call at 14:00 CET to review numbers and set the day's priorities.",
+      "Run copy tests on headlines, leads, offers, and guarantees, and document what wins.",
+      "Pressure-test offer copy with the strategy team before anything goes live."
+    ],
+    "shouldntApply": [
+      "You want a normal 9 to 5. This role rewards an all-in mentality and exposes coasting fast.",
+      "You plan to write part-time around other clients. We need your full attention.",
+      "You take edits personally. Your copy will be cut, flipped, and tested every week.",
+      "You need a style guide to feel safe. Here the market grades your work."
+    ],
+    "seo": {
+      "title": "Direct-Response Copywriter at Halevora",
+      "description": "Write sales pages, email sequences, and ad scripts that turn creator audiences into customers. Remote, full time, European core hours."
+    }
+  },
+  "form": {
+    "slug": "copywriter",
+    "role": "Direct-Response Copywriter",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Direct-Response Copywriter",
+        "description": "We receive a serious stack of applications for every writing role and we read each complete one. This form is long on purpose: it filters for people who finish what they start. Answer thoroughly, give real numbers, and be specific. Rushed answers end the review early.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          { "id": "instagram_handle", "type": "text", "label": "Instagram handle", "required": false, "help": "Optional." }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to meet you, {first_name}. What country are you based out of?",
+        "fields": [
+          { "id": "country", "type": "text", "label": "Country", "required": true }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did a member of the Halevora team refer you?",
+        "fields": [
+          {
+            "id": "referred_by_team",
+            "type": "single_choice",
+            "label": "Referred by a team member?",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "referred_by_team", "op": "eq", "value": "No" }, "goTo": "q-age" }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 1 }
+        ],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently a full-time student?",
+        "fields": [
+          {
+            "id": "full_time_student",
+            "type": "single_choice",
+            "label": "Full-time student?",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "full_time_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "Phase one complete.",
+        "description": "This application runs in two phases. Personal information: done. Professional fitness: up next. The remaining questions dig into your writing, {first_name}. Specific answers beat polished ones."
+      },
+      {
+        "id": "q-portfolio",
+        "kind": "question",
+        "title": "Drop a link to your portfolio or writing samples.",
+        "fields": [
+          {
+            "id": "portfolio_url",
+            "type": "url",
+            "label": "Portfolio or samples link",
+            "required": true,
+            "help": "Check that the link opens without a permission request. A link we cannot open counts as no link."
+          }
+        ]
+      },
+      {
+        "id": "q-experience",
+        "kind": "question",
+        "title": "How many years have you written copy professionally?",
+        "fields": [
+          { "id": "years_writing_copy", "type": "number", "label": "Years of professional copywriting", "required": true, "min": 0 }
+        ]
+      },
+      {
+        "id": "q-results",
+        "kind": "question",
+        "title": "Which statement best matches your track record?",
+        "fields": [
+          {
+            "id": "proven_results",
+            "type": "single_choice",
+            "label": "Proven results",
+            "required": true,
+            "options": [
+              "My copy has driven seven figures or more",
+              "My copy has driven six figures",
+              "Solid results below six figures",
+              "No proven revenue yet, strong fundamentals"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q-best-campaign",
+        "kind": "question",
+        "title": "Describe your strongest campaign and its numbers.",
+        "fields": [
+          {
+            "id": "best_campaign",
+            "type": "textarea",
+            "label": "Your strongest campaign",
+            "required": true,
+            "help": "What was the offer, what did you write, and what did it produce? Real figures, please."
+          }
+        ]
+      },
+      {
+        "id": "q-education",
+        "kind": "question",
+        "title": "Where did you learn copywriting?",
+        "fields": [
+          {
+            "id": "copy_education",
+            "type": "textarea",
+            "label": "Your copywriting education",
+            "required": true,
+            "help": "Books, mentors, courses, client work. Tell us the path."
+          }
+        ]
+      },
+      {
+        "id": "q-scale-english",
+        "kind": "question",
+        "title": "On a scale of 1 to 10, how strong is your written English?",
+        "fields": [
+          { "id": "rating_written_english", "type": "linear_scale", "label": "Written English", "required": true, "min": 1, "max": 10, "help": "Be honest. We check." }
+        ]
+      },
+      {
+        "id": "q-scale-ads",
+        "kind": "question",
+        "title": "On a scale of 1 to 10, how strong is your paid ad copy?",
+        "fields": [
+          { "id": "rating_paid_ad_copy", "type": "linear_scale", "label": "Paid ad copy", "required": true, "min": 1, "max": 10 }
+        ]
+      },
+      {
+        "id": "q-scale-landing",
+        "kind": "question",
+        "title": "On a scale of 1 to 10, how strong are your landing pages?",
+        "fields": [
+          { "id": "rating_landing_pages", "type": "linear_scale", "label": "Landing pages", "required": true, "min": 1, "max": 10 }
+        ]
+      },
+      {
+        "id": "q-scale-email",
+        "kind": "question",
+        "title": "On a scale of 1 to 10, how strong are your email sequences?",
+        "fields": [
+          { "id": "rating_email_sequences", "type": "linear_scale", "label": "Email sequences", "required": true, "min": 1, "max": 10 }
+        ]
+      },
+      {
+        "id": "q-scale-vsl",
+        "kind": "question",
+        "title": "On a scale of 1 to 10, how strong are your video sales scripts?",
+        "fields": [
+          { "id": "rating_video_sales_scripts", "type": "linear_scale", "label": "Video sales scripts", "required": true, "min": 1, "max": 10 }
+        ]
+      },
+      {
+        "id": "q-revenue",
+        "kind": "question",
+        "title": "In USD, roughly how much total revenue has your copy generated?",
+        "fields": [
+          { "id": "total_copy_revenue", "type": "number", "label": "Total revenue from your copy (USD)", "required": true, "min": 0, "help": "A best estimate is fine. Count everything you can reasonably attribute to your words." }
+        ]
+      },
+      {
+        "id": "q-process",
+        "kind": "question",
+        "title": "Walk us through your process from brief to final draft.",
+        "fields": [
+          {
+            "id": "copy_process",
+            "type": "textarea",
+            "label": "Your process",
+            "required": true,
+            "help": "Research, outlining, drafting, editing, testing. What happens at each step and how long it takes."
+          }
+        ]
+      },
+      {
+        "id": "q-make-or-break",
+        "kind": "question",
+        "title": "What is the one thing that makes or breaks a piece of copy?",
+        "fields": [
+          { "id": "make_or_break", "type": "textarea", "label": "Your answer", "required": true }
+        ]
+      },
+      {
+        "id": "q-storytelling",
+        "kind": "question",
+        "title": "How do you use storytelling in your copy?",
+        "fields": [
+          {
+            "id": "storytelling_use",
+            "type": "textarea",
+            "label": "Storytelling in your copy",
+            "required": true,
+            "help": "Point to a real example where a story did the selling."
+          }
+        ]
+      },
+      {
+        "id": "q-ai-tools",
+        "kind": "question",
+        "title": "How do you use AI tools in your writing today?",
+        "fields": [
+          {
+            "id": "ai_tools_use",
+            "type": "textarea",
+            "label": "AI in your workflow",
+            "required": true,
+            "help": "Name the tools and where they sit in your process. \"Not at all\" is an acceptable answer if it is true."
+          }
+        ]
+      },
+      {
+        "id": "q-commitments",
+        "kind": "question",
+        "title": "What are your current professional commitments?",
+        "fields": [
+          {
+            "id": "current_commitments",
+            "type": "textarea",
+            "label": "Current commitments",
+            "required": true,
+            "help": "Jobs, clients, projects, studies. Everything that competes for your hours."
+          }
+        ]
+      },
+      {
+        "id": "q-copy-income",
+        "kind": "question",
+        "title": "What is your current monthly income from copywriting, in USD?",
+        "fields": [
+          { "id": "copy_monthly_income", "type": "number", "label": "Monthly copywriting income (USD)", "required": true, "min": 0 }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "Almost done, {first_name}. What is your current monthly gross income in USD, across everything?",
+        "fields": [
+          { "id": "monthly_gross_income", "type": "number", "label": "Monthly gross income (USD)", "required": true, "min": 0 }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "That's the full application, {first_name}.",
+        "description": "Thank you for the time and detail you put into this. Our marketing team reads every complete application and replies to the strongest ones within a few days. If we move forward, the next stage is a short paid test brief, so you get paid to show us how you work. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thanks, {first_name}, you're all set.",
+        "description": "We appreciate the time you took to apply. Our team reviews every application and will reach out if there is a fit. All the best from Halevora.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}

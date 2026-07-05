@@ -1,0 +1,271 @@
+{
+  "ad": {
+    "slug": "customer-support",
+    "title": "Customer Support Specialist",
+    "team": "Support",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Support is the front line of every brand we run. Fans and clients judge our creators by the speed and quality of the replies they get, and you will be the person sending them. We are hiring a Customer Support Specialist who treats a reply as work worth doing well: fast, accurate, and human. If you have ever rewritten a message three times because the tone was slightly off, this role was built for you.",
+    "role": {
+      "eyebrow": "The front line",
+      "paragraphs": [
+        "You will answer questions, resolve complaints, and keep conversations moving across the communities and client accounts we manage. The goal on every ticket is simple: the person on the other side leaves happier than they arrived, and faster than they expected.",
+        "This is not a script-reading job. You will make judgment calls, escalate what needs escalating, and write replies that sound like a person who cares, because you will be one."
+      ]
+    },
+    "idealCandidate": [
+      "You write clean, clear English at speed. Typos annoy you.",
+      "You stay calm when the other person is not.",
+      "You answer messages in minutes, not hours, and it bothers you when others take longer.",
+      "You would rather ask a sharp question than guess and get it wrong.",
+      "You notice tone. You can tell a frustrated customer from a rude one and treat each accordingly.",
+      "You are reliable to the point of being boring. If you say you will be online, you are online.",
+      "You want to be measured on results: response time, resolution rate, and how people feel after talking to you."
+    ],
+    "requirements": [
+      {
+        "title": "Written fluency",
+        "tagline": "Your writing is the product.",
+        "body": "You will send hundreds of messages a week. Each one must be correct, clear, and warm on the first send. Native-level English writing is the baseline here, not a bonus."
+      },
+      {
+        "title": "Composure under pressure",
+        "tagline": "Angry messages are part of the job.",
+        "body": "People write to support when something is wrong. You need to absorb frustration without mirroring it, take ownership without groveling, and move every exchange toward a fix."
+      },
+      {
+        "title": "Process discipline",
+        "tagline": "Speed without accuracy is just noise.",
+        "body": "You follow escalation paths, document what you resolve, and flag patterns you see repeating. When you do not know an answer, you say so and go find it instead of improvising one."
+      },
+      {
+        "title": "CET availability",
+        "tagline": "Our core hours run on European time.",
+        "body": "The team works European core hours and meets every day at 10:00 CET. You need a schedule and an internet connection you can commit to for the long run, not just for the first month."
+      }
+    ],
+    "whatYoullDo": [
+      "Join the daily team call at 10:00 CET to review open tickets, blockers, and priorities.",
+      "Answer inbound questions from community members and clients with fast, precise, human replies.",
+      "Defuse complaints, own mistakes on the brand's behalf, and turn frustrated people into loyal ones.",
+      "Escalate technical and sensitive issues to the right owner with a clean, complete handover.",
+      "Keep internal notes and saved replies current so the whole team answers with one voice.",
+      "Report recurring issues and friction points so we fix causes instead of symptoms."
+    ],
+    "shouldntApply": [
+      "You want a quiet 9 to 5. This role is demanding and requires an all-in mentality.",
+      "You are looking for a side gig. We only hire people who commit full time.",
+      "You take feedback personally. We review message quality openly and often.",
+      "You disappear when it gets busy. A full inbox needs more of you, not less."
+    ],
+    "seo": {
+      "title": "Customer Support Specialist at Halevora",
+      "description": "Remote, full-time support role at Halevora. Send fast, precise, human replies that keep creator communities and clients happy. European core hours."
+    }
+  },
+  "form": {
+    "slug": "customer-support",
+    "role": "Customer Support Specialist",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Customer Support Specialist",
+        "description": "Every role we open draws a high volume of applications, and we read all of them. Give each answer real thought; short, careless replies are the fastest way out of the running. Expect this to take about ten minutes.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "help": "Optional."
+          }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to meet you, {first_name}.",
+        "fields": [
+          {
+            "id": "country",
+            "type": "text",
+            "label": "What country are you based out of?",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          {
+            "id": "referred",
+            "type": "single_choice",
+            "label": "Referral",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "referred", "op": "eq", "value": "Yes" }, "goTo": "q-referrer" },
+          { "if": { "fieldId": "referred", "op": "eq", "value": "No" }, "goTo": "q-age" }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          { "id": "age", "type": "number", "label": "Age", "required": true, "min": 0 }
+        ],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          {
+            "id": "student",
+            "type": "single_choice",
+            "label": "Enrollment",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "That was phase one.",
+        "description": "Two phases stand between you and an interview.\n\n✅ Personal Information\n☑️ Professional Fitness\n\nThe next questions decide whether we call you, so slow down and write like it matters.",
+        "cta": "Continue"
+      },
+      {
+        "id": "q-source",
+        "kind": "question",
+        "title": "How did you find this role?",
+        "fields": [
+          { "id": "source", "type": "text", "label": "Where you saw it", "required": true }
+        ]
+      },
+      {
+        "id": "q-standard",
+        "kind": "question",
+        "title": "What does world-class support mean to you?",
+        "description": "Not the dictionary answer. Yours.",
+        "fields": [
+          {
+            "id": "support_standard",
+            "type": "textarea",
+            "label": "Your answer",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-unknown",
+        "kind": "question",
+        "title": "A customer asks you something you cannot answer. Walk us through exactly what you do next.",
+        "description": "Step by step, from the moment you read the message to the moment they get a real answer.",
+        "fields": [
+          {
+            "id": "unknown_answer",
+            "type": "textarea",
+            "label": "Your process",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-defuse",
+        "kind": "question",
+        "title": "Describe a time you defused a frustrated person, message by message.",
+        "description": "Give us the actual exchange as you remember it: what they wrote, what you replied, and how it ended.",
+        "fields": [
+          {
+            "id": "defuse_story",
+            "type": "textarea",
+            "label": "The exchange",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-why-you",
+        "kind": "question",
+        "title": "Why you, {first_name}?",
+        "description": "Every applicant says they are hard-working and detail-oriented. Skip that. Tell us what actually makes you the right hire for this role.",
+        "fields": [
+          { "id": "why_you", "type": "textarea", "label": "Your case", "required": true }
+        ]
+      },
+      {
+        "id": "q-hours",
+        "kind": "question",
+        "title": "What hours can you reliably cover in CET?",
+        "description": "Be exact. We build shift plans around the daily 10:00 CET team call, and \"flexible\" tells us nothing.",
+        "fields": [
+          { "id": "cet_hours", "type": "text", "label": "Your hours in CET", "required": true }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "What is your current monthly gross income in USD?",
+        "description": "A number, not a range. This stays confidential.",
+        "fields": [
+          {
+            "id": "monthly_income",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": true,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We read every submission carefully, and if your answers match what we need, you will hear from us with next steps. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We appreciate the time you put into it, and we will be in touch if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}

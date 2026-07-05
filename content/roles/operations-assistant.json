@@ -1,0 +1,298 @@
+{
+  "ad": {
+    "slug": "operations-assistant",
+    "title": "Operations Assistant",
+    "team": "Operations",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Jul 2026",
+    "summary": "Creator teams move fast and their calendars pay for it. Your job is to make sure nothing falls through. As our Operations Assistant you own the schedules, trackers, reports, and processes that keep every team on time and every task accounted for. Nobody notices operations when it works. Everyone notices when it fails. If a misaligned spreadsheet genuinely bothers you, keep reading.",
+    "role": {
+      "eyebrow": "The Engine Room",
+      "paragraphs": [
+        "You sit at the center of Halevora's daily machine. Schedules, trackers, reports, follow-ups, and the procedures that connect them all run through you. When a deadline starts to slip, you catch it before anyone downstream feels it. When a process wastes ten minutes a day, you rebuild it so it stops.",
+        "Every other role here depends on this one working. You will keep European core hours with a small senior team that expects precision and gives you the authority to enforce it."
+      ]
+    },
+    "idealCandidate": [
+      "You treat detail obsession as a superpower, not a personality flaw.",
+      "You spot the one cell in a 400-row tracker that does not add up.",
+      "You write everything down: every task, every owner, every deadline.",
+      "You chase people for updates without feeling awkward about it.",
+      "You would rather fix the process than fix the same mistake twice.",
+      "You work clean: named files, dated notes, zero loose ends.",
+      "You keep your word on small things, which is why people trust you with big ones."
+    ],
+    "requirements": [
+      {
+        "title": "Ruthless organization",
+        "tagline": "Order is your default state.",
+        "body": "You already run your own life on systems: lists, calendars, reminders that actually fire. You bring that same structure to everything you touch at work, without being asked and without being watched."
+      },
+      {
+        "title": "Process thinking",
+        "tagline": "You see workflows, not tasks.",
+        "body": "Repetitive work offends you. When you do something twice, you document it. When you do it a third time, you automate it or delegate it. You can explain any process you own to a stranger in five steps or fewer."
+      },
+      {
+        "title": "Reliable communication",
+        "tagline": "Short, clear, on time.",
+        "body": "You write updates people actually read. You flag problems the day you spot them, not the day they explode. When you go quiet, it means everything is on track, and the team can bank on that."
+      },
+      {
+        "title": "Remote discipline",
+        "tagline": "Nobody watches you. Nothing slips.",
+        "body": "You have a quiet workspace, a fast and stable connection, and the self-management to deliver full days without supervision. Remote work is how you do your best work, not a fallback."
+      }
+    ],
+    "whatYoullDo": [
+      "Run the daily ops sync at 09:30 CET: surface blockers, confirm owners, lock the day's priorities.",
+      "Maintain the schedules and content calendars for every creator team so no deadline, review, or handoff gets missed.",
+      "Keep trackers and dashboards current and honest, then turn them into a weekly report leadership actually uses.",
+      "Chase open tasks across teams and close the loop on every follow-up the same day.",
+      "Document, refine, and enforce our standard operating procedures, then hunt down the next process worth fixing."
+    ],
+    "shouldntApply": [
+      "You want a job that ends when the clock says so. This team runs on an all-in mentality.",
+      "You are looking for part-time hours or a side project. We hire full-time only.",
+      "You take direct feedback personally. We correct fast and expect you to do the same.",
+      "You call yourself a big-picture person to excuse sloppy details. Details are the job."
+    ],
+    "seo": {
+      "title": "Operations Assistant at Halevora",
+      "description": "Full-time remote Operations Assistant at Halevora. Own the schedules, trackers, reports, and processes that keep creator teams on time."
+    }
+  },
+  "form": {
+    "slug": "operations-assistant",
+    "role": "Operations Assistant",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Operations Assistant",
+        "description": "We receive far more applications than we can interview, and we read every complete one. Short or careless answers end the process early. Set aside 15 focused minutes and answer thoroughly.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          { "id": "first_name", "type": "text", "label": "First name", "required": true },
+          { "id": "last_name", "type": "text", "label": "Last name", "required": true },
+          { "id": "phone", "type": "phone", "label": "Phone number", "required": true },
+          { "id": "email", "type": "email", "label": "Email address", "required": true },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "help": "Optional."
+          }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to meet you, {first_name}.",
+        "fields": [
+          {
+            "id": "country",
+            "type": "text",
+            "label": "What country are you based out of?",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          {
+            "id": "referred_by_team",
+            "type": "single_choice",
+            "label": "Referral",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "referred_by_team", "op": "eq", "value": "No" }, "goTo": "q-age" }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          { "id": "referrer_name", "type": "text", "label": "Their name", "required": true }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          { "id": "age", "type": "number", "label": "Your age", "required": true, "min": 0 }
+        ],
+        "logic": [
+          { "if": { "fieldId": "age", "op": "lt", "value": 16 }, "goTo": "end-dq" },
+          { "if": { "fieldId": "age", "op": "gt", "value": 25 }, "goTo": "phase-2" }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          {
+            "id": "enrolled_student",
+            "type": "single_choice",
+            "label": "Enrollment",
+            "required": true,
+            "options": ["Yes", "No"]
+          }
+        ],
+        "logic": [
+          { "if": { "fieldId": "enrolled_student", "op": "eq", "value": "Yes" }, "goTo": "end-dq" }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "That was phase one, {first_name}.",
+        "description": "✅ Personal Information: done. ☑️ Professional Fitness: up next. The next section decides whether we invite you to interview. Answer like it matters."
+      },
+      {
+        "id": "q-occupation",
+        "kind": "question",
+        "title": "What do you do right now?",
+        "description": "Tell us your current occupation and every commitment on your plate: job, studies, freelance work, anything else that claims your hours.",
+        "fields": [
+          {
+            "id": "current_occupation",
+            "type": "textarea",
+            "label": "Current occupation and commitments",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-tools",
+        "kind": "question",
+        "title": "Which tools do you run daily?",
+        "description": "List your project management tools, your spreadsheet setup, and any automation you have built or maintain. Name each tool and what you use it for.",
+        "fields": [
+          {
+            "id": "daily_tools",
+            "type": "textarea",
+            "label": "Your daily toolkit",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-process",
+        "kind": "question",
+        "title": "Tell us about a process you built or fixed.",
+        "description": "Describe one process you built or repaired that saved real time. Use numbers: hours saved per week, error rate before and after, whatever proves the gain.",
+        "fields": [
+          {
+            "id": "process_win",
+            "type": "textarea",
+            "label": "The process, the fix, the numbers",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-hours",
+        "kind": "question",
+        "title": "How many hours can you reliably cover each week?",
+        "description": "Give us a number and the CET window you can commit to, for example: 40 hours, 08:00 to 17:00 CET.",
+        "fields": [
+          {
+            "id": "weekly_hours_window",
+            "type": "text",
+            "label": "Weekly hours and CET window",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-internet",
+        "kind": "question",
+        "title": "How fast is your internet?",
+        "description": "Run a speed test now and paste the result: download, upload, and ping.",
+        "fields": [
+          {
+            "id": "internet_speed",
+            "type": "text",
+            "label": "Speed test result",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-attention",
+        "kind": "question",
+        "title": "Quick check while you are here.",
+        "description": "A tracker shows 41 of 63 items done. What percent is done? Answer to one decimal place.",
+        "fields": [
+          {
+            "id": "tracker_percent",
+            "type": "text",
+            "label": "Percent complete",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-why-ops",
+        "kind": "question",
+        "title": "Why operations, {first_name}?",
+        "description": "Plenty of louder roles get attention faster. Tell us why you want the engine room instead.",
+        "fields": [
+          {
+            "id": "why_operations",
+            "type": "textarea",
+            "label": "Why this role",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "What is your current monthly gross income?",
+        "description": "In USD, before tax. A number, not a range.",
+        "fields": [
+          {
+            "id": "monthly_income_usd",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": true,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We review every complete submission, and candidates who move forward hear from us within a few days. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We appreciate the time you put into it and will be in touch if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}
