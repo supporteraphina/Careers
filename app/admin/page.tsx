@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import DataControls from '@/components/admin/DataControls';
+import ReviewControl from '@/components/admin/ReviewControl';
 import { getRolePacks } from '@/lib/content/roles';
 import { prisma } from '@/lib/db';
 
@@ -11,14 +13,15 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic';
 
 interface Props {
-  searchParams: Promise<{ slug?: string; outcome?: string }>;
+  searchParams: Promise<{ slug?: string; outcome?: string; status?: string }>;
 }
 
 export default async function AdminPage({ searchParams }: Props) {
-  const { slug, outcome } = await searchParams;
+  const { slug, outcome, status } = await searchParams;
   const where = {
     ...(slug ? { slug } : {}),
     ...(outcome ? { outcome } : {}),
+    ...(status ? { reviewStatus: status } : {}),
   };
   const [applications, packs] = await Promise.all([
     prisma.application.findMany({
@@ -31,7 +34,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
   const filterLink = (params: Record<string, string | undefined>) => {
     const query = new URLSearchParams();
-    const merged = { slug, outcome, ...params };
+    const merged = { slug, outcome, status, ...params };
     for (const [key, value] of Object.entries(merged)) {
       if (value) query.set(key, value);
     }
@@ -40,9 +43,21 @@ export default async function AdminPage({ searchParams }: Props) {
   };
 
   return (
-    <main className="container" style={{ paddingTop: '48px', maxWidth: '1200px' }}>
+    <main className="container" style={{ paddingTop: '48px', maxWidth: '1240px' }}>
       <p className="eyebrow">Admin</p>
       <h1 style={{ fontSize: '1.8rem' }}>Applications</h1>
+
+      <div className="admin-nav">
+        <Link href="/admin" className="pill pill--accent">
+          Applications
+        </Link>
+        <Link href="/admin/funnel" className="pill">
+          Funnel drop-off
+        </Link>
+        <a href="/admin/export" className="pill">
+          Export CSV
+        </a>
+      </div>
 
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', margin: '18px 0 26px' }}>
         <Link href={filterLink({ slug: undefined })} className={`pill${!slug ? ' pill--accent' : ''}`}>
@@ -64,13 +79,16 @@ export default async function AdminPage({ searchParams }: Props) {
         >
           DQ only
         </Link>
-        <a href="/admin/export" className="pill">
-          Export CSV
-        </a>
+        <Link
+          href={filterLink({ status: status === 'shortlisted' ? undefined : 'shortlisted' })}
+          className={`pill${status === 'shortlisted' ? ' pill--accent' : ''}`}
+        >
+          Shortlisted
+        </Link>
       </div>
 
       {applications.length === 0 ? (
-        <p style={{ color: 'var(--text-faint)' }}>No applications yet.</p>
+        <p style={{ color: 'var(--text-faint)' }}>No applications match.</p>
       ) : (
         <div style={{ overflowX: 'auto' }}>
           <table className="admin-table">
@@ -83,6 +101,7 @@ export default async function AdminPage({ searchParams }: Props) {
                 <th>Country</th>
                 <th>Income USD</th>
                 <th>Flags</th>
+                <th>Review</th>
               </tr>
             </thead>
             <tbody>
@@ -100,12 +119,17 @@ export default async function AdminPage({ searchParams }: Props) {
                     {app.outcome === 'dq' && <span className="pill">DQ path</span>}{' '}
                     {app.referral && <span className="pill pill--accent">Referral</span>}
                   </td>
+                  <td>
+                    <ReviewControl id={app.id} initialStatus={app.reviewStatus} />
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       )}
+
+      <DataControls />
     </main>
   );
 }

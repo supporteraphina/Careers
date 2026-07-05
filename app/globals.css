@@ -923,6 +923,27 @@ img {
   color: var(--text);
 }
 
+.funnel-foot {
+  margin-top: 34px;
+  font-size: 0.82rem;
+  color: var(--text-faint);
+}
+
+.funnel-foot__link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.funnel-foot__link:hover {
+  color: var(--accent);
+}
+
 .funnel-help {
   color: var(--text-faint);
   font-size: 0.86rem;
@@ -930,6 +951,50 @@ img {
 }
 
 /* Admin */
+
+.admin-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 6px 0 4px;
+}
+
+.admin-select {
+  background: var(--bg-raised);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 5px 8px;
+}
+
+.admin-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.admin-controls {
+  margin-top: 56px;
+  padding: 26px 28px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-width: 720px;
+}
+
+.admin-controls__row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.admin-controls .btn {
+  padding: 10px 20px;
+  font-size: 0.7rem;
+}
 
 .admin-table {
   width: 100%;

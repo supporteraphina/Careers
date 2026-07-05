@@ -1,5 +1,6 @@
-// Applicant submissions. SQLite in development; switch the datasource
-// provider to postgresql for production (see docs/hiring-funnel-spec.md §4).
+// Data model for applicant capture, review, drafts, analytics, and webhook
+// reliability. See docs/backend-architecture.md. SQLite in development;
+// switch provider to postgresql for production.
 
 generator client {
   provider = "prisma-client"
@@ -11,24 +12,99 @@ datasource db {
 }
 
 model Application {
-  id          String   @id @default(cuid())
-  slug        String
-  role        String
-  outcome     String
-  firstName   String?
-  lastName    String?
-  email       String?
-  country     String?
-  incomeUsd   Float?
-  referral    Boolean  @default(false)
-  answers     String
-  path        String
-  utm         String?
-  referrerUrl String?
-  ip          String?
-  lang        String?
-  createdAt   DateTime @default(now())
+  id           String    @id @default(cuid())
+  slug         String
+  role         String
+  formVersion  Int       @default(1)
+  outcome      String
+  reviewStatus String    @default("new")
+  reviewNote   String?
+  reviewedAt   DateTime?
+  firstName    String?
+  lastName     String?
+  email        String?
+  country      String?
+  incomeUsd    Float?
+  referral     Boolean   @default(false)
+  answers      String
+  path         String
+  utm          String?
+  referrerUrl  String?
+  ip           String?
+  lang         String?
+  sessionId    String?
+  createdAt    DateTime  @default(now())
+
+  answerRows Answer[]
+  deliveries WebhookDelivery[]
 
   @@index([slug])
   @@index([createdAt])
+  @@index([email])
+  @@index([reviewStatus])
+}
+
+model Answer {
+  id            String      @id @default(cuid())
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  fieldId       String
+  value         String
+
+  @@index([applicationId])
+  @@index([fieldId, value])
+}
+
+model FormSnapshot {
+  id         String   @id @default(cuid())
+  slug       String
+  version    Int
+  definition String
+  createdAt  DateTime @default(now())
+
+  @@unique([slug, version])
+}
+
+model Draft {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  slug      String
+  pageId    String
+  answers   String
+  history   String
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([slug])
+  @@index([updatedAt])
+  @@index([email])
+}
+
+model FunnelEvent {
+  id        String   @id @default(cuid())
+  sessionId String
+  slug      String
+  pageId    String
+  kind      String
+  createdAt DateTime @default(now())
+
+  @@index([slug, pageId])
+  @@index([sessionId])
+  @@index([createdAt])
+}
+
+model WebhookDelivery {
+  id            String      @id @default(cuid())
+  applicationId String
+  application   Application @relation(fields: [applicationId], references: [id], onDelete: Cascade)
+  url           String
+  payload       String
+  status        String      @default("pending")
+  attempts      Int         @default(0)
+  lastError     String?
+  deliveredAt   DateTime?
+  createdAt     DateTime    @default(now())
+
+  @@index([status])
 }

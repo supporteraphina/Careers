@@ -1,8 +1,9 @@
 'use client';
 
 // One-question-per-view funnel renderer. Navigation decisions live in
-// lib/engine/runner.ts; this component only renders pages, collects
-// answers, and submits the finished run to /api/apply.
+// lib/engine/runner.ts; this component renders pages, collects answers,
+// autosaves drafts (localStorage + server resume token), emits per-page
+// analytics beacons, and submits the finished run to /api/apply.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { nextPageId, pipe, progress, validateFieldValue } from '../lib/engine/runner';
@@ -16,9 +17,11 @@ interface SavedState {
   pageId: string;
   history: string[];
   answers: Answers;
+  draftToken?: string;
 }
 
 const AUTO_ADVANCE_MS = 220;
+const DRAFT_DEBOUNCE_MS = 900;
 
 function storageKey(slug: string) {
   return `halevora-apply:${slug}`;
@@ -34,11 +37,16 @@ export default function Funnel({ form }: FunnelProps) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [honeypot, setHoneypot] = useState('');
-  const meta = useRef<{ utm: Record<string, string>; referrerUrl: string }>({
+  const [draftToken, setDraftToken] = useState<string | null>(null);
+  const draftTokenRef = useRef<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const meta = useRef<{ utm: Record<string, string>; referrerUrl: string; sessionId: string }>({
     utm: {},
     referrerUrl: '',
+    sessionId: '',
   });
   const autoAdvance = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const draftTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const page = useMemo(
     () => form.pages.find((p) => p.id === pageId) ?? form.pages[0],
@@ -46,35 +54,102 @@ export default function Funnel({ form }: FunnelProps) {
   );
   const { index, total } = progress(form, page.id);
 
-  // Restore a draft, capture UTM parameters and the referrer once.
+  // Boot: session id, UTM capture, then server resume link or local draft.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const utm: Record<string, string> = {};
     for (const [key, value] of params) {
       if (key.startsWith('utm_') || key === 'ref') utm[key] = value;
     }
-    meta.current = { utm, referrerUrl: document.referrer };
+    meta.current = {
+      utm,
+      referrerUrl: document.referrer,
+      sessionId: crypto.randomUUID(),
+    };
+
+    const applySaved = (saved: SavedState) => {
+      if (!form.pages.some((p) => p.id === saved.pageId)) return;
+      setAnswers(saved.answers ?? {});
+      setHistory(saved.history ?? []);
+      setPageId(saved.pageId);
+      if (saved.draftToken) {
+        setDraftToken(saved.draftToken);
+        draftTokenRef.current = saved.draftToken;
+      }
+    };
+
+    const resume = params.get('resume');
+    if (resume) {
+      fetch(`/api/draft?token=${encodeURIComponent(resume)}`)
+        .then((res) => (res.ok ? res.json() : null))
+        .then(
+          (body: {
+            draft?: { slug: string; pageId: string; answers: Answers; history: string[] };
+          } | null) => {
+            if (body?.draft && body.draft.slug === form.slug) {
+              applySaved({ ...body.draft, draftToken: resume });
+              setDraftToken(resume);
+              draftTokenRef.current = resume;
+            }
+          },
+        )
+        .catch(() => {});
+      return;
+    }
 
     try {
       const raw = window.localStorage.getItem(storageKey(form.slug));
-      if (!raw) return;
-      const saved = JSON.parse(raw) as SavedState;
-      if (form.pages.some((p) => p.id === saved.pageId)) {
-        setAnswers(saved.answers ?? {});
-        setHistory(saved.history ?? []);
-        setPageId(saved.pageId);
-      }
+      if (raw) applySaved(JSON.parse(raw) as SavedState);
     } catch {
       window.localStorage.removeItem(storageKey(form.slug));
     }
   }, [form]);
 
-  // Autosave the draft after every change until the run is submitted.
+  // Per-page analytics beacon.
+  useEffect(() => {
+    if (!meta.current.sessionId || submitted) return;
+    const body = JSON.stringify({
+      events: [
+        { sessionId: meta.current.sessionId, slug: form.slug, pageId, kind: 'enter' },
+      ],
+    });
+    if (!navigator.sendBeacon?.('/api/events', body)) {
+      fetch('/api/events', { method: 'POST', body }).catch(() => {});
+    }
+  }, [form.slug, pageId, submitted]);
+
+  // Autosave: localStorage immediately, server draft debounced.
   useEffect(() => {
     if (submitted) return;
-    const state: SavedState = { pageId, history, answers };
+    const state: SavedState = {
+      pageId,
+      history,
+      answers,
+      draftToken: draftToken ?? undefined,
+    };
     window.localStorage.setItem(storageKey(form.slug), JSON.stringify(state));
-  }, [form.slug, pageId, history, answers, submitted]);
+
+    if (Object.keys(answers).length === 0) return;
+    if (draftTimer.current) clearTimeout(draftTimer.current);
+    draftTimer.current = setTimeout(() => {
+      fetch('/api/draft', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ token: draftToken, slug: form.slug, pageId, answers, history }),
+      })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((body: { token?: string } | null) => {
+          if (body?.token) {
+            setDraftToken(body.token);
+            draftTokenRef.current = body.token;
+          }
+        })
+        .catch(() => {});
+    }, DRAFT_DEBOUNCE_MS);
+    return () => {
+      if (draftTimer.current) clearTimeout(draftTimer.current);
+    };
+  }, [form.slug, pageId, history, answers, submitted, draftToken]);
 
   const setAnswer = useCallback((fieldId: string, value: AnswerValue) => {
     setAnswers((prev) => ({ ...prev, [fieldId]: value }));
@@ -90,6 +165,8 @@ export default function Funnel({ form }: FunnelProps) {
     async (finalAnswers: Answers, endingId: string) => {
       setSubmitting(true);
       setSubmitError(null);
+      // No draft saves may land after submission.
+      if (draftTimer.current) clearTimeout(draftTimer.current);
       try {
         const response = await fetch('/api/apply', {
           method: 'POST',
@@ -99,6 +176,8 @@ export default function Funnel({ form }: FunnelProps) {
             answers: finalAnswers,
             utm: meta.current.utm,
             referrerUrl: meta.current.referrerUrl,
+            sessionId: meta.current.sessionId,
+            draftToken: draftTokenRef.current,
             website: honeypot,
           }),
         });
@@ -112,6 +191,15 @@ export default function Funnel({ form }: FunnelProps) {
         window.localStorage.removeItem(storageKey(form.slug));
         setHistory((prev) => [...prev, pageId]);
         setPageId(endingId);
+        // A draft save may still be in flight; sweep its row once it lands.
+        setTimeout(() => {
+          const token = draftTokenRef.current;
+          if (token) {
+            fetch(`/api/draft?token=${encodeURIComponent(token)}`, {
+              method: 'DELETE',
+            }).catch(() => {});
+          }
+        }, 1600);
       } catch (error) {
         setSubmitError(
           error instanceof Error ? error.message : 'Submission failed. Try again.',
@@ -120,7 +208,7 @@ export default function Funnel({ form }: FunnelProps) {
         setSubmitting(false);
       }
     },
-    [form.slug, honeypot, pageId],
+    [draftToken, form.slug, honeypot, pageId],
   );
 
   const advance = useCallback(
@@ -181,8 +269,21 @@ export default function Funnel({ form }: FunnelProps) {
     [],
   );
 
+  const copyResumeLink = useCallback(() => {
+    if (!draftToken) return;
+    const url = `${window.location.origin}/apply/${form.slug}?resume=${draftToken}`;
+    navigator.clipboard
+      .writeText(url)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(() => {});
+  }, [draftToken, form.slug]);
+
   const isEnding = page.kind === 'ending';
   const hasFields = (page.fields ?? []).length > 0;
+  const showResume = draftToken && !isEnding && page.kind === 'question';
 
   return (
     <div className="funnel-shell">
@@ -267,6 +368,15 @@ export default function Funnel({ form }: FunnelProps) {
           {!hasFields && !isEnding && submitError && (
             <p className="funnel-error" role="alert">
               {submitError}
+            </p>
+          )}
+
+          {showResume && (
+            <p className="funnel-foot">
+              Progress saves automatically.{' '}
+              <button type="button" className="funnel-foot__link" onClick={copyResumeLink}>
+                {copied ? 'Link copied' : 'Copy resume link'}
+              </button>
             </p>
           )}
         </div>
