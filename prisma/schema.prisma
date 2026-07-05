@@ -1,6 +1,6 @@
 // Data model for applicant capture, review, drafts, analytics, and webhook
-// reliability. See docs/backend-architecture.md. SQLite in development;
-// switch provider to postgresql for production.
+// reliability. See docs/backend-architecture.md. Postgres everywhere
+// (Railway in production; local DATABASE_URL points at a Postgres too).
 
 generator client {
   provider = "prisma-client"
@@ -8,7 +8,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
 }
 
 model Application {

@@ -1,75 +1,21 @@
--- CreateTable
-CREATE TABLE "Answer" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "applicationId" TEXT NOT NULL,
-    "fieldId" TEXT NOT NULL,
-    "value" TEXT NOT NULL,
-    CONSTRAINT "Answer_applicationId_fkey" FOREIGN KEY ("applicationId") REFERENCES "Application" ("id") ON DELETE CASCADE ON UPDATE CASCADE
-);
+-- CreateSchema
+CREATE SCHEMA IF NOT EXISTS "public";
 
 -- CreateTable
-CREATE TABLE "FormSnapshot" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "slug" TEXT NOT NULL,
-    "version" INTEGER NOT NULL,
-    "definition" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
--- CreateTable
-CREATE TABLE "Draft" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "token" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "pageId" TEXT NOT NULL,
-    "answers" TEXT NOT NULL,
-    "history" TEXT NOT NULL,
-    "email" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" DATETIME NOT NULL
-);
-
--- CreateTable
-CREATE TABLE "FunnelEvent" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "sessionId" TEXT NOT NULL,
-    "slug" TEXT NOT NULL,
-    "pageId" TEXT NOT NULL,
-    "kind" TEXT NOT NULL,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
--- CreateTable
-CREATE TABLE "WebhookDelivery" (
-    "id" TEXT NOT NULL PRIMARY KEY,
-    "applicationId" TEXT NOT NULL,
-    "url" TEXT NOT NULL,
-    "payload" TEXT NOT NULL,
-    "status" TEXT NOT NULL DEFAULT 'pending',
-    "attempts" INTEGER NOT NULL DEFAULT 0,
-    "lastError" TEXT,
-    "deliveredAt" DATETIME,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT "WebhookDelivery_applicationId_fkey" FOREIGN KEY ("applicationId") REFERENCES "Application" ("id") ON DELETE CASCADE ON UPDATE CASCADE
-);
-
--- RedefineTables
-PRAGMA defer_foreign_keys=ON;
-PRAGMA foreign_keys=OFF;
-CREATE TABLE "new_Application" (
-    "id" TEXT NOT NULL PRIMARY KEY,
+CREATE TABLE "Application" (
+    "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "role" TEXT NOT NULL,
     "formVersion" INTEGER NOT NULL DEFAULT 1,
     "outcome" TEXT NOT NULL,
     "reviewStatus" TEXT NOT NULL DEFAULT 'new',
     "reviewNote" TEXT,
-    "reviewedAt" DATETIME,
+    "reviewedAt" TIMESTAMP(3),
     "firstName" TEXT,
     "lastName" TEXT,
     "email" TEXT,
     "country" TEXT,
-    "incomeUsd" REAL,
+    "incomeUsd" DOUBLE PRECISION,
     "referral" BOOLEAN NOT NULL DEFAULT false,
     "answers" TEXT NOT NULL,
     "path" TEXT NOT NULL,
@@ -78,17 +24,85 @@ CREATE TABLE "new_Application" (
     "ip" TEXT,
     "lang" TEXT,
     "sessionId" TEXT,
-    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "Application_pkey" PRIMARY KEY ("id")
 );
-INSERT INTO "new_Application" ("answers", "country", "createdAt", "email", "firstName", "id", "incomeUsd", "ip", "lang", "lastName", "outcome", "path", "referral", "referrerUrl", "role", "slug", "utm") SELECT "answers", "country", "createdAt", "email", "firstName", "id", "incomeUsd", "ip", "lang", "lastName", "outcome", "path", "referral", "referrerUrl", "role", "slug", "utm" FROM "Application";
-DROP TABLE "Application";
-ALTER TABLE "new_Application" RENAME TO "Application";
+
+-- CreateTable
+CREATE TABLE "Answer" (
+    "id" TEXT NOT NULL,
+    "applicationId" TEXT NOT NULL,
+    "fieldId" TEXT NOT NULL,
+    "value" TEXT NOT NULL,
+
+    CONSTRAINT "Answer_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "FormSnapshot" (
+    "id" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "version" INTEGER NOT NULL,
+    "definition" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "FormSnapshot_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Draft" (
+    "id" TEXT NOT NULL,
+    "token" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "pageId" TEXT NOT NULL,
+    "answers" TEXT NOT NULL,
+    "history" TEXT NOT NULL,
+    "email" TEXT,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+
+    CONSTRAINT "Draft_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "FunnelEvent" (
+    "id" TEXT NOT NULL,
+    "sessionId" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "pageId" TEXT NOT NULL,
+    "kind" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "FunnelEvent_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "WebhookDelivery" (
+    "id" TEXT NOT NULL,
+    "applicationId" TEXT NOT NULL,
+    "url" TEXT NOT NULL,
+    "payload" TEXT NOT NULL,
+    "status" TEXT NOT NULL DEFAULT 'pending',
+    "attempts" INTEGER NOT NULL DEFAULT 0,
+    "lastError" TEXT,
+    "deliveredAt" TIMESTAMP(3),
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "WebhookDelivery_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateIndex
 CREATE INDEX "Application_slug_idx" ON "Application"("slug");
+
+-- CreateIndex
 CREATE INDEX "Application_createdAt_idx" ON "Application"("createdAt");
+
+-- CreateIndex
 CREATE INDEX "Application_email_idx" ON "Application"("email");
+
+-- CreateIndex
 CREATE INDEX "Application_reviewStatus_idx" ON "Application"("reviewStatus");
-PRAGMA foreign_keys=ON;
-PRAGMA defer_foreign_keys=OFF;
 
 -- CreateIndex
 CREATE INDEX "Answer_applicationId_idx" ON "Answer"("applicationId");
@@ -122,3 +136,10 @@ CREATE INDEX "FunnelEvent_createdAt_idx" ON "FunnelEvent"("createdAt");
 
 -- CreateIndex
 CREATE INDEX "WebhookDelivery_status_idx" ON "WebhookDelivery"("status");
+
+-- AddForeignKey
+ALTER TABLE "Answer" ADD CONSTRAINT "Answer_applicationId_fkey" FOREIGN KEY ("applicationId") REFERENCES "Application"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "WebhookDelivery" ADD CONSTRAINT "WebhookDelivery_applicationId_fkey" FOREIGN KEY ("applicationId") REFERENCES "Application"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+

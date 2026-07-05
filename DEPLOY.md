@@ -1,45 +1,42 @@
-# Deployment checklist
+# Deployment (Railway)
 
-The app is stateless except for the database. Everything below assumes a managed
-Postgres (Supabase or Neon); SQLite is development-only.
+The app is stateless; all applicant data lives in Postgres. The repo is wired so
+Railway needs zero build configuration: `npm ci` runs `prisma generate`
+(postinstall), and `npm run start` runs `prisma migrate deploy` before booting,
+so the schema creates/updates itself on every deploy.
 
-## 1. Database
+## Railway setup (one time)
 
-- [ ] Create a Postgres database (Supabase project or Neon branch).
-- [ ] In `prisma/schema.prisma`, change `provider = "sqlite"` to `postgresql`.
-- [ ] `npm i @prisma/adapter-pg pg` and swap `PrismaBetterSqlite3` for `PrismaPg` in
-      `lib/db.ts`.
-- [ ] Set `DATABASE_URL` to the Postgres connection string.
-- [ ] Run `npx prisma migrate deploy`.
+1. Project → **Deploy from GitHub repo** → `supporteraphina/Careers` (installs the
+   Railway GitHub App on the account; every push to `main` auto-deploys).
+2. **+ New → Database → PostgreSQL** in the same project.
+3. Careers service → **Variables**:
+   - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}` (reference variable)
+   - `ADMIN_USER` / `ADMIN_PASS` = fresh strong values (gate for /admin and /api/admin)
+   - `WEBHOOK_URL` = optional Make.com endpoint
+4. **Settings → Networking → Generate Domain**; add a custom domain (CNAME) later.
 
-## 2. Environment variables (host settings, never committed)
+## Local development
 
-| Variable | Required | Purpose |
-|---|---|---|
-| `DATABASE_URL` | yes | Postgres connection string |
-| `ADMIN_USER` / `ADMIN_PASS` | yes | Basic auth for /admin and /api/admin (pick strong values; the dev pair must not ship) |
-| `WEBHOOK_URL` | no | Make.com endpoint that receives each submission |
+Local dev also uses Postgres now. Put the Railway Postgres **public** connection
+string in `.env` as `DATABASE_URL` (or run a local Postgres). Never commit `.env`.
 
-## 3. Host
+## After first deploy
 
-- Any Node host or Vercel. `npm run build` then `npm run start`, or the Vercel
-  default pipeline. Verified locally in production mode (SSG pages, admin gate,
-  API routes).
-- The per-IP rate limiter is in-memory: run a single instance, or move the limiter
-  to the database/Redis before scaling out.
+- [ ] Submit one real application end to end; check Admin → Applications.
+- [ ] Wipe test data: Admin → Data → delete by email, per address.
+- [ ] Cron (Railway scheduled service or cron-job.org, monthly):
+      `POST https://<domain>/api/admin/maintenance` with body
+      `{"action":"purge"}` and the Basic auth header — enforces the 12-month
+      retention promise. Add a daily `{"action":"retry-webhooks"}` if webhooks
+      are on.
+- [ ] Tag every placed link with `utm_source` so Admin → Sources measures real
+      attribution.
+- [ ] Confirm `/admin` returns 401 from a private browser window.
 
-## 4. After first deploy
+## Notes
 
-- [ ] Submit one real test application end to end and delete it via Admin → Data.
-- [ ] Point a monthly cron at `POST /api/admin/maintenance` with
-      `{"action":"purge"}` (12-month POPIA retention) and a daily one with
-      `{"action":"retry-webhooks"}` if webhooks are enabled (both need the Basic
-      auth header).
-- [ ] Tag every paid or placed link with `utm_source` so Admin → Sources measures
-      real attribution.
-- [ ] Confirm `/admin` is unreachable without credentials from a private window.
-
-## 5. Domains
-
-Point the apex (or `careers.` subdomain) at the app. The funnel lives under
-`/apply/<slug>`; no extra subdomain needed.
+- The per-IP rate limiter is in-memory: run a single instance, or move it to the
+  database/Redis before scaling out.
+- The old SQLite `dev.db` on this machine is dead weight after the switch; its
+  18 test rows were never production data.
