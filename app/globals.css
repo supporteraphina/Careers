@@ -238,28 +238,9 @@ img {
   box-shadow: 0 12px 40px -12px rgba(255, 255, 255, 0.15);
 }
 
-/* Atmosphere */
-
-.mesh {
-  position: relative;
-}
-
-.mesh::before {
-  content: '';
-  position: absolute;
-  inset: -20% 0;
-  pointer-events: none;
-  background:
-    radial-gradient(38% 45% at 18% 12%, var(--blue-faint), transparent 70%),
-    radial-gradient(34% 40% at 82% 20%, rgba(210, 218, 235, 0.05), transparent 70%),
-    radial-gradient(60% 55% at 50% 110%, var(--blue-deep), transparent 70%);
-  z-index: 0;
-}
-
-.mesh > * {
-  position: relative;
-  z-index: 1;
-}
+/* Atmosphere lives on two viewport-fixed layers (body::before metallic,
+   .cine::before blue grade); content-anchored glows are banned because
+   their box edges create visible seams. */
 
 .hairline {
   border: 0;

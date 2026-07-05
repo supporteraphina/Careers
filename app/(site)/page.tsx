@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <main className="cine">
-      <section className="hero mesh">
+      <section className="hero">
         <div className="container hero-choreo">
           <p className="eyebrow">Halevora — Careers</p>
           <h1 style={{ maxWidth: '13em' }}>

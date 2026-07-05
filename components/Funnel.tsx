@@ -294,7 +294,7 @@ export default function Funnel({ form }: FunnelProps) {
         />
       </div>
 
-      <main className="funnel-main mesh">
+      <main className="funnel-main">
         <div className="funnel-card" key={page.id}>
           <h1 className="funnel-title">{pipe(page.title, answers)}</h1>
           {page.description && (
