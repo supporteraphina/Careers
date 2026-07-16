@@ -667,17 +667,41 @@ img {
 /* Job advert */
 
 .ad-hero {
-  padding: clamp(70px, 9vw, 120px) 0 0;
+  padding: clamp(70px, 9vw, 110px) 0 0;
+}
+
+.ad-hero__back {
+  display: inline-block;
+  margin-bottom: clamp(18px, 2.2vw, 32px);
+}
+
+.ad-hero__title {
+  margin: 0;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.98;
+  font-size: clamp(2.3rem, 7.2vw, 6.2rem);
+  text-wrap: balance;
 }
 
 .ad-meta {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px;
-  padding: 28px 0;
-  margin: 34px 0 30px;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 26px 0;
+  margin: clamp(26px, 3.2vw, 44px) 0 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+}
+
+.ad-meta__item {
+  padding: 0 clamp(14px, 1.8vw, 28px);
+  border-left: 1px solid var(--border);
+}
+
+.ad-meta__item:first-child {
+  padding-left: 0;
+  border-left: none;
 }
 
 .ad-meta__label {
@@ -686,25 +710,100 @@ img {
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-faint);
-  margin-bottom: 5px;
+  margin-bottom: 7px;
 }
 
-.ad-section {
-  margin: clamp(48px, 6vw, 80px) 0;
+.ad-meta__value {
+  font-size: 1.05rem;
 }
 
-.ad-section ul {
+@media (max-width: 720px) {
+  .ad-meta {
+    grid-template-columns: 1fr 1fr;
+    gap: 22px 0;
+  }
+
+  .ad-meta__item:nth-child(odd) {
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+/* Advert hero photo */
+
+.ad-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  aspect-ratio: 16 / 9;
+  margin: clamp(28px, 3.6vw, 54px) 0 0;
+}
+
+.ad-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) contrast(1.02);
+}
+
+/* Advert rows: label rail on the left, content on the right */
+
+.ad-block {
+  display: grid;
+  grid-template-columns: minmax(150px, 230px) minmax(0, 1fr);
+  gap: clamp(18px, 3.6vw, 64px);
+  padding: clamp(40px, 5.2vw, 72px) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.ad-block__label {
+  margin: 0;
+  align-self: start;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.ad-block__heading {
+  margin: 0 0 16px;
+  font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+  font-weight: 600;
+}
+
+.ad-block__body > p {
+  margin: 0 0 1em;
+  color: var(--text-dim);
+}
+
+.ad-block__body > p:last-child {
+  margin-bottom: 0;
+}
+
+.ad-lede {
+  font-size: 1.08rem;
+}
+
+.ad-list {
   padding-left: 1.2em;
   margin: 0;
 }
 
-.ad-section li {
+.ad-list li {
   margin: 0.5em 0;
   color: var(--text-dim);
 }
 
-.ad-section li::marker {
+.ad-list li::marker {
   color: var(--accent);
+}
+
+@media (max-width: 860px) {
+  .ad-block {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 .req-card {
@@ -762,6 +861,20 @@ img {
 }
 
 .cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    168deg,
+    transparent 30%,
+    var(--blue-faint) 58%,
+    var(--blue-deep) 78%,
+    var(--blue-bright) 100%
+  );
+  pointer-events: none;
+}
+
+.cta-band::after {
   content: '';
   position: absolute;
   inset: -40%;

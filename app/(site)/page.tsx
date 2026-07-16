@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Reveal from '../../components/Reveal';
+import RoleCard, { orderRolePacks } from '../../components/RoleCard';
 import { getRolePacks } from '@/lib/content/roles';
 
 const DISCIPLINES = [
@@ -54,17 +55,12 @@ export default function HomePage() {
       </section>
 
       <section className="section--tight">
-        <div className="container container--wide">
+        <div className="bleed">
           <Reveal>
-            <div className="photo" style={{ aspectRatio: '21 / 9' }}>
-              <Image
-                src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=2400&q=85"
-                alt="A creator studio at night, consoles and instruments under violet light"
-                fill
-                quality={85}
-                sizes="(max-width: 1760px) 100vw, 1760px"
-              />
-              <span className="photo__caption">Where the work happens</span>
+            <div className="roles-grid">
+              {orderRolePacks(getRolePacks()).map((pack) => (
+                <RoleCard key={pack.ad.slug} pack={pack} />
+              ))}
             </div>
           </Reveal>
         </div>

@@ -1,8 +1,11 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
 import ApplyLink from '../../../../components/ApplyLink';
 import Reveal from '../../../../components/Reveal';
+import { getRoleImage } from '@/lib/content/roleImages';
 import { getRolePack, getRolePacks } from '@/lib/content/roles';
 
 interface Props {
@@ -20,115 +23,115 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: pack.ad.seo.title, description: pack.ad.seo.description };
 }
 
+/** One advert row: label rail on the left, content on the right. */
+function Block({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <Reveal>
+      <section className="ad-block">
+        <h2 className="ad-block__label">{label}</h2>
+        <div className="ad-block__body">{children}</div>
+      </section>
+    </Reveal>
+  );
+}
+
 export default async function JobAdPage({ params }: Props) {
   const { slug } = await params;
   const pack = getRolePack(slug);
   if (!pack) notFound();
   const { ad } = pack;
+  const image = getRoleImage(ad.slug);
+
+  const meta = [
+    { label: 'Date Posted', value: ad.datePosted },
+    { label: 'Team', value: ad.team },
+    { label: 'Location', value: ad.location },
+    { label: 'Type', value: ad.employmentType },
+  ];
 
   return (
     <main className="cine">
       <section className="ad-hero">
-        <div className="container hero-choreo" style={{ maxWidth: '900px' }}>
-          <Link
-            href="/hiring"
-            className="eyebrow"
-            style={{ display: 'inline-block', marginBottom: '28px' }}
-          >
+        <div className="container container--wide">
+          <Link href="/hiring" className="eyebrow ad-hero__back">
             ← All roles
           </Link>
-          <h1>{ad.title}</h1>
+          <h1 className="ad-hero__title">{ad.title}</h1>
+
           <div className="ad-meta">
-            <div>
-              <div className="ad-meta__label">Date posted</div>
-              <div>{ad.datePosted}</div>
-            </div>
-            <div>
-              <div className="ad-meta__label">Team</div>
-              <div>{ad.team}</div>
-            </div>
-            <div>
-              <div className="ad-meta__label">Location</div>
-              <div>{ad.location}</div>
-            </div>
-            <div>
-              <div className="ad-meta__label">Type</div>
-              <div>{ad.employmentType}</div>
-            </div>
+            {meta.map((m) => (
+              <div key={m.label} className="ad-meta__item">
+                <div className="ad-meta__label">{m.label}</div>
+                <div className="ad-meta__value">{m.value}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="container" style={{ maxWidth: '900px' }}>
-        <Reveal>
-          <section className="ad-section" style={{ marginTop: 0 }}>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>Job Summary</h2>
-            <p style={{ color: 'var(--text-dim)', fontSize: '1.08rem' }}>{ad.summary}</p>
-          </section>
-        </Reveal>
+      {image && (
+        <div className="container container--wide">
+          <Reveal>
+            <div className="ad-photo">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                priority
+                quality={85}
+                sizes="(max-width: 1760px) 100vw, 1760px"
+              />
+            </div>
+          </Reveal>
+        </div>
+      )}
 
-        <Reveal>
-          <section className="ad-section">
-            <p className="eyebrow">{ad.role.eyebrow}</p>
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>Your Role</h2>
-            {ad.role.paragraphs.map((text) => (
-              <p key={text.slice(0, 40)} style={{ color: 'var(--text-dim)' }}>
-                {text}
-              </p>
+      <div className="container container--wide">
+        <Block label="Job Summary">
+          <p className="ad-lede">{ad.summary}</p>
+        </Block>
+
+        <Block label="Your Role">
+          <h3 className="ad-block__heading">{ad.role.eyebrow}</h3>
+          {ad.role.paragraphs.map((text) => (
+            <p key={text.slice(0, 40)}>{text}</p>
+          ))}
+        </Block>
+
+        <Block label="Ideal Candidate">
+          <ul className="ad-list">
+            {ad.idealCandidate.map((item) => (
+              <li key={item.slice(0, 40)}>{item}</li>
             ))}
-          </section>
-        </Reveal>
+          </ul>
+        </Block>
 
-        <Reveal>
-          <section className="ad-section">
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>Ideal Candidate</h2>
-            <ul>
-              {ad.idealCandidate.map((item) => (
-                <li key={item.slice(0, 40)}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        </Reveal>
+        <Block label="Requirements">
+          {ad.requirements.map((req) => (
+            <div key={req.title} className="req-card">
+              <h3 style={{ marginBottom: 0 }}>{req.title}</h3>
+              <p className="req-card__tagline">{req.tagline}</p>
+              <p>{req.body}</p>
+            </div>
+          ))}
+        </Block>
 
-        <Reveal>
-          <section className="ad-section">
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>Requirements</h2>
-            {ad.requirements.map((req) => (
-              <div key={req.title} className="req-card">
-                <h3 style={{ marginBottom: 0 }}>{req.title}</h3>
-                <p className="req-card__tagline">{req.tagline}</p>
-                <p>{req.body}</p>
-              </div>
+        <Block label="What You'll Do">
+          {ad.whatYoullDo.map((item, i) => (
+            <div key={item.slice(0, 40)} className="do-item">
+              <span className="do-item__num">{String(i + 1).padStart(3, '0')}</span>
+              <span>{item}</span>
+            </div>
+          ))}
+        </Block>
+
+        <Block label="You Shouldn't Apply If">
+          <ul className="ad-list">
+            {ad.shouldntApply.map((item) => (
+              <li key={item.slice(0, 40)}>{item}</li>
             ))}
-          </section>
-        </Reveal>
-
-        <Reveal>
-          <section className="ad-section">
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
-              What You&apos;ll Do
-            </h2>
-            {ad.whatYoullDo.map((item, i) => (
-              <div key={item.slice(0, 40)} className="do-item">
-                <span className="do-item__num">{String(i + 1).padStart(3, '0')}</span>
-                <span>{item}</span>
-              </div>
-            ))}
-          </section>
-        </Reveal>
-
-        <Reveal>
-          <section className="ad-section">
-            <h2 style={{ fontSize: 'clamp(1.5rem, 3vw, 2.1rem)' }}>
-              You Shouldn&apos;t Apply If
-            </h2>
-            <ul>
-              {ad.shouldntApply.map((item) => (
-                <li key={item.slice(0, 40)}>{item}</li>
-              ))}
-            </ul>
-          </section>
-        </Reveal>
+          </ul>
+        </Block>
 
         <Reveal>
           <div className="cta-band">
