@@ -1,15 +1,21 @@
 // Meta Pixel (fbq) browser helpers.
 //
-// Everything here is inert until NEXT_PUBLIC_META_PIXEL_ID is set, so the site
-// ships and runs identically before the pixel exists in Events Manager. The id
-// is public by design (it is sent to every browser), so it lives in the
-// NEXT_PUBLIC_ env, not in secrets.
+// The Halevora pixel id ships as the production default below. A pixel id is
+// public (it is sent to every browser), so it is not a secret and is safe to
+// commit. Set NEXT_PUBLIC_META_PIXEL_ID to override it, or to '' to disable. In
+// local dev the pixel stays inert so development traffic never reaches the live
+// dataset.
 //
 // This is the browser side only. Server-side, deduplicated events via the Meta
 // Conversions API are a later addition and need an access token secret; see
 // docs/meta-pixel.md.
 
-export const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID ?? '';
+// Halevora dataset id from Events Manager. Public value, safe to commit.
+const FALLBACK_PIXEL_ID = '1206672578298870';
+
+export const META_PIXEL_ID =
+  process.env.NEXT_PUBLIC_META_PIXEL_ID ??
+  (process.env.NODE_ENV === 'production' ? FALLBACK_PIXEL_ID : '');
 
 type FbqArgs = [command: string, ...rest: unknown[]];
 

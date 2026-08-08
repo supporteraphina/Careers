@@ -3,17 +3,20 @@
 Browser-side conversion tracking for paid campaigns that drive traffic to the
 careers site and the application funnels.
 
-## Turning it on
+## Status: wired
 
-Set one public env var (it is sent to the browser, so it is not a secret):
+The Halevora pixel (Events Manager dataset "Careers", id `1206672578298870`, under
+the Halevora business) ships as the production default, so it goes live
+automatically on the next production deploy. It stays inert in local development,
+so dev traffic never reaches the live dataset.
+
+To override the id, or to disable the pixel, set the public env var (a pixel id is
+sent to the browser, so it is not a secret):
 
 ```
-NEXT_PUBLIC_META_PIXEL_ID=<your 15-16 digit pixel id from Events Manager>
+NEXT_PUBLIC_META_PIXEL_ID=<pixel id>   # override the default
+NEXT_PUBLIC_META_PIXEL_ID=             # empty string disables the pixel
 ```
-
-Leave it unset and the pixel is fully inert: nothing loads, nothing fires, and
-the site behaves exactly as before. Set it and the pixel loads on the next
-deploy. No code change is needed to switch it on.
 
 ## What fires
 
