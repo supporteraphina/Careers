@@ -98,6 +98,14 @@ export default async function JobAdPage({ params }: Props) {
           ))}
         </Block>
 
+        {ad.disclosure && (
+          <Block label={ad.disclosure.label}>
+            {ad.disclosure.paragraphs.map((text) => (
+              <p key={text.slice(0, 40)}>{text}</p>
+            ))}
+          </Block>
+        )}
+
         <Block label="Ideal Candidate">
           <ul className="ad-list">
             {ad.idealCandidate.map((item) => (

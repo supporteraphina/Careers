@@ -6,6 +6,7 @@
 // analytics beacons, and submits the finished run to /api/apply.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { track } from '../lib/analytics/pixel';
 import { nextPageId, pipe, progress, validateFieldValue } from '../lib/engine/runner';
 import type { Answers, AnswerValue, Field, FormDefinition } from '../lib/engine/types';
 
@@ -66,6 +67,9 @@ export default function Funnel({ form }: FunnelProps) {
       referrerUrl: document.referrer,
       sessionId: crypto.randomUUID(),
     };
+
+    // Meta Pixel: someone opened this role's application funnel.
+    track('ViewContent', { content_name: form.slug, content_category: 'job_application' });
 
     const applySaved = (saved: SavedState) => {
       if (!form.pages.some((p) => p.id === saved.pageId)) return;
@@ -188,6 +192,8 @@ export default function Funnel({ form }: FunnelProps) {
           throw new Error(body?.error ?? 'Submission failed');
         }
         setSubmitted(true);
+        // Meta Pixel: a completed application is the campaign's conversion event.
+        track('Lead', { content_name: form.slug });
         window.localStorage.removeItem(storageKey(form.slug));
         setHistory((prev) => [...prev, pageId]);
         setPageId(endingId);
