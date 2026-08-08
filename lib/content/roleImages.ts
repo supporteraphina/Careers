@@ -1,5 +1,6 @@
-// Card imagery for the careers listing, keyed by role slug. All photo ids
-// are verified to resolve on images.unsplash.com (see docs/hiring-funnel-spec.md).
+// Card imagery for the careers listing, keyed by role slug. Unsplash photo ids
+// are verified to resolve on images.unsplash.com (see docs/hiring-funnel-spec.md);
+// chat-sales-operator uses a self-hosted brand asset in public/roles.
 
 export interface RoleImage {
   src: string;
@@ -11,6 +12,10 @@ function unsplash(id: string, width = 1800): string {
 }
 
 const IMAGES: Record<string, RoleImage> = {
+  'chat-sales-operator': {
+    src: '/roles/chat-sales-operator.png',
+    alt: 'Abstract dark graphic of overlapping chat message bubbles',
+  },
   'customer-support': {
     src: unsplash('photo-1522071820081-009f0129c71c'),
     alt: 'A support team working together around one table',
@@ -22,10 +27,6 @@ const IMAGES: Record<string, RoleImage> = {
   'creative-designer': {
     src: unsplash('photo-1581291518857-4e27b48ff24e'),
     alt: 'A designer sketching interface wireframes by hand',
-  },
-  copywriter: {
-    src: unsplash('photo-1455390582262-044cdead277a'),
-    alt: 'A fountain pen mid-sentence on handwritten copy',
   },
   'full-stack-developer': {
     src: unsplash('photo-1461749280684-dccba630e2f6'),
