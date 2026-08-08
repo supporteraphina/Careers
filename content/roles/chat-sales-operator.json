@@ -302,41 +302,13 @@
         ]
       },
       {
-        "id": "q-sales-scenario",
+        "id": "q-fit-drive",
         "kind": "question",
-        "title": "A fan is chatting but keeps stalling on buying. Show us, message by message, how you move them from maybe to yes.",
-        "description": "Write the actual messages you would send, in order.",
+        "title": "Why are you right for this team, and what drives you to earn?",
+        "description": "Be honest on both. What makes you a strong fit for a team like this, and what makes you genuinely hungry to earn? Ambition is welcome here. Tell us what you are working toward and why you will outwork the person next to you.",
         "fields": [
           {
-            "id": "sales_scenario",
-            "type": "textarea",
-            "label": "Your messages",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-reengage",
-        "kind": "question",
-        "title": "A high-value fan has gone quiet for a week. Write the message you would send to bring them back.",
-        "description": "Give us the exact message, in the creator's voice.",
-        "fields": [
-          {
-            "id": "reengage_message",
-            "type": "textarea",
-            "label": "Your message",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-comfort",
-        "kind": "question",
-        "title": "This work is explicit and adult. Why are you comfortable with it, and what would make you good at it?",
-        "description": "There is no right answer here. We want the real one.",
-        "fields": [
-          {
-            "id": "comfort_reason",
+            "id": "fit_and_drive",
             "type": "textarea",
             "label": "Your answer",
             "required": true
