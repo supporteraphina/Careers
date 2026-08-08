@@ -46,6 +46,7 @@
   --radius-pill: 999px;
   --container: 1400px;
   --container-wide: 1760px;
+  --container-advert: 1120px;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -143,6 +144,11 @@ img {
 
 .container--wide {
   max-width: var(--container-wide);
+}
+
+/* Narrower centered column for job adverts: more side margin, focused reading width. */
+.container--advert {
+  max-width: var(--container-advert);
 }
 
 /* Near-full-bleed band for card grids: tiny margins, huge canvas. */

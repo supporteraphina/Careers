@@ -52,7 +52,7 @@ export default async function JobAdPage({ params }: Props) {
   return (
     <main className="cine">
       <section className="ad-hero">
-        <div className="container container--wide">
+        <div className="container container--advert">
           <Link href="/hiring" className="eyebrow ad-hero__back">
             ← All roles
           </Link>
@@ -70,7 +70,7 @@ export default async function JobAdPage({ params }: Props) {
       </section>
 
       {image && (
-        <div className="container container--wide">
+        <div className="container container--advert">
           <Reveal>
             <div className="ad-photo">
               <Image
@@ -79,14 +79,14 @@ export default async function JobAdPage({ params }: Props) {
                 fill
                 priority
                 quality={85}
-                sizes="(max-width: 1760px) 100vw, 1760px"
+                sizes="(max-width: 1120px) 100vw, 1120px"
               />
             </div>
           </Reveal>
         </div>
       )}
 
-      <div className="container container--wide">
+      <div className="container container--advert">
         <Block label="Job Summary">
           <p className="ad-lede">{ad.summary}</p>
         </Block>
