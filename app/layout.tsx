@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Barlow_Condensed, Fragment_Mono, Hanken_Grotesk } from 'next/font/google';
+import MetaPixel from '@/components/MetaPixel';
 import './globals.css';
 
 const sans = Hanken_Grotesk({
@@ -32,7 +33,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable} ${display.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <MetaPixel />
+      </body>
     </html>
   );
 }

@@ -13,6 +13,12 @@ export interface JobAd {
   summary: string;
   /** Your Role section: eyebrow sub-label + paragraphs. */
   role: { eyebrow: string; paragraphs: string[] };
+  /**
+   * Optional plain-terms disclosure block. Used where an applicant must
+   * understand the true nature of the work before applying (e.g. adult-content
+   * chat roles). Rendered prominently, high on the advert.
+   */
+  disclosure?: { label: string; paragraphs: string[] };
   idealCandidate: string[];
   requirements: { title: string; tagline: string; body: string }[];
   /** Rendered with 001-00N mono numbering. */
