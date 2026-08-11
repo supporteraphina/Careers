@@ -50,6 +50,7 @@ const FIELD_NAMES: Record<string, string> = {
   whatsapp_number: 'Whatsapp Number',
   discord_username: 'Discord Username',
   country: 'Nationality',
+  ethnicity: 'Ethnicity',
   english_level: 'Level of English',
   traffic_source: 'How did you hear about us?',
   voice_note_url: 'Voice Note',

@@ -60,7 +60,6 @@ describe('content/roles packs', () => {
       'White',
       'Mixed or multiple ethnicities',
       'Other',
-      'Prefer not to say',
     ]);
 
     const applicationAnswers = {
@@ -90,7 +89,7 @@ describe('content/roles packs', () => {
       evaluateSubmission(pack.form, {
         ...applicationAnswers,
         country: 'South Africa',
-        ethnicity: 'Prefer not to say',
+        ethnicity: 'Other',
       }),
     ).toMatchObject({
       ok: false,
