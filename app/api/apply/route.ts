@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { getRolePack } from '../../../lib/content/roles';
 import type { Answers } from '../../../lib/engine/types';
 import { createApplication } from '../../../lib/server/applications';
-import { attemptDelivery, enqueueDelivery } from '../../../lib/server/webhooks';
+import { attemptDelivery, enqueueAirtable, enqueueDelivery } from '../../../lib/server/webhooks';
 
 // Naive per-IP rate limit; enough for a single-instance deployment.
 const WINDOW_MS = 60 * 60 * 1000;
@@ -64,11 +64,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Validation failed', fields: result.errors }, { status: 400 });
   }
 
-  // Delivery is recorded transactionally-adjacent and attempted once here;
+  // Deliveries are recorded transactionally-adjacent and attempted once here;
   // failures stay pending for the maintenance retry. Never blocks the applicant.
-  const deliveryId = await enqueueDelivery(result.applicationId).catch(() => null);
-  if (deliveryId) {
-    attemptDelivery(deliveryId).catch(() => {});
+  for (const enqueue of [enqueueDelivery, enqueueAirtable]) {
+    const deliveryId = await enqueue(result.applicationId).catch(() => null);
+    if (deliveryId) {
+      attemptDelivery(deliveryId).catch(() => {});
+    }
   }
 
   return NextResponse.json({ ok: true, endingId: result.endingId });

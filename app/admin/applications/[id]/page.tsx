@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Fragment } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import NoteEditor from '@/components/admin/NoteEditor';
@@ -6,6 +7,7 @@ import ReviewControl from '@/components/admin/ReviewControl';
 import ReviewKeys from '@/components/admin/ReviewKeys';
 import { prisma } from '@/lib/db';
 import type { Answers, FormDefinition } from '@/lib/engine/types';
+import { isAirtableUrl } from '@/lib/server/airtable';
 import { relativeTime } from '@/lib/server/format';
 
 export const metadata: Metadata = {
@@ -56,6 +58,7 @@ export default async function ApplicationPage({ params }: Props) {
       .flatMap((page) =>
         (page.fields ?? []).map((field) => ({
           label: field.label,
+          type: field.type,
           value: answers[field.id],
         })),
       )
@@ -143,9 +146,32 @@ export default async function ApplicationPage({ params }: Props) {
             qa.map((row, i) => (
               <div key={`${row.label}-${i}`} className="adm-qa">
                 <p className="adm-qa__q">{row.label}</p>
-                <p className="adm-qa__a">
-                  {Array.isArray(row.value) ? row.value.join(', ') : String(row.value)}
-                </p>
+                {row.type === 'audio' ? (
+                  // Play it in the queue: opening a link per applicant is the
+                  // kind of friction that stops voice notes getting listened to.
+                  <>
+                    <audio
+                      controls
+                      preload="none"
+                      src={String(row.value)}
+                      style={{ width: '100%', maxWidth: '420px', marginTop: '4px' }}
+                    />
+                    <p className="adm-cell-sub" style={{ marginTop: '4px' }}>
+                      <a
+                        href={String(row.value)}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ color: 'var(--accent)' }}
+                      >
+                        Open recording
+                      </a>
+                    </p>
+                  </>
+                ) : (
+                  <p className="adm-qa__a">
+                    {Array.isArray(row.value) ? row.value.join(', ') : String(row.value)}
+                  </p>
+                )}
               </div>
             ))
           )}
@@ -189,15 +215,20 @@ export default async function ApplicationPage({ params }: Props) {
               <dd>{application.createdAt.toISOString().slice(0, 16).replace('T', ' ')}</dd>
               <dt>Pages seen</dt>
               <dd>{path.length}</dd>
-              {deliveries.length > 0 && (
-                <>
-                  <dt>Webhook</dt>
-                  <dd>
-                    {deliveries[0].status} ({deliveries[0].attempts} attempt
-                    {deliveries[0].attempts === 1 ? '' : 's'})
+              {deliveries.map((delivery) => (
+                <Fragment key={delivery.id}>
+                  <dt>{isAirtableUrl(delivery.url) ? 'Airtable' : 'Webhook'}</dt>
+                  <dd
+                    title={delivery.lastError ?? undefined}
+                    style={
+                      delivery.status === 'failed' ? { color: 'var(--danger)' } : undefined
+                    }
+                  >
+                    {delivery.status} ({delivery.attempts} attempt
+                    {delivery.attempts === 1 ? '' : 's'})
                   </dd>
-                </>
-              )}
+                </Fragment>
+              ))}
             </dl>
           </div>
 

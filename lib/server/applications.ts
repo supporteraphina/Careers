@@ -5,6 +5,7 @@ import { prisma } from '../db';
 import type { RolePack } from '../content/types';
 import { evaluateSubmission } from '../engine/submission';
 import type { Answers } from '../engine/types';
+import { voiceNoteIdFrom } from '../voice/format';
 import { flattenAnswers } from './transform';
 
 export interface SubmissionMeta {
@@ -35,6 +36,33 @@ export async function createApplication(
   if (!result.ok) return { ok: false, errors: result.errors };
 
   const fields = pack.form.pages.flatMap((p) => p.fields ?? []);
+
+  // The runner can only check that an audio answer is shaped like one of our
+  // links. Confirm here that the recording exists, and belongs to this form's
+  // field, so a hand-written payload cannot submit a voice note that is not
+  // there — or point at somebody else's.
+  const voiceNoteIds: string[] = [];
+  for (const field of fields) {
+    if (field.type !== 'audio') continue;
+    const answer = answers[field.id];
+    if (answer === undefined || String(answer).trim() === '') continue;
+
+    const noteId = voiceNoteIdFrom(String(answer));
+    const note = noteId
+      ? await prisma.voiceNote.findUnique({
+          where: { id: noteId },
+          select: { id: true, slug: true, fieldId: true },
+        })
+      : null;
+
+    if (!note || note.slug !== pack.form.slug || note.fieldId !== field.id) {
+      return {
+        ok: false,
+        errors: { [field.id]: 'Record your voice note before continuing.' },
+      };
+    }
+    voiceNoteIds.push(note.id);
+  }
   const referralField = fields.find((f) => /referr/.test(f.id) && f.type === 'single_choice');
   const referralAnswer = referralField ? answers[referralField.id] : undefined;
   const referral =
@@ -90,6 +118,15 @@ export async function createApplication(
 
     if (meta.draftToken) {
       await tx.draft.deleteMany({ where: { token: meta.draftToken } });
+    }
+
+    // Claimed recordings are attached to a real application; the rest are
+    // abandoned takes for the retention purge to collect.
+    if (voiceNoteIds.length > 0) {
+      await tx.voiceNote.updateMany({
+        where: { id: { in: voiceNoteIds } },
+        data: { claimedAt: new Date() },
+      });
     }
 
     return created;

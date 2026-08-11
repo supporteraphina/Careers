@@ -150,11 +150,11 @@
           },
           {
             "id": "voice_note_url",
-            "type": "url",
-            "label": "60-second voice note link",
+            "type": "audio",
+            "label": "60-second voice note",
             "required": true,
-            "placeholder": "https://vocaroo.com/...",
-            "help": "Record a 60-second voice note about yourself at Vocaroo.com. Share your previous work and personal experience, and tell us why we should hire you. Click Save and Share, then paste the audio link here."
+            "maxSeconds": 60,
+            "help": "Record a 60-second voice note about yourself, right here. Share your previous work and personal experience, and tell us why we should hire you. You can listen back and re-record as many times as you like before you continue."
           }
         ],
         "logic": [

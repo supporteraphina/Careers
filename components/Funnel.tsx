@@ -10,6 +10,7 @@ import { track } from '../lib/analytics/pixel';
 import { COUNTRY_NAMES } from '../lib/engine/countries';
 import { nextPageId, pipe, progress, validateFieldValue } from '../lib/engine/runner';
 import type { Answers, AnswerValue, Field, FormDefinition } from '../lib/engine/types';
+import VoiceRecorder from './VoiceRecorder';
 
 interface FunnelProps {
   form: FormDefinition;
@@ -160,6 +161,17 @@ export default function Funnel({ form }: FunnelProps) {
     setAnswers((prev) => ({ ...prev, [fieldId]: value }));
     setErrors((prev) => {
       if (!prev[fieldId]) return prev;
+      const next = { ...prev };
+      delete next[fieldId];
+      return next;
+    });
+  }, []);
+
+  // Drop an answer entirely rather than blanking it, so a discarded voice note
+  // does not leave a dead link in the draft the applicant resumes from.
+  const clearAnswer = useCallback((fieldId: string) => {
+    setAnswers((prev) => {
+      if (!(fieldId in prev)) return prev;
       const next = { ...prev };
       delete next[fieldId];
       return next;
@@ -330,10 +342,12 @@ export default function Funnel({ form }: FunnelProps) {
                 <FieldInput
                   key={field.id}
                   field={field}
+                  slug={form.slug}
                   value={answers[field.id]}
                   error={errors[field.id]}
                   onChange={(value) => setAnswer(field.id, value)}
                   onSelect={(value) => selectAndMaybeAdvance(field, value)}
+                  onClear={() => clearAnswer(field.id)}
                 />
               ))}
 
@@ -394,18 +408,40 @@ export default function Funnel({ form }: FunnelProps) {
 
 function FieldInput({
   field,
+  slug,
   value,
   error,
   onChange,
   onSelect,
+  onClear,
 }: {
   field: Field;
+  slug: string;
   value: AnswerValue | undefined;
   error: string | undefined;
   onChange: (value: AnswerValue) => void;
   onSelect: (value: AnswerValue) => void;
+  onClear: () => void;
 }) {
   const inputId = `field-${field.id}`;
+
+  if (field.type === 'audio') {
+    return (
+      <div>
+        <span className="funnel-label">{field.label}</span>
+        {field.help && <p className="funnel-help funnel-help--lead">{field.help}</p>}
+        <VoiceRecorder
+          slug={slug}
+          fieldId={field.id}
+          value={value === undefined ? undefined : String(value)}
+          maxSeconds={field.maxSeconds}
+          invalid={Boolean(error)}
+          onChange={onChange}
+          onClear={onClear}
+        />
+      </div>
+    );
+  }
 
   if (field.type === 'textarea') {
     return (
