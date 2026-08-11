@@ -9,15 +9,22 @@ import type { Answers } from '../engine/types';
 
 export const AIRTABLE_API_ROOT = 'https://api.airtable.com/v0';
 
-/** The hiring base and applicant table this deployment writes to. */
-export function airtableConfig(): { apiKey: string; baseId: string; tableId: string } | null {
-  const apiKey = process.env.AIRTABLE_API_KEY?.trim();
-  if (!apiKey) return null;
+/**
+ * Where submissions are mirrored. Known without any configuration, so a
+ * deployment that has not been given a key yet still queues its applications
+ * instead of dropping them: the rows sit pending and go out on the first retry
+ * after the key lands.
+ */
+export function airtableTarget(): { baseId: string; tableId: string } {
   return {
-    apiKey,
     baseId: process.env.AIRTABLE_BASE_ID?.trim() || 'appnZK5DOVp77Yt0T',
     tableId: process.env.AIRTABLE_TABLE_ID?.trim() || 'tblrs19DTtNnxrBFV',
   };
+}
+
+/** The API key, or null when this deployment has not been given one. */
+export function airtableApiKey(): string | null {
+  return process.env.AIRTABLE_API_KEY?.trim() || null;
 }
 
 export function airtableEndpoint(baseId: string, tableId: string): string {

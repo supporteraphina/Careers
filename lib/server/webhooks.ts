@@ -3,8 +3,9 @@
 
 import { prisma } from '../db';
 import {
-  airtableConfig,
+  airtableApiKey,
   airtableEndpoint,
+  airtableTarget,
   buildAirtableRecord,
   isAirtableUrl,
 } from './airtable';
@@ -44,19 +45,17 @@ export async function enqueueDelivery(applicationId: string): Promise<string | n
  * lost, and the failure is visible in the same place.
  */
 export async function enqueueAirtable(applicationId: string): Promise<string | null> {
-  const config = airtableConfig();
-  if (!config) return null;
-
   const application = await prisma.application.findUnique({
     where: { id: applicationId },
     select: { id: true, role: true, createdAt: true, utm: true, answers: true },
   });
   if (!application) return null;
 
+  const target = airtableTarget();
   const delivery = await prisma.webhookDelivery.create({
     data: {
       applicationId,
-      url: airtableEndpoint(config.baseId, config.tableId),
+      url: airtableEndpoint(target.baseId, target.tableId),
       payload: JSON.stringify(buildAirtableRecord(application)),
     },
   });
@@ -69,11 +68,12 @@ export async function attemptDelivery(deliveryId: string): Promise<boolean> {
 
   const headers: Record<string, string> = { 'content-type': 'application/json' };
   if (isAirtableUrl(delivery.url)) {
-    const config = airtableConfig();
-    // No key configured means the row cannot be delivered by this instance;
-    // leave it pending so a later deploy with the key set picks it up.
-    if (!config) return false;
-    headers.authorization = `Bearer ${config.apiKey}`;
+    const apiKey = airtableApiKey();
+    // No key configured yet. Leave the row pending, and do not burn an attempt
+    // on it, so everything queued before the key lands still goes out on the
+    // first retry afterwards.
+    if (!apiKey) return false;
+    headers.authorization = `Bearer ${apiKey}`;
   }
 
   try {
