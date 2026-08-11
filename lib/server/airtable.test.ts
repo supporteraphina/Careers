@@ -16,6 +16,7 @@ function application(overrides: Partial<Parameters<typeof buildAirtableRecord>[0
       email: 'ada@example.com',
       whatsapp_number: '+27 82 555 0134',
       country: 'South Africa',
+      ethnicity: 'Black African',
       english_level: 'Fluent',
       traffic_source: 'Instagram',
       voice_note_url: 'https://careers.halevorasolutions.com/voice/clw1test0000abcd0123.webm',
@@ -34,6 +35,7 @@ describe('buildAirtableRecord', () => {
     expect(fields['Email']).toBe('ada@example.com');
     expect(fields['Whatsapp Number']).toBe('+27 82 555 0134');
     expect(fields['Nationality']).toBe('South Africa');
+    expect(fields['Ethnicity']).toBe('Black African');
     expect(fields['How did you hear about us?']).toBe('Instagram');
   });
 
