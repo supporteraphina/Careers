@@ -7,6 +7,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { track } from '../lib/analytics/pixel';
+import { COUNTRY_NAMES } from '../lib/engine/countries';
 import { nextPageId, pipe, progress, validateFieldValue } from '../lib/engine/runner';
 import type { Answers, AnswerValue, Field, FormDefinition } from '../lib/engine/types';
 
@@ -420,6 +421,36 @@ function FieldInput({
           aria-invalid={Boolean(error)}
           onChange={(event) => onChange(event.target.value)}
         />
+        {field.help && <p className="funnel-help">{field.help}</p>}
+      </div>
+    );
+  }
+
+  if (field.type === 'select' || field.type === 'country') {
+    const options = field.type === 'country' ? COUNTRY_NAMES : (field.options ?? []);
+    return (
+      <div>
+        <label className="funnel-label" htmlFor={inputId}>
+          {field.label}
+        </label>
+        <select
+          id={inputId}
+          name={field.type === 'country' ? 'country' : field.id}
+          className="funnel-select"
+          autoComplete={field.type === 'country' ? 'country-name' : undefined}
+          value={String(value ?? '')}
+          aria-invalid={Boolean(error)}
+          onChange={(event) => onChange(event.target.value)}
+        >
+          <option value="" disabled>
+            {field.type === 'country' ? 'Select your country' : 'Select an option'}
+          </option>
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
         {field.help && <p className="funnel-help">{field.help}</p>}
       </div>
     );

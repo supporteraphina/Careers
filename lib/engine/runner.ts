@@ -10,6 +10,7 @@ import type {
   FormDefinition,
   FormPage,
 } from './types';
+import { isCountryName } from './countries';
 
 function getPage(form: FormDefinition, pageId: string): FormPage {
   const found = form.pages.find((p) => p.id === pageId);
@@ -95,7 +96,7 @@ export function progress(
   return { index: form.pages.indexOf(page) + 1, total: form.pages.length };
 }
 
-const CHOICE_TYPES = new Set(['single_choice', 'multi_choice', 'legal_gate']);
+const CHOICE_TYPES = new Set(['select', 'single_choice', 'multi_choice', 'legal_gate']);
 
 /** Structural validation of a form definition. Returns a list of problems. */
 export function validateForm(form: FormDefinition): string[] {
@@ -183,9 +184,12 @@ export function validateFieldValue(
       return null;
     }
     case 'single_choice':
+    case 'select':
     case 'legal_gate': {
       return field.options?.includes(String(value)) ? null : 'Choose one of the options.';
     }
+    case 'country':
+      return isCountryName(String(value)) ? null : 'Choose a country from the list.';
     case 'multi_choice': {
       const values = Array.isArray(value) ? value : [value];
       return values.every((v) => field.options?.includes(String(v)))

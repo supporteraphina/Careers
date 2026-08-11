@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { describe, expect, test } from 'vitest';
 import { loadRolePack } from '../lib/content/load';
+import { nextPageId } from '../lib/engine/runner';
+import { evaluateSubmission } from '../lib/engine/submission';
 
 const ROLES_DIR = path.join(__dirname, '..', 'content', 'roles');
 
@@ -36,5 +38,33 @@ describe('content/roles packs', () => {
   test('at least one role pack exists once content is authored', () => {
     // Informational until content lands; flip to a hard assertion in task 3.
     expect(files.length).toBeGreaterThanOrEqual(0);
+  });
+
+  test('chat sales asks about load shedding only for South Africa', () => {
+    const pack = loadRolePack(path.join(ROLES_DIR, 'chat-sales-operator.json'));
+    expect(nextPageId(pack.form, 'q-application', { country: 'South Africa' })).toBe(
+      'q-load-shedding',
+    );
+    expect(nextPageId(pack.form, 'q-application', { country: 'Croatia' })).toBe('end-ok');
+
+    const applicationAnswers = {
+      english_level: 'Fluent',
+      first_name: 'Test',
+      last_name: 'Applicant',
+      whatsapp_number: '+385 91 555 0123',
+      email: 'test@example.com',
+      traffic_source: 'Referral',
+      voice_note_url: 'https://vocaroo.com/test',
+    };
+    expect(
+      evaluateSubmission(pack.form, { ...applicationAnswers, country: 'Croatia' }),
+    ).toMatchObject({ ok: true, path: ['intro', 'q-application', 'end-ok'] });
+    expect(
+      evaluateSubmission(pack.form, { ...applicationAnswers, country: 'South Africa' }),
+    ).toMatchObject({
+      ok: false,
+      errors: { load_shedding_setup: 'This field is required.' },
+      path: ['intro', 'q-application', 'q-load-shedding', 'end-ok'],
+    });
   });
 });

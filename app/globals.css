@@ -962,6 +962,7 @@ img {
 }
 
 .funnel-input,
+.funnel-select,
 .funnel-textarea {
   width: 100%;
   background: transparent;
@@ -975,9 +976,23 @@ img {
 }
 
 .funnel-input:focus,
+.funnel-select:focus,
 .funnel-textarea:focus {
   outline: none;
   border-bottom-color: var(--accent);
+}
+
+.funnel-select {
+  appearance: none;
+  cursor: pointer;
+  color-scheme: dark;
+  background-image: linear-gradient(45deg, transparent 50%, var(--text-dim) 50%),
+    linear-gradient(135deg, var(--text-dim) 50%, transparent 50%);
+  background-position: calc(100% - 14px) calc(50% - 2px),
+    calc(100% - 9px) calc(50% - 2px);
+  background-repeat: no-repeat;
+  background-size: 5px 5px, 5px 5px;
+  padding-right: 30px;
 }
 
 .funnel-textarea {
