@@ -30,30 +30,45 @@ export function isAirtableUrl(url: string): boolean {
 }
 
 /**
- * Answer field id -> Airtable field name.
- *
- * Keyed by the ids in content/roles/*.json. An answer with no entry here is
- * skipped rather than guessed at, because Airtable rejects the whole record
- * when it is sent a field name the table does not have.
+ * Answer field id -> Airtable field name, matching the Recruitment table as it
+ * actually is. The names are not guessable — it is 'Surname' not 'Last Name',
+ * 'Whatsapp Number' with a lowercase s, 'Nationality' for country. An answer
+ * with no entry here is skipped rather than guessed at, because Airtable
+ * rejects the whole record when sent a field name the table does not have.
  */
 const FIELD_NAMES: Record<string, string> = {
   first_name: 'First Name',
-  last_name: 'Last Name',
+  last_name: 'Surname',
   email: 'Email',
-  whatsapp_number: 'WhatsApp Number',
+  whatsapp_number: 'Whatsapp Number',
   discord_username: 'Discord Username',
-  country: 'Country',
+  country: 'Nationality',
   english_level: 'Level of English',
-  traffic_source: 'Where did you hear about us?',
+  traffic_source: 'How did you hear about us?',
   voice_note_url: 'Voice Note',
   load_shedding_setup: 'Load Shedding Setup',
 };
 
+/**
+ * Our plain-English options -> the CEFR options already in the 'Level of
+ * English' single select. Without this the sync would quietly add a second,
+ * parallel set of choices to a column the team filters on.
+ */
+const ENGLISH_LEVELS: Record<string, string> = {
+  'Native or bilingual': 'Native (mother language)',
+  Fluent: 'C2 (fluent)',
+  Advanced: 'C1 (high-intermediate)',
+  Intermediate: 'B2 (intermediate)',
+  Basic: 'B1 (basic)',
+};
+
 /** Columns written from the application row rather than from an answer. */
-const ROLE_FIELD = 'Role';
-const APPLIED_AT_FIELD = 'Applied At';
-const SOURCE_FIELD = 'Source';
+const ROLE_FIELD = 'Applied For';
+const SOURCE_FIELD = 'Campaign Source';
 const APPLICATION_ID_FIELD = 'Application ID';
+/** Pipeline checkboxes the team would otherwise tick by hand. */
+const FORM_DONE_FIELD = 'Stage 1: Form';
+const AUDIO_RECEIVED_FIELD = 'Audio received?';
 
 export interface ApplicationForAirtable {
   id: string;
@@ -81,10 +96,10 @@ function sourceLabel(utm: string | null): string | null {
  * in the dropdown would start rejecting applications.
  */
 export function buildAirtableRecord(application: ApplicationForAirtable): {
-  fields: Record<string, string>;
+  fields: Record<string, string | boolean>;
   typecast: boolean;
 } {
-  const fields: Record<string, string> = {};
+  const fields: Record<string, string | boolean> = {};
 
   let answers: Answers = {};
   try {
@@ -98,15 +113,18 @@ export function buildAirtableRecord(application: ApplicationForAirtable): {
     if (value === undefined) continue;
     const text = Array.isArray(value) ? value.join(', ') : String(value);
     if (text.trim() === '') continue;
-    fields[name] = text;
+    fields[name] = fieldId === 'english_level' ? (ENGLISH_LEVELS[text] ?? text) : text;
   }
 
   fields[ROLE_FIELD] = application.role;
-  fields[APPLIED_AT_FIELD] = application.createdAt.toISOString();
   fields[APPLICATION_ID_FIELD] = application.id;
+  // They reached an ending, so the form stage is genuinely complete.
+  fields[FORM_DONE_FIELD] = true;
+  if (fields['Voice Note']) fields[AUDIO_RECEIVED_FIELD] = true;
 
   const source = sourceLabel(application.utm);
   if (source) fields[SOURCE_FIELD] = source;
 
+  // 'Created date' is a computed createdTime column, so the row stamps itself.
   return { fields, typecast: true };
 }
