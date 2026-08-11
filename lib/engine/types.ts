@@ -10,6 +10,8 @@ export type FieldType =
   | 'phone'
   | 'number'
   | 'url'
+  | 'select'
+  | 'country'
   | 'single_choice'
   | 'multi_choice'
   | 'linear_scale'
@@ -23,7 +25,7 @@ export interface Field {
   required: boolean;
   placeholder?: string;
   help?: string;
-  /** Choices for single_choice / multi_choice / legal_gate. */
+  /** Choices for select / single_choice / multi_choice / legal_gate. */
   options?: string[];
   /** Bounds for linear_scale and number. */
   min?: number;
