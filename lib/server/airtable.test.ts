@@ -6,6 +6,7 @@ const APPLIED = new Date('2026-08-11T09:30:00.000Z');
 function application(overrides: Partial<Parameters<typeof buildAirtableRecord>[0]> = {}) {
   return {
     id: 'app_123',
+    slug: 'chat-sales-operator',
     role: 'Chat Sales Operator',
     createdAt: APPLIED,
     utm: null as string | null,
@@ -75,6 +76,28 @@ describe('buildAirtableRecord', () => {
     );
     expect(fields).not.toHaveProperty('Audio received?');
     expect(fields['Stage 1: Form']).toBe(true);
+  });
+
+  test('files a chat sales applicant as Chatter automatically', () => {
+    const { fields } = buildAirtableRecord(application());
+    expect(fields['Chatter/VA']).toBe('Chatter');
+  });
+
+  // Every careers role writes to this one table. Labelling them all Chatter
+  // would file designers and developers as chat operators, and the team's main
+  // view is grouped by this column.
+  test('leaves Chatter/VA blank for the roles that are not chat work', () => {
+    for (const slug of [
+      'creative-designer',
+      'customer-support',
+      'full-stack-developer',
+      'operations-assistant',
+      'short-form-editor',
+      'south-african-talent',
+    ]) {
+      const { fields } = buildAirtableRecord(application({ slug }));
+      expect(fields, slug).not.toHaveProperty('Chatter/VA');
+    }
   });
 
   test('stamps the role and the id that ties a row back to Postgres', () => {

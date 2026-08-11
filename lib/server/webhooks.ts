@@ -47,7 +47,7 @@ export async function enqueueDelivery(applicationId: string): Promise<string | n
 export async function enqueueAirtable(applicationId: string): Promise<string | null> {
   const application = await prisma.application.findUnique({
     where: { id: applicationId },
-    select: { id: true, role: true, createdAt: true, utm: true, answers: true },
+    select: { id: true, slug: true, role: true, createdAt: true, utm: true, answers: true },
   });
   if (!application) return null;
 

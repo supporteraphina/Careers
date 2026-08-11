@@ -77,8 +77,24 @@ const APPLICATION_ID_FIELD = 'Application ID';
 const FORM_DONE_FIELD = 'Stage 1: Form';
 const AUDIO_RECEIVED_FIELD = 'Audio received?';
 
+/**
+ * Which roles land in the Recruitment table already sorted as Chatter or VA.
+ * The team's main view is grouped by this column, so a blank one drops the
+ * applicant into an "(Empty)" group above the actual pipeline.
+ *
+ * Keyed by role slug and deliberately not a blanket default: every role on the
+ * careers site writes to this one table, so labelling everyone Chatter would
+ * file designers and developers as chat operators. A role that is not listed
+ * stays blank for a human to set.
+ */
+const CHATTER_VA_FIELD = 'Chatter/VA';
+const CHATTER_VA_BY_SLUG: Record<string, string> = {
+  'chat-sales-operator': 'Chatter',
+};
+
 export interface ApplicationForAirtable {
   id: string;
+  slug: string;
   role: string;
   createdAt: Date;
   utm: string | null;
@@ -128,6 +144,9 @@ export function buildAirtableRecord(application: ApplicationForAirtable): {
   // They reached an ending, so the form stage is genuinely complete.
   fields[FORM_DONE_FIELD] = true;
   if (fields['Voice Note']) fields[AUDIO_RECEIVED_FIELD] = true;
+
+  const chatterVa = CHATTER_VA_BY_SLUG[application.slug];
+  if (chatterVa) fields[CHATTER_VA_FIELD] = chatterVa;
 
   const source = sourceLabel(application.utm);
   if (source) fields[SOURCE_FIELD] = source;
