@@ -293,6 +293,16 @@ describe('validateFieldValue', () => {
     const multi = { ...req, type: 'multi_choice' as const, options: ['A', 'B'] };
     expect(validateFieldValue(multi, ['A', 'C'])).toMatch(/choose/i);
     expect(validateFieldValue(multi, ['A', 'B'])).toBeNull();
+    const select = { ...req, type: 'select' as const, options: ['Fluent', 'Basic'] };
+    expect(validateFieldValue(select, 'Native')).toMatch(/choose/i);
+    expect(validateFieldValue(select, 'Fluent')).toBeNull();
+  });
+
+  test('accepts only canonical country names', () => {
+    expect(validateFieldValue({ ...req, type: 'country' }, 'South Africa')).toBeNull();
+    expect(validateFieldValue({ ...req, type: 'country' }, 'south africa')).toMatch(
+      /country/i,
+    );
   });
 });
 

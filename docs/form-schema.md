@@ -33,10 +33,11 @@ role-specific, 150 chars max for the description.
 - `pages` is an ordered array. Kinds: `intro`, `question`, `interstitial`, `ending`.
 - Navigation: logic rules run first (first match wins), then `next`, then array order.
   The last page in the array MUST be an ending.
-- Field types: `text`, `textarea`, `email`, `phone`, `number`, `url`, `single_choice`,
-  `multi_choice`, `linear_scale` (set `min`/`max`), `legal_gate` (choice rendered as a
-  commitment gate; give it options).
-- Choice fields need `options`. Field `id`s are unique across the whole form
+- Field types: `text`, `textarea`, `email`, `phone`, `number`, `url`, `select`, `country`,
+  `single_choice`, `multi_choice`, `linear_scale` (set `min`/`max`), `legal_gate` (choice
+  rendered as a commitment gate; give it options). `country` renders the app's fixed
+  country list and does not accept free text.
+- Choice and `select` fields need `options`. Field `id`s are unique across the whole form
   (snake_case). Page `id`s are unique (kebab-case, prefix questions with `q-`).
 - Piping: `{field_id}` in any later page `title`/`description` interpolates the answer,
   e.g. "Nice to meet you, {first_name}."

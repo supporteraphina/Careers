@@ -3,7 +3,7 @@
     "slug": "chat-sales-operator",
     "title": "Chat Sales Operator",
     "team": "Sales",
-    "location": "Remote (South Africa)",
+    "location": "Remote",
     "employmentType": "Full Time",
     "datePosted": "Aug 2026",
     "summary": "Halevora runs the chat operations behind some of the biggest names in online creator content. Every day, thousands of paying fans message those creators, and someone has to answer: fast, in character, and in a way that turns a conversation into a sale. That someone is you. This is written sales work, one message at a time, measured on the revenue your conversations produce.",
@@ -19,7 +19,7 @@
       "paragraphs": [
         "We will not waste your time or ours, so here is exactly what this is. You will be chatting on adult content subscription platforms, representing creators whose audience is 18 and over. The conversations are flirtatious and sexual, and part of the job is selling explicit photo and video content on the creator's behalf.",
         "You chat as the creator, in their voice and with their material. You are never on camera. You are never asked to produce, appear in, or share any personal or intimate content of your own. Your face and your identity stay private.",
-        "If that is work you can do well and feel comfortable with, you are exactly who we want, and this is one of the better-paying remote chat roles you will find in South Africa. If it is not for you, that is completely fair, and it is kinder to stop here than to apply."
+        "If that is work you can do well and feel comfortable with, you are exactly who we want. If it is not for you, that is completely fair, and it is kinder to stop here than to apply."
       ]
     },
     "idealCandidate": [
@@ -45,7 +45,7 @@
       {
         "title": "Availability and reliability",
         "tagline": "Fans message when they are off work.",
-        "body": "Most revenue happens in the evenings and on weekends. You commit to full, consistent shifts and you show up for them, with a stable internet connection and a real plan for load shedding."
+        "body": "Most revenue happens in the evenings and on weekends. You commit to full, consistent shifts and you show up for them, with a stable internet connection and a real plan for power outages."
       },
       {
         "title": "Discretion",
@@ -69,265 +69,106 @@
     ],
     "seo": {
       "title": "Chat Sales Operator at Halevora",
-      "description": "Remote, full-time chat sales role in South Africa. Turn conversations into revenue for top online creators. Performance pay. Adult content, 18 and over."
+      "description": "Remote, full-time chat sales role. Turn conversations into revenue for top online creators. Performance pay. Adult content, 18 and over."
     }
   },
   "form": {
     "slug": "chat-sales-operator",
     "role": "Chat Sales Operator",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
         "kind": "intro",
         "title": "Chat Sales Operator",
-        "description": "This role draws a lot of applicants and we read every one, so give each answer real thought. Short, careless replies are the fastest way out of the running. Under POPIA, we use your answers for recruitment only and delete them on request. Expect this to take about ten minutes.",
+        "description": "We read every application. Complete the form carefully and give us accurate contact details. Under POPIA and GDPR, we use your answers for recruitment only and delete them on request.",
         "cta": "Apply Now"
       },
       {
-        "id": "q-identity",
+        "id": "q-application",
         "kind": "question",
-        "title": "First, the basics.",
+        "title": "Chat Sales Operator Application",
+        "description": "Complete every required field. We review the quality and accuracy of your answers before inviting anyone to interview.",
         "fields": [
+          {
+            "id": "english_level",
+            "type": "select",
+            "label": "Level of English",
+            "required": true,
+            "help": "Select the option that accurately describes your level of English. Be sincere, as we will double-check this during the interview.",
+            "options": [
+              "Native or bilingual",
+              "Fluent",
+              "Advanced",
+              "Intermediate",
+              "Basic"
+            ]
+          },
+          {
+            "id": "country",
+            "type": "country",
+            "label": "Country",
+            "required": true,
+            "help": "Choose from the list so your application is recorded consistently."
+          },
           {
             "id": "first_name",
             "type": "text",
-            "label": "First name",
+            "label": "First Name",
             "required": true
           },
           {
             "id": "last_name",
             "type": "text",
-            "label": "Last name",
+            "label": "Last Name",
             "required": true
           },
           {
-            "id": "phone",
+            "id": "whatsapp_number",
             "type": "phone",
-            "label": "Phone number",
-            "required": true
+            "label": "WhatsApp Number",
+            "required": true,
+            "help": "If you do not have one, please create one. Include your country code."
+          },
+          {
+            "id": "discord_username",
+            "type": "text",
+            "label": "Discord Username",
+            "required": false
           },
           {
             "id": "email",
             "type": "email",
-            "label": "Email address",
+            "label": "Email",
             "required": true
           },
           {
-            "id": "instagram_handle",
+            "id": "traffic_source",
             "type": "text",
-            "label": "Instagram handle",
-            "required": false,
-            "placeholder": "@yourhandle",
-            "help": "Optional."
-          }
-        ]
-      },
-      {
-        "id": "q-country",
-        "kind": "question",
-        "title": "Good to meet you, {first_name}.",
-        "fields": [
-          {
-            "id": "country",
-            "type": "text",
-            "label": "What country are you based out of?",
+            "label": "Where did you hear about us?",
             "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-referral",
-        "kind": "question",
-        "title": "Did someone at Halevora refer you?",
-        "fields": [
-          {
-            "id": "referred",
-            "type": "single_choice",
-            "label": "Referral",
-            "required": true,
-            "options": [
-              "Yes",
-              "No"
-            ]
-          }
-        ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "referred",
-              "op": "eq",
-              "value": "Yes"
-            },
-            "goTo": "q-referrer"
           },
           {
-            "if": {
-              "fieldId": "referred",
-              "op": "eq",
-              "value": "No"
-            },
-            "goTo": "q-age"
-          }
-        ]
-      },
-      {
-        "id": "q-referrer",
-        "kind": "question",
-        "title": "Who referred you?",
-        "fields": [
-          {
-            "id": "referrer_name",
-            "type": "text",
-            "label": "Their name",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-age",
-        "kind": "question",
-        "title": "How old are you?",
-        "description": "This role is adult content work, so you must be 18 or older to do it.",
-        "fields": [
-          {
-            "id": "age",
-            "type": "number",
-            "label": "Age",
+            "id": "voice_note_url",
+            "type": "url",
+            "label": "60-second voice note link",
             "required": true,
-            "min": 0,
-            "max": 120
+            "placeholder": "https://vocaroo.com/...",
+            "help": "Record a 60-second voice note about yourself at Vocaroo.com. Share your previous work and personal experience, and tell us why we should hire you. Click Save and Share, then paste the audio link here."
           }
         ],
         "logic": [
           {
             "if": {
-              "fieldId": "age",
-              "op": "lt",
-              "value": 18
+              "fieldId": "country",
+              "op": "eq",
+              "value": "South Africa"
             },
-            "goTo": "end-dq"
-          }
-        ]
-      },
-      {
-        "id": "q-disclosure",
-        "kind": "question",
-        "title": "Before you go further, read this carefully.",
-        "description": "This is chat work on adult content subscription platforms. You would be chatting as creators whose audience is 18 and over, in flirtatious and sexual conversations, and selling explicit photo and video content on their behalf. You are never on camera and you never share any content of your own. Are you comfortable doing this work?",
-        "fields": [
-          {
-            "id": "disclosure_consent",
-            "type": "single_choice",
-            "label": "Your answer",
-            "required": true,
-            "options": [
-              "Yes, I understand and I am comfortable",
-              "No, this is not for me"
-            ]
+            "goTo": "q-load-shedding"
           }
         ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "disclosure_consent",
-              "op": "eq",
-              "value": "No, this is not for me"
-            },
-            "goTo": "end-dq"
-          }
-        ]
-      },
-      {
-        "id": "phase-2",
-        "kind": "interstitial",
-        "title": "That was phase one.",
-        "description": "Two phases stand between you and an interview.\n\n✅ Personal Information\n☑️ Professional Fitness\n\nThe next questions decide whether we call you, so slow down and write like it matters.",
+        "next": "end-ok",
         "cta": "Continue"
-      },
-      {
-        "id": "q-experience",
-        "kind": "question",
-        "title": "How many years have you spent in sales, chat, or customer-facing work?",
-        "fields": [
-          {
-            "id": "years_experience",
-            "type": "single_choice",
-            "label": "Years of experience",
-            "required": true,
-            "options": [
-              "Under 1",
-              "1 to 2",
-              "3 to 5",
-              "6 to 10",
-              "More than 10"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "q-education",
-        "kind": "question",
-        "title": "What is the highest level of education you have completed?",
-        "fields": [
-          {
-            "id": "education_level",
-            "type": "single_choice",
-            "label": "Education",
-            "required": true,
-            "options": [
-              "High school",
-              "Some university",
-              "Bachelor's degree",
-              "Postgraduate degree",
-              "Other"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "q-english",
-        "kind": "question",
-        "title": "How would you rate your written English?",
-        "description": "Be honest. We test this properly at the next stage.",
-        "fields": [
-          {
-            "id": "english_written",
-            "type": "linear_scale",
-            "label": "1 = basic, 10 = native fluency",
-            "required": true,
-            "min": 1,
-            "max": 10
-          }
-        ]
-      },
-      {
-        "id": "q-fit-drive",
-        "kind": "question",
-        "title": "Why are you right for this team, and what drives you to earn?",
-        "description": "Be honest on both. What makes you a strong fit for a team like this, and what makes you genuinely hungry to earn? Ambition is welcome here. Tell us what you are working toward and why you will outwork the person next to you.",
-        "fields": [
-          {
-            "id": "fit_and_drive",
-            "type": "textarea",
-            "label": "Your answer",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-availability",
-        "kind": "question",
-        "title": "What hours can you reliably work, in South African time?",
-        "description": "Be exact. Tell us which days and which hours, and whether you can cover evenings and weekends, when most fans are online.",
-        "fields": [
-          {
-            "id": "availability_hours",
-            "type": "textarea",
-            "label": "Your availability in SAST",
-            "required": true
-          }
-        ]
       },
       {
         "id": "q-load-shedding",
@@ -341,83 +182,15 @@
             "label": "Your load shedding setup",
             "required": true
           }
-        ]
-      },
-      {
-        "id": "q-internet",
-        "kind": "question",
-        "title": "Tell us about your internet.",
-        "description": "Fibre or LTE? Paste your latest speed test result and describe your backup for when the primary line drops.",
-        "fields": [
-          {
-            "id": "internet_setup",
-            "type": "textarea",
-            "label": "Connection, speed test result, and backup",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-traffic-source",
-        "kind": "question",
-        "title": "Where did you find this role?",
-        "fields": [
-          {
-            "id": "traffic_source",
-            "type": "single_choice",
-            "label": "Pick the closest match.",
-            "required": true,
-            "options": [
-              "Instagram",
-              "TikTok",
-              "YouTube",
-              "X / Twitter",
-              "LinkedIn",
-              "Job board",
-              "Friend or referral",
-              "Other"
-            ]
-          }
-        ]
-      },
-      {
-        "id": "q-income",
-        "kind": "question",
-        "title": "What do you currently earn in monthly gross income, in USD?",
-        "fields": [
-          {
-            "id": "monthly_income_usd",
-            "type": "number",
-            "label": "Monthly gross income (USD)",
-            "required": false,
-            "min": 0,
-            "help": "Optional. POPIA tells us to ask only for what we need, and we can shortlist you without this. Sharing it helps us place you at the right level faster."
-          }
-        ]
-      },
-      {
-        "id": "q-commit",
-        "kind": "question",
-        "title": "One last thing.",
-        "description": "This is a full-time, performance-paid role. Your earnings rise with your results, and we expect you to treat it as your main work, not a side gig.",
-        "fields": [
-          {
-            "id": "commit_ack",
-            "type": "legal_gate",
-            "label": "Full-time commitment",
-            "required": true,
-            "options": [
-              "I understand and agree"
-            ]
-          }
         ],
-        "next": "end-ok"
+        "next": "end-ok",
+        "cta": "Submit Application"
       },
       {
         "id": "end-ok",
         "kind": "ending",
         "title": "Thank you, {first_name}.",
-        "description": "Your application is in and a real person will read it. If your answers match what we need, you will hear from us with next steps, usually within a week or two. Keep an eye on your inbox.",
+        "description": "Your application is in and a real person will read it. If your answers match what we need, you will hear from us with next steps. Keep an eye on your inbox.",
         "endingTone": "standard"
       },
       {
