@@ -54,7 +54,8 @@ describe('content/roles packs', () => {
       whatsapp_number: '+385 91 555 0123',
       email: 'test@example.com',
       traffic_source: 'Referral',
-      voice_note_url: 'https://vocaroo.com/test',
+      // What the recorder stores once a take has uploaded.
+      voice_note_url: 'https://careers.halevorasolutions.com/voice/clw1test0000abcd0123.webm',
     };
     expect(
       evaluateSubmission(pack.form, { ...applicationAnswers, country: 'Croatia' }),

@@ -55,6 +55,29 @@ model Answer {
   @@index([fieldId, value])
 }
 
+/// Applicant voice notes, recorded in the browser and stored here so the
+/// deployment stays stateless (Railway's filesystem is ephemeral). Each row is
+/// served at /voice/<id>.<ext>, and that URL is what reviewers and Airtable get.
+/// A 60-second Opus recording is ~250 KB, so Postgres is comfortable holding it.
+model VoiceNote {
+  id         String   @id @default(cuid())
+  slug       String
+  fieldId    String
+  mimeType   String
+  ext        String
+  bytes      Int
+  durationMs Int?
+  data       Bytes
+  /// Set when a submission claims this recording; unclaimed rows are abandoned
+  /// takes and get swept by the maintenance purge.
+  claimedAt  DateTime?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([claimedAt])
+}
+
 model FormSnapshot {
   id         String   @id @default(cuid())
   slug       String

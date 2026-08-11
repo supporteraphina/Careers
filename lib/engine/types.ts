@@ -15,7 +15,9 @@ export type FieldType =
   | 'single_choice'
   | 'multi_choice'
   | 'linear_scale'
-  | 'legal_gate';
+  | 'legal_gate'
+  /** Recorded in the browser; the answer is the hosted /voice/<id> link. */
+  | 'audio';
 
 export interface Field {
   /** Answer key. Unique across the whole form; used for piping tokens. */
@@ -30,6 +32,8 @@ export interface Field {
   /** Bounds for linear_scale and number. */
   min?: number;
   max?: number;
+  /** Recording cap for `audio` fields, in seconds. Defaults to 60. */
+  maxSeconds?: number;
 }
 
 export type ConditionOp =

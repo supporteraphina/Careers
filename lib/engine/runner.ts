@@ -11,6 +11,7 @@ import type {
   FormPage,
 } from './types';
 import { isCountryName } from './countries';
+import { isVoiceNotePath } from '../voice/format';
 
 function getPage(form: FormDefinition, pageId: string): FormPage {
   const found = form.pages.find((p) => p.id === pageId);
@@ -190,6 +191,12 @@ export function validateFieldValue(
     }
     case 'country':
       return isCountryName(String(value)) ? null : 'Choose a country from the list.';
+    case 'audio': {
+      // The answer is the hosted link the upload endpoint handed back. Shape is
+      // checked here; that the recording actually exists is confirmed server
+      // side in applications.ts, where the database is reachable.
+      return isVoiceNotePath(String(value)) ? null : 'Record your voice note before continuing.';
+    }
     case 'multi_choice': {
       const values = Array.isArray(value) ? value : [value];
       return values.every((v) => field.options?.includes(String(v)))

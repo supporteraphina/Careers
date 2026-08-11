@@ -14,6 +14,14 @@ so the schema creates/updates itself on every deploy.
    - `DATABASE_URL` = `${{Postgres.DATABASE_URL}}` (reference variable)
    - `ADMIN_USER` / `ADMIN_PASS` = fresh strong values (gate for /admin and /api/admin)
    - `WEBHOOK_URL` = optional Make.com endpoint
+   - `AIRTABLE_API_KEY` = personal access token with `data.records:write` on the
+     hiring base. Without it the app runs normally and simply does not mirror to
+     Airtable; the delivery rows stay pending until the key is set.
+   - `AIRTABLE_BASE_ID` / `AIRTABLE_TABLE_ID` = optional overrides; they default
+     to the hiring base (`appnZK5DOVp77Yt0T` / `tblrs19DTtNnxrBFV`).
+   - `PUBLIC_BASE_URL` = `https://careers.halevorasolutions.com`. Voice note
+     links are built from this and are opened later from Airtable, so it must be
+     the public hostname. Falls back to the request's forwarded host when unset.
 4. **Settings → Networking → Generate Domain**; add a custom domain (CNAME) later.
 
 ## Local development
