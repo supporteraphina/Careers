@@ -75,7 +75,7 @@
   "form": {
     "slug": "chat-sales-operator",
     "role": "Chat Sales Operator",
-    "version": 2,
+    "version": 3,
     "pages": [
       {
         "id": "intro",
@@ -164,10 +164,36 @@
               "op": "eq",
               "value": "South Africa"
             },
-            "goTo": "q-load-shedding"
+            "goTo": "q-ethnicity"
           }
         ],
         "next": "end-ok",
+        "cta": "Continue"
+      },
+      {
+        "id": "q-ethnicity",
+        "kind": "question",
+        "title": "How do you describe your ethnicity?",
+        "description": "We ask this to help us understand whether our applicant pool is inclusive. Choose the option that best describes you, or select Prefer not to say.",
+        "fields": [
+          {
+            "id": "ethnicity",
+            "type": "select",
+            "label": "Ethnicity",
+            "required": true,
+            "help": "This question is required, but you can always choose Prefer not to say.",
+            "options": [
+              "Black African",
+              "Coloured",
+              "Indian or Asian",
+              "White",
+              "Mixed or multiple ethnicities",
+              "Other",
+              "Prefer not to say"
+            ]
+          }
+        ],
+        "next": "q-load-shedding",
         "cta": "Continue"
       },
       {

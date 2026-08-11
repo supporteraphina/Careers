@@ -40,12 +40,28 @@ describe('content/roles packs', () => {
     expect(files.length).toBeGreaterThanOrEqual(0);
   });
 
-  test('chat sales asks about load shedding only for South Africa', () => {
+  test('chat sales asks South African applicants for ethnicity and load shedding', () => {
     const pack = loadRolePack(path.join(ROLES_DIR, 'chat-sales-operator.json'));
     expect(nextPageId(pack.form, 'q-application', { country: 'South Africa' })).toBe(
+      'q-ethnicity',
+    );
+    expect(nextPageId(pack.form, 'q-ethnicity', { ethnicity: 'Black African' })).toBe(
       'q-load-shedding',
     );
     expect(nextPageId(pack.form, 'q-application', { country: 'Croatia' })).toBe('end-ok');
+
+    const ethnicityPage = pack.form.pages.find((page) => page.id === 'q-ethnicity');
+    const ethnicityField = ethnicityPage?.fields?.find((field) => field.id === 'ethnicity');
+    expect(ethnicityField).toMatchObject({ type: 'select', required: true });
+    expect(ethnicityField?.options).toEqual([
+      'Black African',
+      'Coloured',
+      'Indian or Asian',
+      'White',
+      'Mixed or multiple ethnicities',
+      'Other',
+      'Prefer not to say',
+    ]);
 
     const applicationAnswers = {
       english_level: 'Fluent',
@@ -64,8 +80,22 @@ describe('content/roles packs', () => {
       evaluateSubmission(pack.form, { ...applicationAnswers, country: 'South Africa' }),
     ).toMatchObject({
       ok: false,
+      errors: {
+        ethnicity: 'This field is required.',
+        load_shedding_setup: 'This field is required.',
+      },
+      path: ['intro', 'q-application', 'q-ethnicity', 'q-load-shedding', 'end-ok'],
+    });
+    expect(
+      evaluateSubmission(pack.form, {
+        ...applicationAnswers,
+        country: 'South Africa',
+        ethnicity: 'Prefer not to say',
+      }),
+    ).toMatchObject({
+      ok: false,
       errors: { load_shedding_setup: 'This field is required.' },
-      path: ['intro', 'q-application', 'q-load-shedding', 'end-ok'],
+      path: ['intro', 'q-application', 'q-ethnicity', 'q-load-shedding', 'end-ok'],
     });
   });
 });
