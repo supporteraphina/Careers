@@ -66,7 +66,7 @@
   "form": {
     "slug": "instagram-expert",
     "role": "Instagram Expert",
-    "version": 2,
+    "version": 3,
     "pages": [
       {
         "id": "intro",
@@ -122,69 +122,34 @@
             "help": "If you do not have one, please create one. Include your country code."
           },
           {
-            "id": "discord_username",
-            "type": "text",
-            "label": "Discord Username",
-            "required": false
-          },
-          {
             "id": "email",
             "type": "email",
             "label": "Email",
             "required": true
-          },
-          {
-            "id": "instagram_handle",
-            "type": "text",
-            "label": "Instagram handle",
-            "required": false,
-            "help": "Optional, but it helps us see your work."
-          },
-          {
-            "id": "traffic_source",
-            "type": "text",
-            "label": "Where did you hear about us?",
-            "required": true
-          },
-          {
-            "id": "voice_note_url",
-            "type": "audio",
-            "label": "60-second voice note",
-            "required": true,
-            "maxSeconds": 60,
-            "help": "Record a 60-second voice note about yourself, right here. Share your previous work and personal experience, and tell us why we should hire you. You can listen back and re-record as many times as you like before you continue."
           }
         ],
-        "next": "q-scale",
+        "next": "q-role",
         "cta": "Continue"
       },
       {
-        "id": "q-scale",
+        "id": "q-role",
         "kind": "question",
-        "title": "Tell us about the accounts you have run.",
-        "description": "How many Instagram accounts have you managed at once, for whom, and what were the results? Use numbers: follower growth, reach, posting volume. Accounts you ran for a brand or client count double.",
+        "title": "Your track record, {first_name}.",
+        "description": "Two answers decide whether we invite you to interview. Use numbers and be specific.",
         "fields": [
           {
             "id": "accounts_experience",
             "type": "textarea",
-            "label": "Your account track record",
-            "required": true
-          }
-        ],
-        "next": "q-team",
-        "cta": "Continue"
-      },
-      {
-        "id": "q-team",
-        "kind": "question",
-        "title": "Have you managed people before?",
-        "description": "Tell us about the team you hired, trained, or ran: how many people, what they did, and how you kept quality up. If someone underperformed, tell us what you did about it.",
-        "fields": [
+            "label": "The accounts you have run",
+            "required": true,
+            "help": "How many Instagram accounts have you managed at once, for whom, and what were the results? Follower growth, reach, posting volume. Accounts you ran for a brand or client count double."
+          },
           {
             "id": "team_experience",
             "type": "textarea",
-            "label": "Your management track record",
-            "required": true
+            "label": "The people you have managed",
+            "required": true,
+            "help": "The team you hired, trained, or ran: how many people, what they did, and how you kept quality up. If someone underperformed, tell us what you did about it."
           }
         ],
         "logic": [
@@ -220,22 +185,6 @@
               "Mixed or multiple ethnicities",
               "Other"
             ]
-          }
-        ],
-        "next": "q-load-shedding",
-        "cta": "Continue"
-      },
-      {
-        "id": "q-load-shedding",
-        "kind": "question",
-        "title": "How do you keep working through load shedding?",
-        "description": "Describe your exact setup: inverter, UPS, generator, backup location, whatever keeps you online when the grid is not.",
-        "fields": [
-          {
-            "id": "load_shedding_setup",
-            "type": "textarea",
-            "label": "Your load shedding setup",
-            "required": true
           }
         ],
         "next": "end-ok",
