@@ -66,42 +66,71 @@
   "form": {
     "slug": "instagram-expert",
     "role": "Instagram Expert",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
         "kind": "intro",
         "title": "Instagram Expert",
-        "description": "We receive far more applications than we can interview, and we read every complete one. Short or careless answers end the process early. Set aside 15 focused minutes and answer thoroughly.",
+        "description": "We read every application. Complete the form carefully and give us accurate contact details. Under POPIA and GDPR, we use your answers for recruitment only and delete them on request.",
         "cta": "Apply Now"
       },
       {
-        "id": "q-identity",
+        "id": "q-application",
         "kind": "question",
-        "title": "First, the basics.",
+        "title": "Instagram Expert Application",
+        "description": "Complete every required field. We review the quality and accuracy of your answers before inviting anyone to interview.",
         "fields": [
+          {
+            "id": "english_level",
+            "type": "select",
+            "label": "Level of English",
+            "required": true,
+            "help": "Select the option that accurately describes your level of English. Be sincere, as we will double-check this during the interview.",
+            "options": [
+              "Native or bilingual",
+              "Fluent",
+              "Advanced",
+              "Intermediate",
+              "Basic"
+            ]
+          },
+          {
+            "id": "country",
+            "type": "country",
+            "label": "Country",
+            "required": true,
+            "help": "Choose from the list so your application is recorded consistently."
+          },
           {
             "id": "first_name",
             "type": "text",
-            "label": "First name",
+            "label": "First Name",
             "required": true
           },
           {
             "id": "last_name",
             "type": "text",
-            "label": "Last name",
+            "label": "Last Name",
             "required": true
           },
           {
-            "id": "phone",
+            "id": "whatsapp_number",
             "type": "phone",
-            "label": "Phone number",
-            "required": true
+            "label": "WhatsApp Number",
+            "required": true,
+            "help": "If you do not have one, please create one. Include your country code."
+          },
+          {
+            "id": "discord_username",
+            "type": "text",
+            "label": "Discord Username",
+            "required": false
           },
           {
             "id": "email",
             "type": "email",
-            "label": "Email address",
+            "label": "Email",
             "required": true
           },
           {
@@ -109,141 +138,25 @@
             "type": "text",
             "label": "Instagram handle",
             "required": false,
-            "help": "Optional."
-          }
-        ]
-      },
-      {
-        "id": "q-country",
-        "kind": "question",
-        "title": "Good to meet you, {first_name}.",
-        "fields": [
-          {
-            "id": "country",
-            "type": "text",
-            "label": "What country are you based out of?",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-referral",
-        "kind": "question",
-        "title": "Did someone at Halevora refer you?",
-        "fields": [
-          {
-            "id": "referred_by_team",
-            "type": "single_choice",
-            "label": "Referral",
-            "required": true,
-            "options": [
-              "Yes",
-              "No"
-            ]
-          }
-        ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "referred_by_team",
-              "op": "eq",
-              "value": "No"
-            },
-            "goTo": "q-age"
-          }
-        ]
-      },
-      {
-        "id": "q-referrer",
-        "kind": "question",
-        "title": "Who referred you?",
-        "fields": [
-          {
-            "id": "referrer_name",
-            "type": "text",
-            "label": "Their name",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-age",
-        "kind": "question",
-        "title": "How old are you?",
-        "fields": [
-          {
-            "id": "age",
-            "type": "number",
-            "label": "Your age",
-            "required": true,
-            "min": 0
-          }
-        ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "age",
-              "op": "lt",
-              "value": 16
-            },
-            "goTo": "end-dq"
+            "help": "Optional, but it helps us see your work."
           },
           {
-            "if": {
-              "fieldId": "age",
-              "op": "gt",
-              "value": 25
-            },
-            "goTo": "phase-2"
-          }
-        ]
-      },
-      {
-        "id": "q-student",
-        "kind": "question",
-        "title": "Are you currently enrolled in school or university?",
-        "fields": [
+            "id": "traffic_source",
+            "type": "text",
+            "label": "Where did you hear about us?",
+            "required": true
+          },
           {
-            "id": "enrolled_student",
-            "type": "single_choice",
-            "label": "Enrollment",
+            "id": "voice_note_url",
+            "type": "audio",
+            "label": "60-second voice note",
             "required": true,
-            "options": [
-              "Yes",
-              "No"
-            ]
+            "maxSeconds": 60,
+            "help": "Record a 60-second voice note about yourself, right here. Share your previous work and personal experience, and tell us why we should hire you. You can listen back and re-record as many times as you like before you continue."
           }
         ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "enrolled_student",
-              "op": "eq",
-              "value": "Yes"
-            },
-            "goTo": "end-dq"
-          }
-        ]
-      },
-      {
-        "id": "phase-2",
-        "kind": "interstitial",
-        "title": "That was phase one, {first_name}.",
-        "description": "✅ Personal Information: done. ☑️ Professional Fitness: up next. The next section decides whether we invite you to interview. Answer like it matters."
-      },
-      {
-        "id": "q-occupation",
-        "kind": "question",
-        "title": "What do you do right now?",
-        "description": "Tell us your current occupation and every commitment on your plate: job, studies, freelance work, anything else that claims your hours.",
-        "fields": [
-          {
-            "id": "current_occupation",
-            "type": "textarea",
-            "label": "Current occupation and commitments",
-            "required": true
-          }
-        ]
+        "next": "q-scale",
+        "cta": "Continue"
       },
       {
         "id": "q-scale",
@@ -257,21 +170,9 @@
             "label": "Your account track record",
             "required": true
           }
-        ]
-      },
-      {
-        "id": "q-health",
-        "kind": "question",
-        "title": "An account suddenly loses half its reach.",
-        "description": "Walk us through exactly what you check and what you do, in order. Be specific. Generic answers about posting better content end here.",
-        "fields": [
-          {
-            "id": "reach_drop_playbook",
-            "type": "textarea",
-            "label": "Your diagnosis and response",
-            "required": true
-          }
-        ]
+        ],
+        "next": "q-team",
+        "cta": "Continue"
       },
       {
         "id": "q-team",
@@ -285,100 +186,73 @@
             "label": "Your management track record",
             "required": true
           }
-        ]
-      },
-      {
-        "id": "q-attention",
-        "kind": "question",
-        "title": "Quick check while you are here.",
-        "description": "Your team posts on 15 accounts. Each account takes 10 minutes per day. How many hours does one full daily cycle take? Answer with one decimal place.",
-        "fields": [
+        ],
+        "logic": [
           {
-            "id": "cycle_hours",
-            "type": "text",
-            "label": "Hours per cycle",
-            "required": true
+            "if": {
+              "fieldId": "country",
+              "op": "eq",
+              "value": "South Africa"
+            },
+            "goTo": "q-ethnicity"
           }
-        ]
+        ],
+        "next": "end-ok",
+        "cta": "Submit Application"
       },
       {
-        "id": "q-hours",
+        "id": "q-ethnicity",
         "kind": "question",
-        "title": "How many hours can you reliably cover each week?",
-        "description": "Give us a number and the CET window you can commit to, for example: 40 hours, 08:00 to 17:00 CET.",
+        "title": "How do you describe your ethnicity?",
+        "description": "We ask this to help us understand whether our applicant pool is inclusive. Choose the option that best describes you.",
         "fields": [
           {
-            "id": "weekly_hours_window",
-            "type": "text",
-            "label": "Weekly hours and CET window",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-why-instagram",
-        "kind": "question",
-        "title": "Why this role, {first_name}?",
-        "description": "You could run social for any brand. Tell us why you want to own a whole operation, and what you would change first in your first month.",
-        "fields": [
-          {
-            "id": "why_instagram",
-            "type": "textarea",
-            "label": "Why this role and your first month",
-            "required": true
-          }
-        ]
-      },
-      {
-        "id": "q-traffic-source",
-        "kind": "question",
-        "title": "Where did you find this role?",
-        "fields": [
-          {
-            "id": "traffic_source",
-            "type": "single_choice",
-            "label": "Pick the closest match.",
+            "id": "ethnicity",
+            "type": "select",
+            "label": "Ethnicity",
             "required": true,
+            "help": "Choose the option that best describes you.",
             "options": [
-              "Instagram",
-              "TikTok",
-              "YouTube",
-              "X / Twitter",
-              "LinkedIn",
-              "Job board",
-              "Friend or referral",
+              "Black African",
+              "Coloured",
+              "Indian or Asian",
+              "White",
+              "Mixed or multiple ethnicities",
               "Other"
             ]
           }
-        ]
+        ],
+        "next": "q-load-shedding",
+        "cta": "Continue"
       },
       {
-        "id": "q-income",
+        "id": "q-load-shedding",
         "kind": "question",
-        "title": "What is your current monthly gross income?",
-        "description": "In USD, before tax. A number, not a range.",
+        "title": "How do you keep working through load shedding?",
+        "description": "Describe your exact setup: inverter, UPS, generator, backup location, whatever keeps you online when the grid is not.",
         "fields": [
           {
-            "id": "monthly_income_usd",
-            "type": "number",
-            "label": "Monthly gross income (USD)",
-            "required": true,
-            "min": 0
+            "id": "load_shedding_setup",
+            "type": "textarea",
+            "label": "Your load shedding setup",
+            "required": true
           }
-        ]
+        ],
+        "next": "end-ok",
+        "cta": "Submit Application"
       },
       {
         "id": "end-ok",
         "kind": "ending",
         "title": "Thank you, {first_name}.",
-        "description": "Your application is in. We review every complete submission, and candidates who move forward hear from us within a few days. Keep an eye on your inbox.",
+        "description": "Your application is in and a real person will read it. If your answers match what we need, you will hear from us with next steps. Keep an eye on your inbox.",
         "endingTone": "standard"
       },
       {
         "id": "end-dq",
         "kind": "ending",
         "title": "Thank you, {first_name}.",
-        "description": "Your application is in. We appreciate the time you put into it and will be in touch if there is a fit.",
+        "description": "Your application is in. We appreciate the time you took, and we will be in touch if there is a fit.",
         "endingTone": "dq"
       }
     ]
