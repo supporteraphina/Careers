@@ -168,7 +168,7 @@ export default function HomePage() {
             <div className="cta-band">
               <h2>Pick your lane.</h2>
               <p style={{ color: 'var(--text-dim)', margin: '0 auto 30px' }}>
-                Seven roles open. Every application gets read by a human.
+                {openRoles} roles open. Every application gets read by a human.
               </p>
               <Link href="/hiring" className="btn">
                 View open roles

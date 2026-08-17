@@ -1,0 +1,386 @@
+{
+  "ad": {
+    "slug": "instagram-expert",
+    "title": "Instagram Expert",
+    "team": "Social",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Aug 2026",
+    "summary": "Most social media jobs mean scheduling posts in a queue. This one means running an operation. As our Instagram Expert you own every account we run: you hire and lead the team that posts daily, you control the content schedule, you keep every account healthy and growing, and you answer for the numbers. We built the machine. It needs an owner.",
+    "role": {
+      "eyebrow": "The Operator",
+      "paragraphs": [
+        "You take command of Halevora's entire Instagram operation. A trained posting team already executes daily cycles across our accounts, documented procedures cover every step, and a content pipeline feeds it all. Your job is to run it: set the standards, enforce the process, catch problems before they cost us an account, and grow the team as we scale.",
+        "This is a leadership role with operational depth. One day you are interviewing a new team member, the next you are digging into why one account lost reach. You report to the founder, work European core hours, and get real authority over how the operation runs."
+      ]
+    },
+    "idealCandidate": [
+      "You have run Instagram accounts at scale, not just your own profile.",
+      "You can read an account's health from its reach, and you act before a warning becomes a restriction.",
+      "You have hired, trained, or managed people and held them to a standard.",
+      "You treat posting schedules as commitments, not suggestions.",
+      "You spot when two accounts start looking alike and fix it the same day.",
+      "You would rather enforce a boring process than improvise a clever shortcut.",
+      "You stay calm when an account gets flagged and follow the playbook instead of panicking."
+    ],
+    "requirements": [
+      {
+        "title": "Instagram at scale",
+        "tagline": "The algorithm is not a mystery to you.",
+        "body": "You know what grows an account and what quietly kills one: posting cadence, engagement patterns, content variety, reach signals. You have managed multiple accounts at once and kept them all alive and moving up."
+      },
+      {
+        "title": "Team leadership",
+        "tagline": "You build the team and run the game.",
+        "body": "You have recruited, onboarded, and managed people before. You give direct feedback, catch sloppy work early, and make people better at their jobs. Your team knows exactly what good looks like because you defined it."
+      },
+      {
+        "title": "Operational discipline",
+        "tagline": "Process is the product.",
+        "body": "You run on checklists, procedures, and daily cycles. When a step gets skipped, you notice. When a process wastes time, you rebuild it. You document what you learn so the operation gets stronger every week."
+      },
+      {
+        "title": "Remote discipline",
+        "tagline": "Nobody watches you. Nothing slips.",
+        "body": "You have a quiet workspace, a fast and stable connection, and the self-management to lead a distributed team without supervision. Remote leadership is how you do your best work, not a fallback."
+      }
+    ],
+    "whatYoullDo": [
+      "Lead the daily social sync at 10:00 CET: review account health, clear blockers, and lock the day's posting priorities.",
+      "Hire, train, and manage the posting team, and hold every member to the documented standard.",
+      "Own the posting and engagement cycles across all accounts: schedules, content distribution, and quality control.",
+      "Monitor account health daily, catch flags and reach drops early, and run the recovery playbook when something breaks.",
+      "Report growth numbers weekly to the founder and keep improving the procedures the whole operation runs on."
+    ],
+    "shouldntApply": [
+      "You want a job that ends when the clock says so. This team runs on an all-in mentality.",
+      "You are looking for part-time hours or a side project. We hire full-time only.",
+      "You take direct feedback personally. We correct fast and expect you to do the same.",
+      "You have only ever posted for yourself. This role manages an operation, not a profile."
+    ],
+    "seo": {
+      "title": "Instagram Expert at Halevora",
+      "description": "Full-time remote Instagram Expert at Halevora. Own our Instagram operation: hire and lead the posting team, control the schedule, grow every account."
+    }
+  },
+  "form": {
+    "slug": "instagram-expert",
+    "role": "Instagram Expert",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Instagram Expert",
+        "description": "We receive far more applications than we can interview, and we read every complete one. Short or careless answers end the process early. Set aside 15 focused minutes and answer thoroughly.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-identity",
+        "kind": "question",
+        "title": "First, the basics.",
+        "fields": [
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "id": "phone",
+            "type": "phone",
+            "label": "Phone number",
+            "required": true
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email address",
+            "required": true
+          },
+          {
+            "id": "instagram_handle",
+            "type": "text",
+            "label": "Instagram handle",
+            "required": false,
+            "help": "Optional."
+          }
+        ]
+      },
+      {
+        "id": "q-country",
+        "kind": "question",
+        "title": "Good to meet you, {first_name}.",
+        "fields": [
+          {
+            "id": "country",
+            "type": "text",
+            "label": "What country are you based out of?",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-referral",
+        "kind": "question",
+        "title": "Did someone at Halevora refer you?",
+        "fields": [
+          {
+            "id": "referred_by_team",
+            "type": "single_choice",
+            "label": "Referral",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
+        ],
+        "logic": [
+          {
+            "if": {
+              "fieldId": "referred_by_team",
+              "op": "eq",
+              "value": "No"
+            },
+            "goTo": "q-age"
+          }
+        ]
+      },
+      {
+        "id": "q-referrer",
+        "kind": "question",
+        "title": "Who referred you?",
+        "fields": [
+          {
+            "id": "referrer_name",
+            "type": "text",
+            "label": "Their name",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-age",
+        "kind": "question",
+        "title": "How old are you?",
+        "fields": [
+          {
+            "id": "age",
+            "type": "number",
+            "label": "Your age",
+            "required": true,
+            "min": 0
+          }
+        ],
+        "logic": [
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "lt",
+              "value": 16
+            },
+            "goTo": "end-dq"
+          },
+          {
+            "if": {
+              "fieldId": "age",
+              "op": "gt",
+              "value": 25
+            },
+            "goTo": "phase-2"
+          }
+        ]
+      },
+      {
+        "id": "q-student",
+        "kind": "question",
+        "title": "Are you currently enrolled in school or university?",
+        "fields": [
+          {
+            "id": "enrolled_student",
+            "type": "single_choice",
+            "label": "Enrollment",
+            "required": true,
+            "options": [
+              "Yes",
+              "No"
+            ]
+          }
+        ],
+        "logic": [
+          {
+            "if": {
+              "fieldId": "enrolled_student",
+              "op": "eq",
+              "value": "Yes"
+            },
+            "goTo": "end-dq"
+          }
+        ]
+      },
+      {
+        "id": "phase-2",
+        "kind": "interstitial",
+        "title": "That was phase one, {first_name}.",
+        "description": "✅ Personal Information: done. ☑️ Professional Fitness: up next. The next section decides whether we invite you to interview. Answer like it matters."
+      },
+      {
+        "id": "q-occupation",
+        "kind": "question",
+        "title": "What do you do right now?",
+        "description": "Tell us your current occupation and every commitment on your plate: job, studies, freelance work, anything else that claims your hours.",
+        "fields": [
+          {
+            "id": "current_occupation",
+            "type": "textarea",
+            "label": "Current occupation and commitments",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-scale",
+        "kind": "question",
+        "title": "Tell us about the accounts you have run.",
+        "description": "How many Instagram accounts have you managed at once, for whom, and what were the results? Use numbers: follower growth, reach, posting volume. Accounts you ran for a brand or client count double.",
+        "fields": [
+          {
+            "id": "accounts_experience",
+            "type": "textarea",
+            "label": "Your account track record",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-health",
+        "kind": "question",
+        "title": "An account suddenly loses half its reach.",
+        "description": "Walk us through exactly what you check and what you do, in order. Be specific. Generic answers about posting better content end here.",
+        "fields": [
+          {
+            "id": "reach_drop_playbook",
+            "type": "textarea",
+            "label": "Your diagnosis and response",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-team",
+        "kind": "question",
+        "title": "Have you managed people before?",
+        "description": "Tell us about the team you hired, trained, or ran: how many people, what they did, and how you kept quality up. If someone underperformed, tell us what you did about it.",
+        "fields": [
+          {
+            "id": "team_experience",
+            "type": "textarea",
+            "label": "Your management track record",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-attention",
+        "kind": "question",
+        "title": "Quick check while you are here.",
+        "description": "Your team posts on 15 accounts. Each account takes 10 minutes per day. How many hours does one full daily cycle take? Answer with one decimal place.",
+        "fields": [
+          {
+            "id": "cycle_hours",
+            "type": "text",
+            "label": "Hours per cycle",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-hours",
+        "kind": "question",
+        "title": "How many hours can you reliably cover each week?",
+        "description": "Give us a number and the CET window you can commit to, for example: 40 hours, 08:00 to 17:00 CET.",
+        "fields": [
+          {
+            "id": "weekly_hours_window",
+            "type": "text",
+            "label": "Weekly hours and CET window",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-why-instagram",
+        "kind": "question",
+        "title": "Why this role, {first_name}?",
+        "description": "You could run social for any brand. Tell us why you want to own a whole operation, and what you would change first in your first month.",
+        "fields": [
+          {
+            "id": "why_instagram",
+            "type": "textarea",
+            "label": "Why this role and your first month",
+            "required": true
+          }
+        ]
+      },
+      {
+        "id": "q-traffic-source",
+        "kind": "question",
+        "title": "Where did you find this role?",
+        "fields": [
+          {
+            "id": "traffic_source",
+            "type": "single_choice",
+            "label": "Pick the closest match.",
+            "required": true,
+            "options": [
+              "Instagram",
+              "TikTok",
+              "YouTube",
+              "X / Twitter",
+              "LinkedIn",
+              "Job board",
+              "Friend or referral",
+              "Other"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "q-income",
+        "kind": "question",
+        "title": "What is your current monthly gross income?",
+        "description": "In USD, before tax. A number, not a range.",
+        "fields": [
+          {
+            "id": "monthly_income_usd",
+            "type": "number",
+            "label": "Monthly gross income (USD)",
+            "required": true,
+            "min": 0
+          }
+        ]
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We review every complete submission, and candidates who move forward hear from us within a few days. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We appreciate the time you put into it and will be in touch if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}
