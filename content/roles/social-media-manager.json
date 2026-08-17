@@ -1,33 +1,33 @@
 {
   "ad": {
-    "slug": "instagram-expert",
-    "title": "Instagram Expert",
+    "slug": "social-media-manager",
+    "title": "Social Media Manager (TikTok & Instagram)",
     "team": "Social",
     "location": "Remote",
     "employmentType": "Full Time",
     "datePosted": "Aug 2026",
-    "summary": "Most social media jobs mean scheduling posts in a queue. This one means running an operation. As our Instagram Expert you own every account we run: you hire and lead the team that posts daily, you control the content schedule, you keep every account healthy and growing, and you answer for the numbers. We built the machine. It needs an owner.",
+    "summary": "Most social media jobs mean scheduling posts in a queue. This one means running an operation. As our Social Media Manager you own every TikTok and Instagram account we run: you hire and lead the team that posts daily, you control the content schedule, you keep every account healthy and growing, and you answer for the numbers. We built the machine. It needs an owner.",
     "role": {
       "eyebrow": "The Operator",
       "paragraphs": [
-        "You take command of Halevora's entire Instagram operation. A trained posting team already executes daily cycles across our accounts, documented procedures cover every step, and a content pipeline feeds it all. Your job is to run it: set the standards, enforce the process, catch problems before they cost us an account, and grow the team as we scale.",
+        "You take command of Halevora's entire TikTok and Instagram operation. A trained posting team already executes daily cycles across our accounts, documented procedures cover every step, and a content pipeline feeds it all. Your job is to run it: set the standards, enforce the process, catch problems before they cost us an account, and grow the team as we scale.",
         "This is a leadership role with operational depth. One day you are interviewing a new team member, the next you are digging into why one account lost reach. You report to the founder, work European core hours, and get real authority over how the operation runs."
       ]
     },
     "idealCandidate": [
-      "You have run Instagram accounts at scale, not just your own profile.",
+      "You have run TikTok or Instagram accounts at scale, not just your own profile.",
       "You can read an account's health from its reach, and you act before a warning becomes a restriction.",
       "You have hired, trained, or managed people and held them to a standard.",
       "You treat posting schedules as commitments, not suggestions.",
-      "You spot when two accounts start looking alike and fix it the same day.",
+      "You know what each platform rewards and adjust content and cadence to match.",
       "You would rather enforce a boring process than improvise a clever shortcut.",
       "You stay calm when an account gets flagged and follow the playbook instead of panicking."
     ],
     "requirements": [
       {
-        "title": "Instagram at scale",
-        "tagline": "The algorithm is not a mystery to you.",
-        "body": "You know what grows an account and what quietly kills one: posting cadence, engagement patterns, content variety, reach signals. You have managed multiple accounts at once and kept them all alive and moving up."
+        "title": "Short-form platforms at scale",
+        "tagline": "The algorithms are not a mystery to you.",
+        "body": "You know what grows an account on TikTok and Instagram and what quietly kills one: posting cadence, engagement patterns, content variety, reach signals. You have managed multiple accounts at once and kept them all alive and moving up."
       },
       {
         "title": "Team leadership",
@@ -48,7 +48,7 @@
     "whatYoullDo": [
       "Lead the daily social sync at 10:00 CET: review account health, clear blockers, and lock the day's posting priorities.",
       "Hire, train, and manage the posting team, and hold every member to the documented standard.",
-      "Own the posting and engagement cycles across all accounts: schedules, content distribution, and quality control.",
+      "Own the posting and engagement cycles across every TikTok and Instagram account: schedules, content distribution, and quality control.",
       "Monitor account health daily, catch flags and reach drops early, and run the recovery playbook when something breaks.",
       "Report growth numbers weekly to the founder and keep improving the procedures the whole operation runs on."
     ],
@@ -59,26 +59,26 @@
       "You have only ever posted for yourself. This role manages an operation, not a profile."
     ],
     "seo": {
-      "title": "Instagram Expert at Halevora",
-      "description": "Full-time remote Instagram Expert at Halevora. Own our Instagram operation: hire and lead the posting team, control the schedule, grow every account."
+      "title": "Social Media Manager (TikTok & Instagram) at Halevora",
+      "description": "Full-time remote Social Media Manager at Halevora. Own our TikTok and Instagram operation: hire and lead the posting team, control the schedule, grow every account."
     }
   },
   "form": {
-    "slug": "instagram-expert",
-    "role": "Instagram Expert",
-    "version": 3,
+    "slug": "social-media-manager",
+    "role": "Social Media Manager (TikTok & Instagram)",
+    "version": 1,
     "pages": [
       {
         "id": "intro",
         "kind": "intro",
-        "title": "Instagram Expert",
+        "title": "Social Media Manager (TikTok & Instagram)",
         "description": "We read every application. Complete the form carefully and give us accurate contact details. Under POPIA and GDPR, we use your answers for recruitment only and delete them on request.",
         "cta": "Apply Now"
       },
       {
         "id": "q-application",
         "kind": "question",
-        "title": "Instagram Expert Application",
+        "title": "Social Media Manager Application",
         "description": "Complete every required field. We review the quality and accuracy of your answers before inviting anyone to interview.",
         "fields": [
           {
@@ -142,7 +142,7 @@
             "type": "textarea",
             "label": "The accounts you have run",
             "required": true,
-            "help": "How many Instagram accounts have you managed at once, for whom, and what were the results? Follower growth, reach, posting volume. Accounts you ran for a brand or client count double."
+            "help": "How many TikTok or Instagram accounts have you managed at once, for whom, and what were the results? Follower growth, reach, posting volume. Accounts you ran for a brand or client count double."
           },
           {
             "id": "team_experience",
