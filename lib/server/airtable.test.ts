@@ -90,6 +90,21 @@ describe('buildAirtableRecord', () => {
     expect(fields['Chatter/VA']).toBe('Social Media Manager');
   });
 
+  test('files a reddit growth manager applicant under their own tag', () => {
+    const { fields } = buildAirtableRecord(
+      application({
+        slug: 'reddit-growth-manager',
+        answers: JSON.stringify({
+          reddit_experience: 'Grew r/example to 40k subscribers.',
+          automation_experience: 'Claude Code pipelines for posting and monitoring.',
+        }),
+      }),
+    );
+    expect(fields['Chatter/VA']).toBe('Reddit Growth Manager');
+    expect(fields['Reddit Experience']).toBe('Grew r/example to 40k subscribers.');
+    expect(fields['Automation Experience']).toBe('Claude Code pipelines for posting and monitoring.');
+  });
+
   test('mirrors the social media manager track-record answers', () => {
     const { fields } = buildAirtableRecord(
       application({

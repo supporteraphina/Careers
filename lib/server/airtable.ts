@@ -57,6 +57,8 @@ const FIELD_NAMES: Record<string, string> = {
   load_shedding_setup: 'Load Shedding Setup',
   accounts_experience: 'Accounts Experience',
   team_experience: 'Team Experience',
+  reddit_experience: 'Reddit Experience',
+  automation_experience: 'Automation Experience',
 };
 
 /**
@@ -94,6 +96,7 @@ const CHATTER_VA_FIELD = 'Chatter/VA';
 const CHATTER_VA_BY_SLUG: Record<string, string> = {
   'chat-sales-operator': 'Chatter',
   'social-media-manager': 'Social Media Manager',
+  'reddit-growth-manager': 'Reddit Growth Manager',
 };
 
 export interface ApplicationForAirtable {

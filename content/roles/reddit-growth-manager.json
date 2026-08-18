@@ -1,0 +1,209 @@
+{
+  "ad": {
+    "slug": "reddit-growth-manager",
+    "title": "Reddit Growth Manager",
+    "team": "Social",
+    "location": "Remote",
+    "employmentType": "Full Time",
+    "datePosted": "Aug 2026",
+    "summary": "Reddit is the hardest social platform to grow on and the most valuable when you do it right. One wrong move and a community turns on you; done well, it drives traffic nothing else can match. We are hiring someone who genuinely understands Reddit: the culture, the moderation, the unwritten rules, and how to operate there at scale with modern automation. If you know exactly why most brands fail on Reddit, keep reading.",
+    "role": {
+      "eyebrow": "The Reddit Operator",
+      "paragraphs": [
+        "You own our Reddit presence end to end: which communities we operate in, what gets posted where, which accounts do it, and how the whole operation stays healthy and under the radar. You know how karma, account age, and community trust actually work, and you plan around them instead of fighting them.",
+        "The second half of the job is leverage. We build automation around everything we do, and we expect you to work the same way: AI coding tools like Claude Code, scripts, schedulers, and monitoring instead of manual grinding. You do not need to be a software engineer, but you need to be the person who automates the boring half of their own job without being asked."
+      ]
+    },
+    "idealCandidate": [
+      "You have grown real Reddit accounts and communities, with karma and traffic numbers to show for it.",
+      "You read a subreddit's rules and its mood before you ever post in it.",
+      "You know what gets accounts shadowbanned and how to operate so it never happens.",
+      "You have used Claude Code or similar AI tools to automate real work, not just to chat.",
+      "You track what works with data, not gut feeling.",
+      "You write posts and comments that read like a person, because you are one.",
+      "You stay calm when a thread turns hostile and know when to engage and when to walk away."
+    ],
+    "requirements": [
+      {
+        "title": "Reddit fluency",
+        "tagline": "You speak the platform natively.",
+        "body": "Karma mechanics, account aging, subreddit politics, moderator relations, cross-posting etiquette, shadowban detection. You have lived on Reddit long enough that none of this needs explaining, and you have grown accounts and communities to prove it."
+      },
+      {
+        "title": "Automation and AI tooling",
+        "tagline": "You multiply yourself with software.",
+        "body": "You have hands-on experience with Claude Code or comparable AI coding tools, and you have built automations that saved real hours: posting pipelines, monitoring, scraping, reporting. When a task repeats, your instinct is to script it."
+      },
+      {
+        "title": "Growth judgment",
+        "tagline": "Reach without wreckage.",
+        "body": "You know how to drive attention and traffic from Reddit without burning accounts or communities. You balance volume against risk, you test before you scale, and you keep records of what worked so the next month beats this one."
+      },
+      {
+        "title": "Remote discipline",
+        "tagline": "Nobody watches you. Nothing slips.",
+        "body": "You have a quiet workspace, a fast and stable connection, and the self-management to run an operation without supervision. Remote work is how you do your best work, not a fallback."
+      }
+    ],
+    "whatYoullDo": [
+      "Join the daily social sync at 10:00 CET: report account health, traffic numbers, and what ships today.",
+      "Own our Reddit account and community strategy: where we operate, what we post, and which accounts carry it.",
+      "Build and maintain the automations behind the operation with tools like Claude Code: posting pipelines, monitoring, and reporting.",
+      "Keep every account healthy: watch karma, flags, and moderator signals, and adjust before problems become bans.",
+      "Report traffic and growth numbers weekly to the founder and document the playbook as it evolves."
+    ],
+    "shouldntApply": [
+      "You want a job that ends when the clock says so. This team runs on an all-in mentality.",
+      "You are looking for part-time hours or a side project. We hire full-time only.",
+      "You take direct feedback personally. We correct fast and expect you to do the same.",
+      "Your Reddit experience is lurking. This role needs someone who has operated there, not observed."
+    ],
+    "seo": {
+      "title": "Reddit Growth Manager at Halevora",
+      "description": "Full-time remote Reddit Growth Manager at Halevora. Own our Reddit operation: accounts, communities, and the automation behind them."
+    }
+  },
+  "form": {
+    "slug": "reddit-growth-manager",
+    "role": "Reddit Growth Manager",
+    "version": 1,
+    "pages": [
+      {
+        "id": "intro",
+        "kind": "intro",
+        "title": "Reddit Growth Manager",
+        "description": "We read every application. Complete the form carefully and give us accurate contact details. Under POPIA and GDPR, we use your answers for recruitment only and delete them on request.",
+        "cta": "Apply Now"
+      },
+      {
+        "id": "q-application",
+        "kind": "question",
+        "title": "Reddit Growth Manager Application",
+        "description": "Complete every required field. We review the quality and accuracy of your answers before inviting anyone to interview.",
+        "fields": [
+          {
+            "id": "english_level",
+            "type": "select",
+            "label": "Level of English",
+            "required": true,
+            "help": "Select the option that accurately describes your level of English. Be sincere, as we will double-check this during the interview.",
+            "options": [
+              "Native or bilingual",
+              "Fluent",
+              "Advanced",
+              "Intermediate",
+              "Basic"
+            ]
+          },
+          {
+            "id": "country",
+            "type": "country",
+            "label": "Country",
+            "required": true,
+            "help": "Choose from the list so your application is recorded consistently."
+          },
+          {
+            "id": "first_name",
+            "type": "text",
+            "label": "First Name",
+            "required": true
+          },
+          {
+            "id": "last_name",
+            "type": "text",
+            "label": "Last Name",
+            "required": true
+          },
+          {
+            "id": "whatsapp_number",
+            "type": "phone",
+            "label": "WhatsApp Number",
+            "required": true,
+            "help": "If you do not have one, please create one. Include your country code."
+          },
+          {
+            "id": "email",
+            "type": "email",
+            "label": "Email",
+            "required": true
+          }
+        ],
+        "next": "q-role",
+        "cta": "Continue"
+      },
+      {
+        "id": "q-role",
+        "kind": "question",
+        "title": "Your track record, {first_name}.",
+        "description": "Two answers decide whether we invite you to interview. Use numbers and be specific.",
+        "fields": [
+          {
+            "id": "reddit_experience",
+            "type": "textarea",
+            "label": "Your Reddit track record",
+            "required": true,
+            "help": "The accounts and communities you have run: karma, subscriber counts, traffic driven, how long you kept accounts alive. Tell us one thing you did on Reddit that most marketers would get banned for trying."
+          },
+          {
+            "id": "automation_experience",
+            "type": "textarea",
+            "label": "Your automation and AI tooling experience",
+            "required": true,
+            "help": "What you have automated and with what: Claude Code, scripts, schedulers, scrapers, monitoring. Name the tools and the hours they saved."
+          }
+        ],
+        "logic": [
+          {
+            "if": {
+              "fieldId": "country",
+              "op": "eq",
+              "value": "South Africa"
+            },
+            "goTo": "q-ethnicity"
+          }
+        ],
+        "next": "end-ok",
+        "cta": "Submit Application"
+      },
+      {
+        "id": "q-ethnicity",
+        "kind": "question",
+        "title": "How do you describe your ethnicity?",
+        "description": "We ask this to help us understand whether our applicant pool is inclusive. Choose the option that best describes you.",
+        "fields": [
+          {
+            "id": "ethnicity",
+            "type": "select",
+            "label": "Ethnicity",
+            "required": true,
+            "help": "Choose the option that best describes you.",
+            "options": [
+              "Black African",
+              "Coloured",
+              "Indian or Asian",
+              "White",
+              "Mixed or multiple ethnicities",
+              "Other"
+            ]
+          }
+        ],
+        "next": "end-ok",
+        "cta": "Submit Application"
+      },
+      {
+        "id": "end-ok",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in and a real person will read it. If your answers match what we need, you will hear from us with next steps. Keep an eye on your inbox.",
+        "endingTone": "standard"
+      },
+      {
+        "id": "end-dq",
+        "kind": "ending",
+        "title": "Thank you, {first_name}.",
+        "description": "Your application is in. We appreciate the time you took, and we will be in touch if there is a fit.",
+        "endingTone": "dq"
+      }
+    ]
+  }
+}
