@@ -36,10 +36,6 @@ const IMAGES: Record<string, RoleImage> = {
     src: unsplash('photo-1616509091215-57bbece93654'),
     alt: 'The Reddit app icon on a phone screen',
   },
-  'south-african-talent': {
-    src: unsplash('photo-1580060839134-75a5edca2e99', 2800),
-    alt: 'Aerial view of Cape Town beneath Table Mountain',
-  },
 };
 
 export function getRoleImage(slug: string): RoleImage | undefined {

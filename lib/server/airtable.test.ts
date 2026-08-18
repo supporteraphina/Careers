@@ -123,11 +123,7 @@ describe('buildAirtableRecord', () => {
   // would file designers and developers as chat operators, and the team's main
   // view is grouped by this column.
   test('leaves Chatter/VA blank for the roles that are not chat work', () => {
-    for (const slug of [
-      'full-stack-developer',
-      'short-form-editor',
-      'south-african-talent',
-    ]) {
+    for (const slug of ['full-stack-developer', 'short-form-editor']) {
       const { fields } = buildAirtableRecord(application({ slug }));
       expect(fields, slug).not.toHaveProperty('Chatter/VA');
     }

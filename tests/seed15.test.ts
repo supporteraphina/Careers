@@ -28,10 +28,6 @@ interface Persona {
 }
 
 const PERSONAS: Persona[] = [
-  { slug: 'south-african-talent', firstName: 'Naledi', lastName: 'Khumalo', email: 'naledi.k@seed.test', country: 'South Africa', age: 28, income: 1100, trafficSource: 'Instagram', utmSource: 'instagram', expectDq: false },
-  { slug: 'south-african-talent', firstName: 'Pieter', lastName: 'Botha', email: 'pieter.b@seed.test', country: 'South Africa', age: 34, income: 2400, trafficSource: 'LinkedIn', utmSource: 'linkedin', expectDq: false },
-  { slug: 'south-african-talent', firstName: 'Ayanda', lastName: 'Nkosi', email: 'ayanda.n@seed.test', country: 'South Africa', age: 15, income: 0, trafficSource: 'TikTok', expectDq: true },
-  { slug: 'south-african-talent', firstName: 'Lerato', lastName: 'Molefe', email: 'lerato.m@seed.test', country: 'South Africa', age: 20, student: true, income: 300, trafficSource: 'Friend or referral', referral: true, expectDq: true },
   { slug: 'short-form-editor', firstName: 'Duško', lastName: 'Ilić', email: 'dusko.i@seed.test', country: 'Serbia', age: 24, income: 1500, trafficSource: 'TikTok', utmSource: 'tiktok', expectDq: false },
   { slug: 'short-form-editor', firstName: 'Emma', lastName: 'Visser', email: 'emma.v@seed.test', country: 'Netherlands', age: 27, refuseCommit: true, income: 2800, trafficSource: 'Job board', expectDq: true },
   { slug: 'full-stack-developer', firstName: 'Ivan', lastName: 'Horvat', email: 'ivan.h@seed.test', country: 'Croatia', age: 33, income: 4200, trafficSource: 'LinkedIn', referrerUrl: 'https://www.linkedin.com/feed/', expectDq: false },
