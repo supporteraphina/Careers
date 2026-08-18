@@ -123,13 +123,19 @@ export default function Funnel({ form }: FunnelProps) {
     if (!meta.current.sessionId || submitted) return;
     const body = JSON.stringify({
       events: [
-        { sessionId: meta.current.sessionId, slug: form.slug, pageId, kind: 'enter' },
+        {
+          sessionId: meta.current.sessionId,
+          slug: form.slug,
+          pageId,
+          kind: 'enter',
+          formVersion: form.version,
+        },
       ],
     });
     if (!navigator.sendBeacon?.('/api/events', body)) {
       fetch('/api/events', { method: 'POST', body }).catch(() => {});
     }
-  }, [form.slug, pageId, submitted]);
+  }, [form.slug, form.version, pageId, submitted]);
 
   // Autosave: localStorage immediately, server draft debounced.
   useEffect(() => {
