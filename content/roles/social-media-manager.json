@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 6,
+    "version": 7,
     "pages": [
       {
         "id": "intro",
@@ -131,10 +131,10 @@
           {
             "id": "voice_note_url",
             "type": "audio",
-            "label": "60-second voice note",
+            "label": "Your audio pitch",
             "required": true,
-            "maxSeconds": 60,
-            "help": "Record a 60-second voice note, right here. Tell us **why we should hire you**: your **experience with Instagram/TikTok** and how you will **grow OnlyFans creators**. Sixty seconds is short on purpose. Make every one count. You can re-record as many times as you like."
+            "maxSeconds": 300,
+            "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Instagram/TikTok**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
           }
         ],
         "next": "end-ok",
