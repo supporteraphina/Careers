@@ -47,9 +47,6 @@ export default function HomePage() {
             <Link href="/hiring" className="btn">
               View open roles
             </Link>
-            <Link href="/hiring/south-african-talent" className="btn btn--ghost">
-              South African talent
-            </Link>
           </div>
         </div>
       </section>
@@ -93,40 +90,6 @@ export default function HomePage() {
               <Link href="/hiring" className="btn btn--ghost">
                 {openRoles} roles open now
               </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container container--wide">
-          <Reveal>
-            <div className="sa-band">
-              <div className="sa-band__bg">
-                <Image
-                  src="https://images.unsplash.com/photo-1576485375217-d6a95e34d043?auto=format&fit=crop&w=2400&q=85"
-                  alt="The Twelve Apostles above Camps Bay at golden hour, Cape Town"
-                  fill
-                  quality={85}
-                  sizes="(max-width: 1760px) 100vw, 1760px"
-                />
-              </div>
-              <div className="sa-band__content">
-                <p className="eyebrow">South Africa</p>
-                <h2>Our next hub is built around South African talent.</h2>
-                <p style={{ color: 'var(--text-dim)' }}>
-                  One hour off CET. English-first. Relentless standards. We are
-                  hiring across every department, with equipment stipends,
-                  backup-power support, and a ZAR-stable payout schedule.
-                </p>
-                <Link
-                  href="/hiring/south-african-talent"
-                  className="btn"
-                  style={{ marginTop: '10px' }}
-                >
-                  Join the talent pool
-                </Link>
-              </div>
             </div>
           </Reveal>
         </div>
