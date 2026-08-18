@@ -26,6 +26,13 @@ interface SavedState {
 const AUTO_ADVANCE_MS = 220;
 const DRAFT_DEBOUNCE_MS = 900;
 
+/** Render `**bold**` spans in field help text; everything else stays plain. */
+function helpText(help: string) {
+  const parts = help.split('**');
+  if (parts.length < 3) return help;
+  return parts.map((part, i) => (i % 2 === 1 ? <strong key={i}>{part}</strong> : part));
+}
+
 function storageKey(slug: string) {
   return `halevora-apply:${slug}`;
 }
@@ -429,7 +436,7 @@ function FieldInput({
     return (
       <div>
         <span className="funnel-label">{field.label}</span>
-        {field.help && <p className="funnel-help funnel-help--lead">{field.help}</p>}
+        {field.help && <p className="funnel-help funnel-help--lead">{helpText(field.help)}</p>}
         <VoiceRecorder
           slug={slug}
           fieldId={field.id}
@@ -457,7 +464,7 @@ function FieldInput({
           aria-invalid={Boolean(error)}
           onChange={(event) => onChange(event.target.value)}
         />
-        {field.help && <p className="funnel-help">{field.help}</p>}
+        {field.help && <p className="funnel-help">{helpText(field.help)}</p>}
       </div>
     );
   }
@@ -487,7 +494,7 @@ function FieldInput({
             </option>
           ))}
         </select>
-        {field.help && <p className="funnel-help">{field.help}</p>}
+        {field.help && <p className="funnel-help">{helpText(field.help)}</p>}
       </div>
     );
   }
@@ -514,7 +521,7 @@ function FieldInput({
             );
           })}
         </div>
-        {field.help && <p className="funnel-help">{field.help}</p>}
+        {field.help && <p className="funnel-help">{helpText(field.help)}</p>}
       </div>
     );
   }
@@ -547,7 +554,7 @@ function FieldInput({
             );
           })}
         </div>
-        {field.help && <p className="funnel-help">{field.help}</p>}
+        {field.help && <p className="funnel-help">{helpText(field.help)}</p>}
       </div>
     );
   }
@@ -576,7 +583,7 @@ function FieldInput({
             );
           })}
         </div>
-        {field.help && <p className="funnel-help">{field.help}</p>}
+        {field.help && <p className="funnel-help">{helpText(field.help)}</p>}
       </div>
     );
   }
@@ -613,7 +620,7 @@ function FieldInput({
           )
         }
       />
-      {field.help && <p className="funnel-help">{field.help}</p>}
+      {field.help && <p className="funnel-help">{helpText(field.help)}</p>}
     </div>
   );
 }

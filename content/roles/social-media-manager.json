@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 4,
+    "version": 5,
     "pages": [
       {
         "id": "intro",
@@ -131,10 +131,10 @@
           {
             "id": "voice_note_url",
             "type": "audio",
-            "label": "Your pitch (3-5 minutes)",
+            "label": "Your audio pitch",
             "required": true,
             "maxSeconds": 300,
-            "help": "Record 3-5 minutes on everything you know about Instagram and TikTok, the strategies you would run for us, and why we should hire you. This decides the interview. Re-record until it sells you."
+            "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Instagram/TikTok**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
           }
         ],
         "next": "end-ok",
