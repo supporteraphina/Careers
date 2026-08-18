@@ -40,6 +40,10 @@ const IMAGES: Record<string, RoleImage> = {
     src: unsplash('photo-1611262588024-d12430b98920'),
     alt: 'A glossy social app icon glowing against a dark background',
   },
+  'model-relationship-manager': {
+    src: unsplash('photo-1543269865-cbf427effbad'),
+    alt: 'Two colleagues talking over a laptop in a bright cafe',
+  },
   'reddit-growth-manager': {
     src: unsplash('photo-1616509091215-57bbece93654'),
     alt: 'The Reddit app icon on a phone screen',
