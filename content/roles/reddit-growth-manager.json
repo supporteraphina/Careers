@@ -66,7 +66,7 @@
   "form": {
     "slug": "reddit-growth-manager",
     "role": "Reddit Growth Manager",
-    "version": 4,
+    "version": 5,
     "pages": [
       {
         "id": "intro",
@@ -146,10 +146,10 @@
           {
             "id": "voice_note_url",
             "type": "audio",
-            "label": "Your audio pitch",
+            "label": "60-second voice note",
             "required": true,
-            "maxSeconds": 300,
-            "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Reddit**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
+            "maxSeconds": 60,
+            "help": "Record a 60-second voice note, right here. Tell us **why we should hire you**: your **experience with Reddit** and how you will **grow OnlyFans creators**. Sixty seconds is short on purpose. Make every one count. You can re-record as many times as you like."
           }
         ],
         "next": "end-ok",
