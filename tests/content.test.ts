@@ -40,18 +40,15 @@ describe('content/roles packs', () => {
     expect(files.length).toBeGreaterThanOrEqual(0);
   });
 
-  test('chat sales asks South African applicants for ethnicity and load shedding', () => {
+  test('chat sales asks everyone for ethnicity on the single application page', () => {
     const pack = loadRolePack(path.join(ROLES_DIR, 'chat-sales-operator.json'));
-    expect(nextPageId(pack.form, 'q-application', { country: 'South Africa' })).toBe(
-      'q-ethnicity',
-    );
-    expect(nextPageId(pack.form, 'q-ethnicity', { ethnicity: 'Black African' })).toBe(
-      'q-load-shedding',
-    );
+    expect(nextPageId(pack.form, 'q-application', { country: 'South Africa' })).toBe('end-ok');
     expect(nextPageId(pack.form, 'q-application', { country: 'Croatia' })).toBe('end-ok');
+    expect(pack.form.pages.find((page) => page.id === 'q-ethnicity')).toBeUndefined();
+    expect(pack.form.pages.find((page) => page.id === 'q-load-shedding')).toBeUndefined();
 
-    const ethnicityPage = pack.form.pages.find((page) => page.id === 'q-ethnicity');
-    const ethnicityField = ethnicityPage?.fields?.find((field) => field.id === 'ethnicity');
+    const applicationPage = pack.form.pages.find((page) => page.id === 'q-application');
+    const ethnicityField = applicationPage?.fields?.find((field) => field.id === 'ethnicity');
     expect(ethnicityField).toMatchObject({ type: 'select', required: true });
     expect(ethnicityField?.options).toEqual([
       'Black African',
@@ -60,6 +57,7 @@ describe('content/roles packs', () => {
       'White',
       'Mixed or multiple ethnicities',
       'Other',
+      'Prefer not to say',
     ]);
 
     const applicationAnswers = {
@@ -74,27 +72,28 @@ describe('content/roles packs', () => {
     };
     expect(
       evaluateSubmission(pack.form, { ...applicationAnswers, country: 'Croatia' }),
-    ).toMatchObject({ ok: true, path: ['intro', 'q-application', 'end-ok'] });
-    expect(
-      evaluateSubmission(pack.form, { ...applicationAnswers, country: 'South Africa' }),
     ).toMatchObject({
       ok: false,
-      errors: {
-        ethnicity: 'This field is required.',
-        load_shedding_setup: 'This field is required.',
-      },
-      path: ['intro', 'q-application', 'q-ethnicity', 'q-load-shedding', 'end-ok'],
+      errors: { ethnicity: 'This field is required.' },
+      path: ['intro', 'q-application', 'end-ok'],
     });
     expect(
       evaluateSubmission(pack.form, {
         ...applicationAnswers,
         country: 'South Africa',
-        ethnicity: 'Other',
+        ethnicity: 'Prefer not to say',
       }),
-    ).toMatchObject({
-      ok: false,
-      errors: { load_shedding_setup: 'This field is required.' },
-      path: ['intro', 'q-application', 'q-ethnicity', 'q-load-shedding', 'end-ok'],
-    });
+    ).toMatchObject({ ok: true, path: ['intro', 'q-application', 'end-ok'] });
+  });
+
+  test('reddit growth asks everyone for ethnicity on the single application page', () => {
+    const pack = loadRolePack(path.join(ROLES_DIR, 'reddit-growth-manager.json'));
+    expect(nextPageId(pack.form, 'q-application', { country: 'South Africa' })).toBe('end-ok');
+    expect(pack.form.pages.find((page) => page.id === 'q-ethnicity')).toBeUndefined();
+
+    const applicationPage = pack.form.pages.find((page) => page.id === 'q-application');
+    const ethnicityField = applicationPage?.fields?.find((field) => field.id === 'ethnicity');
+    expect(ethnicityField).toMatchObject({ type: 'select', required: true });
+    expect(ethnicityField?.options).toContain('Prefer not to say');
   });
 });

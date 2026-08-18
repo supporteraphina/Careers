@@ -75,7 +75,7 @@
   "form": {
     "slug": "chat-sales-operator",
     "role": "Chat Sales Operator",
-    "version": 4,
+    "version": 5,
     "pages": [
       {
         "id": "intro",
@@ -149,63 +149,28 @@
             "required": true
           },
           {
-            "id": "voice_note_url",
-            "type": "audio",
-            "label": "60-second voice note",
-            "required": true,
-            "maxSeconds": 60,
-            "help": "Record a 60-second voice note about yourself, right here. Share your previous work and personal experience, and tell us why we should hire you. You can listen back and re-record as many times as you like before you continue."
-          }
-        ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "country",
-              "op": "eq",
-              "value": "South Africa"
-            },
-            "goTo": "q-ethnicity"
-          }
-        ],
-        "next": "end-ok",
-        "cta": "Continue"
-      },
-      {
-        "id": "q-ethnicity",
-        "kind": "question",
-        "title": "How do you describe your ethnicity?",
-        "description": "We ask this to help us understand whether our applicant pool is inclusive. Choose the option that best describes you.",
-        "fields": [
-          {
             "id": "ethnicity",
             "type": "select",
-            "label": "Ethnicity",
+            "label": "How do you describe your ethnicity?",
             "required": true,
-            "help": "Choose the option that best describes you.",
+            "help": "We ask this to help us understand whether our applicant pool is inclusive. Your answer does not affect your application.",
             "options": [
               "Black African",
               "Coloured",
               "Indian or Asian",
               "White",
               "Mixed or multiple ethnicities",
-              "Other"
+              "Other",
+              "Prefer not to say"
             ]
-          }
-        ],
-        "next": "q-load-shedding",
-        "cta": "Continue"
-      },
-      {
-        "id": "q-load-shedding",
-        "kind": "question",
-        "title": "How do you keep working through load shedding?",
-        "description": "Describe your exact setup: inverter, UPS, generator, backup location, whatever keeps you online when the grid is not.",
-        "fields": [
+          },
           {
-            "id": "load_shedding_setup",
-            "type": "textarea",
-            "label": "Your load shedding setup",
-            "required": true
+            "id": "voice_note_url",
+            "type": "audio",
+            "label": "60-second voice note",
+            "required": true,
+            "maxSeconds": 60,
+            "help": "Record a 60-second voice note about yourself, right here. Share your previous work and personal experience, and tell us why we should hire you. You can listen back and re-record as many times as you like before you continue."
           }
         ],
         "next": "end-ok",
