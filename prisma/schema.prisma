@@ -110,6 +110,8 @@ model FunnelEvent {
   slug      String
   pageId    String
   kind      String
+  // Form version the visitor saw. Null on events recorded before versioning.
+  formVersion Int?
   createdAt DateTime @default(now())
 
   @@index([slug, pageId])

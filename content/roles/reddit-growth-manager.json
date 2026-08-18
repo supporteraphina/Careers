@@ -66,7 +66,7 @@
   "form": {
     "slug": "reddit-growth-manager",
     "role": "Reddit Growth Manager",
-    "version": 3,
+    "version": 4,
     "pages": [
       {
         "id": "intro",
@@ -128,47 +128,28 @@
             "required": true
           },
           {
-            "id": "voice_note_url",
-            "type": "audio",
-            "label": "Your audio pitch",
-            "required": true,
-            "maxSeconds": 300,
-            "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Reddit**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
-          }
-        ],
-        "next": "end-ok",
-        "cta": "Submit Application",
-        "logic": [
-          {
-            "if": {
-              "fieldId": "country",
-              "op": "eq",
-              "value": "South Africa"
-            },
-            "goTo": "q-ethnicity"
-          }
-        ]
-      },
-      {
-        "id": "q-ethnicity",
-        "kind": "question",
-        "title": "How do you describe your ethnicity?",
-        "description": "We ask this to help us understand whether our applicant pool is inclusive. Choose the option that best describes you.",
-        "fields": [
-          {
             "id": "ethnicity",
             "type": "select",
-            "label": "Ethnicity",
+            "label": "How do you describe your ethnicity?",
             "required": true,
-            "help": "Choose the option that best describes you.",
+            "help": "We ask this to help us understand whether our applicant pool is inclusive. Your answer does not affect your application.",
             "options": [
               "Black African",
               "Coloured",
               "Indian or Asian",
               "White",
               "Mixed or multiple ethnicities",
-              "Other"
+              "Other",
+              "Prefer not to say"
             ]
+          },
+          {
+            "id": "voice_note_url",
+            "type": "audio",
+            "label": "Your audio pitch",
+            "required": true,
+            "maxSeconds": 300,
+            "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Reddit**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
           }
         ],
         "next": "end-ok",

@@ -124,10 +124,7 @@ describe('buildAirtableRecord', () => {
   // view is grouped by this column.
   test('leaves Chatter/VA blank for the roles that are not chat work', () => {
     for (const slug of [
-      'creative-designer',
-      'customer-support',
       'full-stack-developer',
-      'operations-assistant',
       'short-form-editor',
       'south-african-talent',
     ]) {

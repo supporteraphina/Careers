@@ -32,17 +32,10 @@ const PERSONAS: Persona[] = [
   { slug: 'south-african-talent', firstName: 'Pieter', lastName: 'Botha', email: 'pieter.b@seed.test', country: 'South Africa', age: 34, income: 2400, trafficSource: 'LinkedIn', utmSource: 'linkedin', expectDq: false },
   { slug: 'south-african-talent', firstName: 'Ayanda', lastName: 'Nkosi', email: 'ayanda.n@seed.test', country: 'South Africa', age: 15, income: 0, trafficSource: 'TikTok', expectDq: true },
   { slug: 'south-african-talent', firstName: 'Lerato', lastName: 'Molefe', email: 'lerato.m@seed.test', country: 'South Africa', age: 20, student: true, income: 300, trafficSource: 'Friend or referral', referral: true, expectDq: true },
-  { slug: 'customer-support', firstName: 'Marta', lastName: 'Kovac', email: 'marta.k@seed.test', country: 'Croatia', age: 29, income: 3200, trafficSource: 'X / Twitter', utmSource: 'twitter', expectDq: false },
-  { slug: 'customer-support', firstName: 'James', lastName: 'Okafor', email: 'james.o@seed.test', country: 'Nigeria', age: 31, income: 2100, trafficSource: 'YouTube', referrerUrl: 'https://www.youtube.com/watch?v=abc', expectDq: false },
   { slug: 'short-form-editor', firstName: 'Duško', lastName: 'Ilić', email: 'dusko.i@seed.test', country: 'Serbia', age: 24, income: 1500, trafficSource: 'TikTok', utmSource: 'tiktok', expectDq: false },
   { slug: 'short-form-editor', firstName: 'Emma', lastName: 'Visser', email: 'emma.v@seed.test', country: 'Netherlands', age: 27, refuseCommit: true, income: 2800, trafficSource: 'Job board', expectDq: true },
-  { slug: 'creative-designer', firstName: 'Sofia', lastName: 'Marino', email: 'sofia.m@seed.test', country: 'Italy', age: 26, income: 1900, trafficSource: 'Instagram', utmSource: 'instagram', expectDq: false },
-  { slug: 'creative-designer', firstName: 'Karabo', lastName: 'Dlamini', email: 'karabo.d@seed.test', country: 'South Africa', age: 23, income: 900, trafficSource: 'Friend or referral', referral: true, expectDq: false },
   { slug: 'full-stack-developer', firstName: 'Ivan', lastName: 'Horvat', email: 'ivan.h@seed.test', country: 'Croatia', age: 33, income: 4200, trafficSource: 'LinkedIn', referrerUrl: 'https://www.linkedin.com/feed/', expectDq: false },
   { slug: 'full-stack-developer', firstName: 'Priya', lastName: 'Naidoo', email: 'priya.n@seed.test', country: 'South Africa', age: 25, income: 2600, trafficSource: 'Job board', utmSource: 'offerzen', expectDq: false },
-  { slug: 'customer-support', firstName: 'Ana', lastName: 'Silva', email: 'ana.s@seed.test', country: 'Portugal', age: 22, income: 1200, trafficSource: 'Other', expectDq: false },
-  { slug: 'operations-assistant', firstName: 'Thabo', lastName: 'Mokoena', email: 'thabo.m@seed.test', country: 'South Africa', age: 30, income: 1400, trafficSource: 'YouTube', utmSource: 'youtube', expectDq: false },
-  { slug: 'operations-assistant', firstName: 'Julia', lastName: 'Nowak', email: 'julia.n@seed.test', country: 'Poland', age: 14, income: 0, trafficSource: 'Instagram', expectDq: true },
 ];
 
 function pickOption(field: Field, matcher: RegExp): string {
@@ -115,7 +108,7 @@ function walk(form: FormDefinition, persona: Persona) {
   return { answers, visited, endingId: visited[visited.length - 1] };
 }
 
-describe.runIf(process.env.SEED === '1')('seed 15 applications', () => {
+describe.runIf(process.env.SEED === '1')('seed applications', () => {
   const packs = loadRolePacks(path.join(__dirname, '..', 'content', 'roles'));
   // SEED_PICK="0,6,10" submits only those persona indexes.
   const picks = process.env.SEED_PICK?.split(',').map(Number);

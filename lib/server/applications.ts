@@ -112,6 +112,7 @@ export async function createApplication(
           slug: pack.ad.slug,
           pageId: result.endingId ?? 'end',
           kind: result.outcome === 'dq' ? 'dq' : 'submit',
+          formVersion: pack.form.version,
         },
       });
     }

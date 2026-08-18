@@ -8,6 +8,8 @@ export interface FunnelEventInput {
   slug: string;
   pageId: string;
   kind: 'enter';
+  /** Form definition version the visitor saw. Optional for older clients. */
+  formVersion?: number;
 }
 
 const MAX_BATCH = 25;
@@ -27,6 +29,7 @@ export async function recordEvents(batch: FunnelEventInput[]): Promise<number> {
       slug: e.slug.slice(0, 64),
       pageId: e.pageId.slice(0, 64),
       kind: 'enter',
+      formVersion: Number.isInteger(e.formVersion) ? (e.formVersion as number) : null,
     }));
 
   if (clean.length === 0) return 0;
