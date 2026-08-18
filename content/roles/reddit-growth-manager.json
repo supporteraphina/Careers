@@ -66,7 +66,7 @@
   "form": {
     "slug": "reddit-growth-manager",
     "role": "Reddit Growth Manager",
-    "version": 2,
+    "version": 3,
     "pages": [
       {
         "id": "intro",
@@ -136,30 +136,8 @@
             "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Reddit**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
           }
         ],
-        "next": "q-role",
-        "cta": "Continue"
-      },
-      {
-        "id": "q-role",
-        "kind": "question",
-        "title": "Your track record, {first_name}.",
-        "description": "Two answers decide whether we invite you to interview. Use numbers and be specific.",
-        "fields": [
-          {
-            "id": "reddit_experience",
-            "type": "textarea",
-            "label": "Your Reddit track record",
-            "required": true,
-            "help": "The accounts and communities you have run: karma, subscriber counts, traffic driven, how long you kept accounts alive. Tell us one thing you did on Reddit that most marketers would get banned for trying."
-          },
-          {
-            "id": "automation_experience",
-            "type": "textarea",
-            "label": "Your automation and AI tooling experience",
-            "required": true,
-            "help": "What you have automated and with what: Claude Code, scripts, schedulers, scrapers, monitoring. Name the tools and the hours they saved."
-          }
-        ],
+        "next": "end-ok",
+        "cta": "Submit Application",
         "logic": [
           {
             "if": {
@@ -169,9 +147,7 @@
             },
             "goTo": "q-ethnicity"
           }
-        ],
-        "next": "end-ok",
-        "cta": "Submit Application"
+        ]
       },
       {
         "id": "q-ethnicity",
