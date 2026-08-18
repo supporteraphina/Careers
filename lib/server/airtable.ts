@@ -55,6 +55,8 @@ const FIELD_NAMES: Record<string, string> = {
   traffic_source: 'How did you hear about us?',
   voice_note_url: 'Voice Note',
   load_shedding_setup: 'Load Shedding Setup',
+  accounts_experience: 'Accounts Experience',
+  team_experience: 'Team Experience',
 };
 
 /**

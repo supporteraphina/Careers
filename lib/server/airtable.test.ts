@@ -90,6 +90,20 @@ describe('buildAirtableRecord', () => {
     expect(fields['Chatter/VA']).toBe('Social Media Manager');
   });
 
+  test('mirrors the social media manager track-record answers', () => {
+    const { fields } = buildAirtableRecord(
+      application({
+        slug: 'social-media-manager',
+        answers: JSON.stringify({
+          accounts_experience: 'Ran 12 accounts for two brands.',
+          team_experience: 'Hired and managed 5 posters.',
+        }),
+      }),
+    );
+    expect(fields['Accounts Experience']).toBe('Ran 12 accounts for two brands.');
+    expect(fields['Team Experience']).toBe('Hired and managed 5 posters.');
+  });
+
   // Every careers role writes to this one table. Labelling them all Chatter
   // would file designers and developers as chat operators, and the team's main
   // view is grouped by this column.
