@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 7,
+    "version": 8,
     "pages": [
       {
         "id": "intro",
@@ -103,16 +103,17 @@
           {
             "id": "ethnicity",
             "type": "select",
-            "label": "Ethnicity",
+            "label": "How do you describe your ethnicity?",
             "required": true,
-            "help": "We ask this to help us understand whether our applicant pool is inclusive.",
+            "help": "We ask this to help us understand whether our applicant pool is inclusive. Your answer does not affect your application.",
             "options": [
               "Black African",
               "Coloured",
               "Indian or Asian",
               "White",
               "Mixed or multiple ethnicities",
-              "Other"
+              "Other",
+              "Prefer not to say"
             ]
           },
           {
