@@ -3,6 +3,7 @@ import {
   baseMimeType,
   extensionForMime,
   isVoiceNotePath,
+  meetsMinimumDuration,
   mimeForExtension,
   voiceNoteIdFrom,
   voiceNotePath,
@@ -69,5 +70,27 @@ describe('voice note links', () => {
 
   test('rejects a javascript: link dressed up as a path', () => {
     expect(voiceNoteIdFrom(`javascript:/voice/${ID}.webm`)).toBeNull();
+  });
+});
+
+describe('minimum duration', () => {
+  test('a field with no floor takes anything, including an unmeasured take', () => {
+    expect(meetsMinimumDuration(800)).toBe(true);
+    expect(meetsMinimumDuration(null)).toBe(true);
+    expect(meetsMinimumDuration(800, 0)).toBe(true);
+  });
+
+  test('rejects the click-record-click-stop takes that reached production', () => {
+    expect(meetsMinimumDuration(800, 20)).toBe(false);
+    expect(meetsMinimumDuration(4100, 20)).toBe(false);
+  });
+
+  test('accepts a take at or over the floor', () => {
+    expect(meetsMinimumDuration(20_000, 20)).toBe(true);
+    expect(meetsMinimumDuration(180_000, 20)).toBe(true);
+  });
+
+  test('an unmeasured take fails once a floor exists, so it cannot be skipped', () => {
+    expect(meetsMinimumDuration(null, 20)).toBe(false);
   });
 });

@@ -12,6 +12,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from '
 import {
   DEFAULT_MAX_SECONDS,
   RECORDER_MIME_CANDIDATES,
+  DEFAULT_MIN_SECONDS,
   baseMimeType,
   extensionForMime,
 } from '../lib/voice/format';
@@ -22,6 +23,7 @@ interface VoiceRecorderProps {
   /** Hosted link for the current take, or undefined before the first one. */
   value: string | undefined;
   maxSeconds?: number;
+  minSeconds?: number;
   invalid?: boolean;
   onChange: (url: string) => void;
   onClear: () => void;
@@ -67,6 +69,7 @@ export default function VoiceRecorder({
   fieldId,
   value,
   maxSeconds = DEFAULT_MAX_SECONDS,
+  minSeconds = DEFAULT_MIN_SECONDS,
   invalid,
   onChange,
   onClear,
@@ -333,6 +336,9 @@ export default function VoiceRecorder({
 
   const remaining = Math.max(0, maxSeconds - elapsed);
   const saved = phase === 'ready' && Boolean(value);
+  // Below the floor the stop button is inert, so a take can never be uploaded
+  // only to bounce off the same rule on the server.
+  const tooShort = elapsed < minSeconds;
 
   return (
     <div className="vr" data-phase={phase} aria-invalid={invalid || undefined}>
@@ -352,8 +358,10 @@ export default function VoiceRecorder({
               {phase === 'arming' ? 'Waiting for your microphone…' : 'Record your voice note'}
             </span>
             <span className="vr__stage-hint">
-              Up to {formatTime(maxSeconds)}. You can listen back and re-record before you
-              continue.
+              {minSeconds > 0
+                ? `At least ${formatTime(minSeconds)}, up to ${formatTime(maxSeconds)}.`
+                : `Up to ${formatTime(maxSeconds)}.`}{' '}
+              You can listen back and re-record before you continue.
             </span>
           </div>
         </div>
@@ -365,7 +373,10 @@ export default function VoiceRecorder({
             type="button"
             className="vr__stop"
             onClick={stop}
-            aria-label="Stop recording"
+            disabled={tooShort}
+            aria-label={
+              tooShort ? `Keep going, ${formatTime(minSeconds)} minimum` : 'Stop recording'
+            }
           >
             <span className="vr__stop-square" aria-hidden="true" />
           </button>
@@ -382,7 +393,11 @@ export default function VoiceRecorder({
             <span className="vr__timer" role="timer" aria-live="off">
               {formatTime(elapsed)}
             </span>
-            <span className="vr__remaining">{formatTime(remaining)} left</span>
+            <span className="vr__remaining">
+              {tooShort
+                ? `${formatTime(minSeconds - elapsed)} to go`
+                : `${formatTime(remaining)} left`}
+            </span>
           </div>
           <button type="button" className="vr__ghost" onClick={cancel}>
             Cancel

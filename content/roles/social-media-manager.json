@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 7,
+    "version": 9,
     "pages": [
       {
         "id": "intro",
@@ -103,16 +103,17 @@
           {
             "id": "ethnicity",
             "type": "select",
-            "label": "Ethnicity",
+            "label": "How do you describe your ethnicity?",
             "required": true,
-            "help": "We ask this to help us understand whether our applicant pool is inclusive.",
+            "help": "We ask this to help us understand whether our applicant pool is inclusive. Your answer does not affect your application.",
             "options": [
               "Black African",
               "Coloured",
               "Indian or Asian",
               "White",
               "Mixed or multiple ethnicities",
-              "Other"
+              "Other",
+              "Prefer not to say"
             ]
           },
           {
@@ -134,6 +135,7 @@
             "label": "Your audio pitch",
             "required": true,
             "maxSeconds": 300,
+            "minSeconds": 20,
             "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Instagram/TikTok**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
           }
         ],

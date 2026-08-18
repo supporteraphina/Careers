@@ -34,6 +34,8 @@ export interface Field {
   max?: number;
   /** Recording cap for `audio` fields, in seconds. Defaults to 60. */
   maxSeconds?: number;
+  /** Shortest take an `audio` field accepts, in seconds. Defaults to 0. */
+  minSeconds?: number;
 }
 
 export type ConditionOp =

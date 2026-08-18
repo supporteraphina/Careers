@@ -75,7 +75,7 @@
   "form": {
     "slug": "chat-sales-operator",
     "role": "Chat Sales Operator",
-    "version": 5,
+    "version": 6,
     "pages": [
       {
         "id": "intro",
@@ -170,6 +170,7 @@
             "label": "60-second voice note",
             "required": true,
             "maxSeconds": 60,
+            "minSeconds": 20,
             "help": "Record a 60-second voice note about yourself, right here. Share your previous work and personal experience, and tell us why we should hire you. You can listen back and re-record as many times as you like before you continue."
           }
         ],

@@ -188,6 +188,33 @@ describe('pipe', () => {
 });
 
 describe('validateForm', () => {
+  test('rejects an audio field asking for more than it allows', () => {
+    const form = ageGateForm();
+    const page = form.pages.find((p) => (p.fields ?? []).length > 0)!;
+    page.fields = [
+      ...(page.fields ?? []),
+      {
+        id: 'pitch',
+        type: 'audio',
+        label: 'Pitch',
+        required: true,
+        minSeconds: 90,
+        maxSeconds: 60,
+      },
+    ];
+    expect(validateForm(form).join(' ')).toMatch(/at least 90s but caps at 60s/i);
+  });
+
+  test('rejects a negative floor', () => {
+    const form = ageGateForm();
+    const page = form.pages.find((p) => (p.fields ?? []).length > 0)!;
+    page.fields = [
+      ...(page.fields ?? []),
+      { id: 'pitch', type: 'audio', label: 'Pitch', required: true, minSeconds: -5 },
+    ];
+    expect(validateForm(form).join(' ')).toMatch(/negative minSeconds/i);
+  });
+
   test('accepts a well-formed definition', () => {
     expect(validateForm(ageGateForm())).toEqual([]);
   });

@@ -11,7 +11,11 @@ import type {
   FormPage,
 } from './types';
 import { isCountryName } from './countries';
-import { isVoiceNotePath } from '../voice/format';
+import {
+  DEFAULT_MAX_SECONDS,
+  DEFAULT_MIN_SECONDS,
+  isVoiceNotePath,
+} from '../voice/format';
 
 function getPage(form: FormDefinition, pageId: string): FormPage {
   const found = form.pages.find((p) => p.id === pageId);
@@ -113,6 +117,17 @@ export function validateForm(form: FormDefinition): string[] {
       fieldIds.add(field.id);
       if (CHOICE_TYPES.has(field.type) && !(field.options?.length)) {
         errors.push(`Field "${field.id}" of type ${field.type} needs options`);
+      }
+      if (field.type === 'audio') {
+        const min = field.minSeconds ?? DEFAULT_MIN_SECONDS;
+        const max = field.maxSeconds ?? DEFAULT_MAX_SECONDS;
+        if (min < 0) {
+          errors.push(`Field "${field.id}" has a negative minSeconds`);
+        } else if (min > max) {
+          errors.push(
+            `Field "${field.id}" asks for at least ${min}s but caps at ${max}s`,
+          );
+        }
       }
     }
   }
