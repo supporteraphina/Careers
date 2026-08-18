@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 3,
+    "version": 4,
     "pages": [
       {
         "id": "intro",
@@ -131,10 +131,10 @@
           {
             "id": "voice_note_url",
             "type": "audio",
-            "label": "Your 60-second pitch",
+            "label": "Your pitch (3-5 minutes)",
             "required": true,
-            "maxSeconds": 60,
-            "help": "This is not an introduction. It is a pitch, and it decides whether you get the interview. You have 60 seconds to sell us on what you would do with our Instagram and TikTok. Have experience? Give us the numbers. None? Convince us with your plan and your hunger. We hire hard workers who are ready to grind, and we can hear that in a minute. Record right here, listen back, and re-record until it sells you."
+            "maxSeconds": 300,
+            "help": "Record 3-5 minutes on everything you know about Instagram and TikTok, the strategies you would run for us, and why we should hire you. This decides the interview. Re-record until it sells you."
           }
         ],
         "next": "end-ok",
