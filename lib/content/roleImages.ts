@@ -30,7 +30,7 @@ const IMAGES: Record<string, RoleImage> = {
   },
   'model-relationship-manager': {
     src: unsplash('photo-1543269865-cbf427effbad'),
-    alt: 'Two colleagues talking over a laptop in a bright cafe',
+    alt: 'Four colleagues talking and laughing around a cafe table',
   },
   'reddit-growth-manager': {
     src: unsplash('photo-1616509091215-57bbece93654'),

@@ -491,6 +491,41 @@
   background: var(--adm-status-shortlisted);
 }
 
+/* Collapsed traffic from superseded form versions */
+
+.adm-legacy {
+  margin-top: 14px;
+  opacity: 0.62;
+}
+
+.adm-legacy__summary {
+  display: block;
+  color: var(--text-faint);
+  font-size: 0.76rem;
+  cursor: pointer;
+  padding: 4px 0;
+  list-style: none;
+}
+
+.adm-legacy__summary::-webkit-details-marker {
+  display: none;
+}
+
+.adm-legacy__summary::before {
+  content: '\25B8';
+  display: inline-block;
+  width: 12px;
+  transition: transform 0.15s ease;
+}
+
+.adm-legacy[open] > .adm-legacy__summary::before {
+  transform: rotate(90deg);
+}
+
+.adm-legacy__summary:hover {
+  color: var(--text-dim);
+}
+
 .adm-bar-row__num {
   text-align: right;
   font-variant-numeric: tabular-nums;

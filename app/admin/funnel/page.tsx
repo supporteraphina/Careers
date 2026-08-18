@@ -208,11 +208,11 @@ export default async function FunnelStatsPage() {
           })}
 
           {legacySteps.length > 0 && (
-            <div style={{ marginTop: '14px', opacity: 0.62 }}>
-              <div className="adm-cell-sub" style={{ marginBottom: '8px' }}>
+            <details className="adm-legacy">
+              <summary className="adm-legacy__summary">
                 Earlier form versions · {legacyStart} started · {legacySubmits} submitted ·{' '}
                 {legacyDqs} dq
-              </div>
+              </summary>
               {legacySteps.map((step) => {
                 const pct =
                   legacyStart > 0 ? Math.round((step.count / legacyStart) * 100) : 0;
@@ -232,7 +232,7 @@ export default async function FunnelStatsPage() {
                   </div>
                 );
               })}
-            </div>
+            </details>
           )}
         </section>
         ),
