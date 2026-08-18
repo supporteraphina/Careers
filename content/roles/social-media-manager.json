@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -79,29 +79,8 @@
         "id": "q-application",
         "kind": "question",
         "title": "Social Media Manager Application",
-        "description": "Complete every required field. We review the quality and accuracy of your answers before inviting anyone to interview.",
+        "description": "One page, five fields, and your voice note. We review every application that comes in.",
         "fields": [
-          {
-            "id": "english_level",
-            "type": "select",
-            "label": "Level of English",
-            "required": true,
-            "help": "Select the option that accurately describes your level of English. Be sincere, as we will double-check this during the interview.",
-            "options": [
-              "Native or bilingual",
-              "Fluent",
-              "Advanced",
-              "Intermediate",
-              "Basic"
-            ]
-          },
-          {
-            "id": "country",
-            "type": "country",
-            "label": "Country",
-            "required": true,
-            "help": "Choose from the list so your application is recorded consistently."
-          },
           {
             "id": "first_name",
             "type": "text",
@@ -115,6 +94,28 @@
             "required": true
           },
           {
+            "id": "country",
+            "type": "country",
+            "label": "Country",
+            "required": true,
+            "help": "Choose from the list so your application is recorded consistently."
+          },
+          {
+            "id": "ethnicity",
+            "type": "select",
+            "label": "Ethnicity",
+            "required": true,
+            "help": "We ask this to help us understand whether our applicant pool is inclusive.",
+            "options": [
+              "Black African",
+              "Coloured",
+              "Indian or Asian",
+              "White",
+              "Mixed or multiple ethnicities",
+              "Other"
+            ]
+          },
+          {
             "id": "whatsapp_number",
             "type": "phone",
             "label": "WhatsApp Number",
@@ -126,65 +127,14 @@
             "type": "email",
             "label": "Email",
             "required": true
-          }
-        ],
-        "next": "q-role",
-        "cta": "Continue"
-      },
-      {
-        "id": "q-role",
-        "kind": "question",
-        "title": "Your track record, {first_name}.",
-        "description": "Two answers decide whether we invite you to interview. Use numbers and be specific.",
-        "fields": [
-          {
-            "id": "accounts_experience",
-            "type": "textarea",
-            "label": "The accounts you have run",
-            "required": true,
-            "help": "How many TikTok or Instagram accounts have you managed at once, for whom, and what were the results? Follower growth, reach, posting volume. Accounts you ran for a brand or client count double."
           },
           {
-            "id": "team_experience",
-            "type": "textarea",
-            "label": "The people you have managed",
+            "id": "voice_note_url",
+            "type": "audio",
+            "label": "Your voice note: sell yourself to us",
             "required": true,
-            "help": "The team you hired, trained, or ran: how many people, what they did, and how you kept quality up. If someone underperformed, tell us what you did about it."
-          }
-        ],
-        "logic": [
-          {
-            "if": {
-              "fieldId": "country",
-              "op": "eq",
-              "value": "South Africa"
-            },
-            "goTo": "q-ethnicity"
-          }
-        ],
-        "next": "end-ok",
-        "cta": "Submit Application"
-      },
-      {
-        "id": "q-ethnicity",
-        "kind": "question",
-        "title": "How do you describe your ethnicity?",
-        "description": "We ask this to help us understand whether our applicant pool is inclusive. Choose the option that best describes you.",
-        "fields": [
-          {
-            "id": "ethnicity",
-            "type": "select",
-            "label": "Ethnicity",
-            "required": true,
-            "help": "Choose the option that best describes you.",
-            "options": [
-              "Black African",
-              "Coloured",
-              "Indian or Asian",
-              "White",
-              "Mixed or multiple ethnicities",
-              "Other"
-            ]
+            "maxSeconds": 60,
+            "help": "This is the part that gets you the interview. You have 60 seconds to tell us what you could do for our Instagram and TikTok. Have experience? Give us the numbers. No experience? Tell us anyway and convince us with what you would do. Record right here, listen back, and re-record as many times as you like."
           }
         ],
         "next": "end-ok",
