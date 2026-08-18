@@ -66,7 +66,7 @@
   "form": {
     "slug": "social-media-manager",
     "role": "Social Media Manager (TikTok & Instagram)",
-    "version": 8,
+    "version": 9,
     "pages": [
       {
         "id": "intro",
@@ -135,6 +135,7 @@
             "label": "Your audio pitch",
             "required": true,
             "maxSeconds": 300,
+            "minSeconds": 20,
             "help": "Submit a **3-4 minute audio recording** explaining **why we should hire you** for this position. Include your **experience with Instagram/TikTok**, explain how you will **grow OnlyFans creators** and **prove your knowledge** of the platform."
           }
         ],

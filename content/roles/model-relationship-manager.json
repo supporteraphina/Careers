@@ -75,7 +75,7 @@
   "form": {
     "slug": "model-relationship-manager",
     "role": "Model Relationship Manager",
-    "version": 1,
+    "version": 2,
     "pages": [
       {
         "id": "intro",
@@ -164,6 +164,7 @@
             "label": "60-second voice note",
             "required": true,
             "maxSeconds": 60,
+            "minSeconds": 20,
             "help": "Record a 60-second voice note, right here. Tell us about a time someone trusted you with something that mattered, and why people open up to you. Your voice is a big part of this job, so relax and be yourself. You can re-record as many times as you like."
           }
         ],

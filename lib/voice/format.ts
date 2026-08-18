@@ -7,6 +7,26 @@
 export const DEFAULT_MAX_SECONDS = 60;
 
 /**
+ * Floor when a field does not set its own `minSeconds`. Zero keeps existing
+ * fields behaving exactly as before until they opt in.
+ */
+export const DEFAULT_MIN_SECONDS = 0;
+
+/**
+ * Whether a take is long enough for the field. A null duration means the
+ * browser gave us nothing to measure, which we can only treat as a failure
+ * once a field asks for a minimum, otherwise the floor is trivial to skip.
+ */
+export function meetsMinimumDuration(
+  durationMs: number | null,
+  minSeconds = DEFAULT_MIN_SECONDS,
+): boolean {
+  if (minSeconds <= 0) return true;
+  if (durationMs === null) return false;
+  return durationMs >= minSeconds * 1000;
+}
+
+/**
  * Ceiling on an upload, generous enough for the worst-case container a browser
  * might hand us for a minute of speech, tight enough to bound a Postgres row.
  */

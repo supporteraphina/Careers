@@ -448,6 +448,7 @@ function FieldInput({
           fieldId={field.id}
           value={value === undefined ? undefined : String(value)}
           maxSeconds={field.maxSeconds}
+          minSeconds={field.minSeconds}
           invalid={Boolean(error)}
           onChange={onChange}
           onClear={onClear}

@@ -12,6 +12,7 @@ import {
   DEFAULT_MAX_SECONDS,
   MAX_VOICE_BYTES,
   extensionForMime,
+  meetsMinimumDuration,
   voiceNotePath,
 } from '../../../lib/voice/format';
 
@@ -86,6 +87,14 @@ export async function POST(request: Request) {
   const durationMs = Number.isFinite(reported) && reported > 0 ? Math.round(reported) : null;
   if (durationMs !== null && durationMs > maxMs) {
     return NextResponse.json({ error: 'Recording too long' }, { status: 413 });
+  }
+  // A field that asks for a minimum gets it enforced here rather than only in
+  // the recorder, so a hand-rolled POST cannot store a one second take.
+  if (!meetsMinimumDuration(durationMs, field.minSeconds)) {
+    return NextResponse.json(
+      { error: `Record at least ${field.minSeconds} seconds` },
+      { status: 422 },
+    );
   }
 
   const note = await prisma.voiceNote.create({

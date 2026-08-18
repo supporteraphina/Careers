@@ -5,7 +5,7 @@ import { prisma } from '../db';
 import type { RolePack } from '../content/types';
 import { evaluateSubmission } from '../engine/submission';
 import type { Answers } from '../engine/types';
-import { voiceNoteIdFrom } from '../voice/format';
+import { meetsMinimumDuration, voiceNoteIdFrom } from '../voice/format';
 import { flattenAnswers } from './transform';
 
 export interface SubmissionMeta {
@@ -51,7 +51,7 @@ export async function createApplication(
     const note = noteId
       ? await prisma.voiceNote.findUnique({
           where: { id: noteId },
-          select: { id: true, slug: true, fieldId: true },
+          select: { id: true, slug: true, fieldId: true, durationMs: true },
         })
       : null;
 
@@ -59,6 +59,16 @@ export async function createApplication(
       return {
         ok: false,
         errors: { [field.id]: 'Record your voice note before continuing.' },
+      };
+    }
+    // Recordings made before the field grew a floor, or under an earlier one,
+    // are still in the table and still linkable. Check the stored take.
+    if (!meetsMinimumDuration(note.durationMs, field.minSeconds)) {
+      return {
+        ok: false,
+        errors: {
+          [field.id]: `Your recording is too short. Record at least ${field.minSeconds} seconds.`,
+        },
       };
     }
     voiceNoteIds.push(note.id);
