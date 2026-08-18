@@ -91,6 +91,7 @@ const AUDIO_RECEIVED_FIELD = 'Audio received?';
 const CHATTER_VA_FIELD = 'Chatter/VA';
 const CHATTER_VA_BY_SLUG: Record<string, string> = {
   'chat-sales-operator': 'Chatter',
+  'social-media-manager': 'Social Media Manager',
 };
 
 export interface ApplicationForAirtable {

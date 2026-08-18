@@ -85,6 +85,11 @@ describe('buildAirtableRecord', () => {
     expect(fields['Chatter/VA']).toBe('Chatter');
   });
 
+  test('files a social media manager applicant under their own tag', () => {
+    const { fields } = buildAirtableRecord(application({ slug: 'social-media-manager' }));
+    expect(fields['Chatter/VA']).toBe('Social Media Manager');
+  });
+
   // Every careers role writes to this one table. Labelling them all Chatter
   // would file designers and developers as chat operators, and the team's main
   // view is grouped by this column.
