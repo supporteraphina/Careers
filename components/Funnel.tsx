@@ -218,7 +218,10 @@ export default function Funnel({ form }: FunnelProps) {
           throw new Error(body?.error ?? 'Submission failed');
         }
         setSubmitted(true);
-        // Meta Pixel: a completed application is the campaign's conversion event.
+        // Meta Pixel: a completed application is the campaign's conversion
+        // event. SubmitApplication is the standard event the ad sets optimize
+        // on; Lead stays alongside it for reporting continuity.
+        track('SubmitApplication', { content_name: form.slug });
         track('Lead', { content_name: form.slug });
         window.localStorage.removeItem(storageKey(form.slug));
         setHistory((prev) => [...prev, pageId]);

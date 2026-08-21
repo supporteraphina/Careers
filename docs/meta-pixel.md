@@ -5,7 +5,7 @@ careers site and the application funnels.
 
 ## Status: wired
 
-The Halevora pixel (Events Manager dataset "Careers", id `1206672578298870`, under
+The Halevora pixel (Events Manager dataset "Hiring", id `1551477395988168`, under
 the Halevora business) ships as the production default, so it goes live
 automatically on the next production deploy. It stays inert in local development,
 so dev traffic never reaches the live dataset.
@@ -24,10 +24,13 @@ NEXT_PUBLIC_META_PIXEL_ID=             # empty string disables the pixel
 |---|---|---|
 | `PageView` | Every route change on public pages | `components/MetaPixel.tsx` |
 | `ViewContent` | An applicant opens a role's apply funnel | `components/Funnel.tsx` |
-| `Lead` | An application is submitted successfully | `components/Funnel.tsx` |
+| `SubmitApplication` | An application is submitted successfully | `components/Funnel.tsx` |
+| `Lead` | Fired alongside `SubmitApplication` for reporting continuity | `components/Funnel.tsx` |
 
-`ViewContent` and `Lead` carry `content_name` (the role slug) so the campaign
-can optimise per role. `Lead` is the conversion event to optimise the ad set on.
+`ViewContent`, `SubmitApplication`, and `Lead` carry `content_name` (the role
+slug) so the campaign can optimise per role. `SubmitApplication` is the
+conversion event the ad sets optimise on; it matches the "Submit application"
+option in Ads Manager's conversion event dropdown.
 
 Admin routes (`/admin/*`) are excluded so internal traffic never enters the
 campaign data.
