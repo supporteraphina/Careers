@@ -10,8 +10,8 @@
 // Conversions API are a later addition and need an access token secret; see
 // docs/meta-pixel.md.
 
-// Halevora dataset id from Events Manager. Public value, safe to commit.
-const FALLBACK_PIXEL_ID = '1206672578298870';
+// Halevora "Hiring" dataset id from Events Manager. Public value, safe to commit.
+const FALLBACK_PIXEL_ID = '1551477395988168';
 
 export const META_PIXEL_ID =
   process.env.NEXT_PUBLIC_META_PIXEL_ID ??
